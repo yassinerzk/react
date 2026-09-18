@@ -12,7 +12,8 @@
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": ["src", "../assets/quran/index.json", "../assets/hadith/*.json"]
 }

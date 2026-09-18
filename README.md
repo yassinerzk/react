@@ -4,11 +4,14 @@ Create and share Islamic WhatsApp story posts: Jumu'ah greetings, morning and ev
 
 Pick a post, change any of the text, choose a colour theme or a photo background, a decoration and a font, then share it straight to your WhatsApp status at the native 1080x1920 size.
 
+The mobile app also includes a Quran reader that remembers where you stopped and which chapters you finished, and a hadith library with Sahih al-Bukhari and Sahih Muslim that you can read by topic or search, with a filter that shows only supplications. Signing up keeps saved posts and reading progress in sync across devices.
+
 ## Workspaces
 
 ```
 packages/core     @barakah/core    Shared domain logic (pure TypeScript, no UI)
-packages/assets                    Photo backgrounds (WebP) used by both apps
+packages/assets                    Photo backgrounds, Quran chapters and hadith indexes shared by both apps
+supabase/                          Database schema for optional accounts and sync
 apps/web          @barakah/web     Vite + React web app (GitHub Pages)
 apps/mobile       @barakah/mobile  Expo (React Native) app for iOS, Android and web
 ```
@@ -23,6 +26,8 @@ Dependencies flow one way: apps import `@barakah/core`; core imports nothing fro
 - `occasions.ts` — rules that decide what is relevant "today".
 - `design.ts` — the `StoryDesign` model, typography engine and caption text.
 - `hijri.ts` — Hijri date via `Intl`, with an arithmetic fallback for engines without the Umm al-Qura calendar.
+- `quran.ts` — chapter index (bundled from `packages/assets/quran`), reading-progress helpers.
+- `hadith.ts` — book and section indexes, edition merging, Arabic-aware normalisation, topic search and supplication detection.
 - `prayer.ts`, `cities.ts` — prayer times, next prayer, Qibla bearing (built on the `adhan` library) and preset cities.
 - `i18n/` — English and Arabic dictionaries.
 
@@ -49,6 +54,10 @@ cd apps/mobile
 npx expo start              # scan the QR code with Expo Go on iOS or Android
 npx expo start --web        # run the same app in a browser
 ```
+
+**Accounts (optional).** Create a free [Supabase](https://supabase.com) project, run `supabase/schema.sql` in its SQL editor, then copy `apps/mobile/.env.example` to `apps/mobile/.env` and fill in the project URL and anon key. Without these, the app runs fully offline and only hides sign-up.
+
+**Hadith data.** The two collections (about 12–14 MB each, Arabic and English) are downloaded on first use from the jsDelivr mirror of the `fawazahmed0/hadith-api` dataset and cached on the device. The Quran text (quran-json, CC BY 4.0, Saheeh International translation) is bundled with the app.
 
 Store builds use [EAS Build](https://docs.expo.dev/build/introduction/): `npx eas build --platform all` after `npx eas login`.
 

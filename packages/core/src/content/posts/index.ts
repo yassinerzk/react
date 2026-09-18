@@ -13,6 +13,7 @@ import { quranPosts } from './quran';
 import { hadithPosts } from './hadith';
 import { duaPosts } from './dua';
 import { occasionsPosts } from './occasions';
+import { morePosts } from './more';
 
 /**
  * Post registry. Each category lives in its own file so content can grow
@@ -33,6 +34,7 @@ export const POSTS: readonly Post[] = [
   ...hadithPosts,
   ...duaPosts,
   ...occasionsPosts,
+  ...morePosts,
 ];
 
 const POST_MAP = new Map(POSTS.map((p) => [p.id, p]));

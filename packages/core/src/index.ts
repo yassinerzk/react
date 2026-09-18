@@ -10,3 +10,5 @@ export * from './prayer';
 export * from './cities';
 export * from './i18n';
 export * from './recent';
+export * from './quran';
+export * from './hadith';

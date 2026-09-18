@@ -150,3 +150,62 @@ export const useToastStore = create<ToastState>()((set, get) => ({
   },
   dismiss: (id) => set({ toasts: get().toasts.filter((t) => t.id !== id) }),
 }));
+
+/* ---------------- quran progress ---------------- */
+import { addFinished, removeFinished, type QuranPosition, type QuranProgress } from '@barakah/core';
+
+interface QuranState extends QuranProgress {
+  showTranslation: boolean;
+  fontScale: number;
+  setLastRead: (pos: QuranPosition) => void;
+  markFinished: (surah: number) => void;
+  unmarkFinished: (surah: number) => void;
+  setShowTranslation: (v: boolean) => void;
+  setFontScale: (v: number) => void;
+  /** Replaces progress from the cloud when it is newer. */
+  applyRemote: (progress: QuranProgress) => void;
+}
+export const useQuranStore = create<QuranState>()(
+  persist(
+    (set, get) => ({
+      lastRead: null,
+      finished: [],
+      updatedAt: 0,
+      showTranslation: true,
+      fontScale: 1,
+      setLastRead: (lastRead) => set({ lastRead, updatedAt: Date.now() }),
+      markFinished: (surah) => set({ finished: addFinished(get().finished, surah), updatedAt: Date.now() }),
+      unmarkFinished: (surah) =>
+        set({ finished: removeFinished(get().finished, surah), updatedAt: Date.now() }),
+      setShowTranslation: (showTranslation) => set({ showTranslation }),
+      setFontScale: (fontScale) => set({ fontScale }),
+      applyRemote: (p) => {
+        if (p.updatedAt > get().updatedAt)
+          set({ lastRead: p.lastRead, finished: p.finished, updatedAt: p.updatedAt });
+      },
+    }),
+    { name: 'barakah.quran', version: 1, storage: storage() },
+  ),
+);
+
+/* ---------------- hadith ---------------- */
+import type { HadithBookId } from '@barakah/core';
+
+interface HadithState {
+  downloaded: Partial<Record<HadithBookId, boolean>>;
+  lastRead: Partial<Record<HadithBookId, { section: number; number: number }>>;
+  setDownloaded: (book: HadithBookId, value: boolean) => void;
+  setLastRead: (book: HadithBookId, section: number, number: number) => void;
+}
+export const useHadithStore = create<HadithState>()(
+  persist(
+    (set, get) => ({
+      downloaded: {},
+      lastRead: {},
+      setDownloaded: (book, value) => set({ downloaded: { ...get().downloaded, [book]: value } }),
+      setLastRead: (book, section, number) =>
+        set({ lastRead: { ...get().lastRead, [book]: { section, number } } }),
+    }),
+    { name: 'barakah.hadith', version: 1, storage: storage() },
+  ),
+);

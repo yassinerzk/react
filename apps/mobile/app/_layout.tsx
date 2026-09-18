@@ -6,11 +6,16 @@ import { StatusBar } from 'expo-status-bar';
 import { useAppFonts } from '../src/fonts';
 import { Toaster } from '../src/components/ui';
 import { ui } from '../src/theme';
+import { useAuthStore } from '../src/auth/store';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
 export default function RootLayout() {
   const [fontsLoaded] = useAppFonts();
+  const initAuth = useAuthStore((s) => s.init);
+  useEffect(() => {
+    initAuth();
+  }, [initAuth]);
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync().catch(() => undefined);
   }, [fontsLoaded]);
