@@ -1,0 +1,76 @@
+name: Android build
+
+# Builds the Expo app natively on the GitHub runner (Android SDK and Java are
+# preinstalled) and uploads an installable APK plus a Play Store AAB.
+# Without keystore secrets the artifacts are signed with the debug key: fine
+# for installing on your own phone, not for the Play Store.
+on:
+  workflow_dispatch:
+  push:
+    tags: ['android-v*']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: '1'
+      EXPO_NO_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - run: npm ci
+
+      - name: Generate the native Android project
+        working-directory: apps/mobile
+        run: npx expo prebuild --platform android --no-install
+
+      - name: Configure release signing (when keystore secrets are set)
+        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+        working-directory: apps/mobile/android
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > app/release.keystore
+          node ../../../scripts/android-release-signing.mjs app/build.gradle
+
+      - name: Build APK and AAB
+        working-directory: apps/mobile/android
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./gradlew :app:assembleRelease :app:bundleRelease --no-daemon
+
+      - name: Rename outputs
+        working-directory: apps/mobile/android/app/build/outputs
+        run: |
+          ls -R . | head -50
+          cp apk/release/app-release.apk barakah-stories.apk
+          cp bundle/release/app-release.aab barakah-stories.aab
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: barakah-stories-android
+          path: |
+            apps/mobile/android/app/build/outputs/barakah-stories.apk
+            apps/mobile/android/app/build/outputs/barakah-stories.aab
+          if-no-files-found: error
+          retention-days: 30

@@ -59,7 +59,20 @@ npx expo start --web        # run the same app in a browser
 
 **Hadith data.** The two collections (about 12–14 MB each, Arabic and English) are downloaded on first use from the jsDelivr mirror of the `fawazahmed0/hadith-api` dataset and cached on the device. The Quran text (quran-json, CC BY 4.0, Saheeh International translation) is bundled with the app.
 
-Store builds use [EAS Build](https://docs.expo.dev/build/introduction/): `npx eas build --platform all` after `npx eas login`.
+### Building the Android app
+
+**Without any account**: run the `Android build` workflow from the Actions tab (or push a tag like `android-v0.1.0`). It generates the native project, builds with Gradle on the GitHub runner, and uploads `barakah-stories.apk` (install on any phone after allowing unknown sources) and `barakah-stories.aab` (for the Play Store) as a downloadable artifact on the run.
+
+By default the artifacts are signed with the debug key. For the Play Store, create a keystore once:
+
+```bash
+keytool -genkeypair -v -keystore release.keystore -alias barakah -keyalg RSA -keysize 2048 -validity 10000
+base64 -w0 release.keystore   # macOS: base64 -i release.keystore
+```
+
+and add repository secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`. The workflow then signs the release with it. Keep the keystore safe: Play requires the same upload key for every update.
+
+**With an Expo account**: `npx eas build -p android --profile preview` (APK) or `--profile production` (AAB) from `apps/mobile`, using `eas.json`. iOS builds go the same way with `-p ios`.
 
 The mobile app uses:
 
