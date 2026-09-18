@@ -21,6 +21,10 @@ describe('background registry', () => {
 });
 
 describe('content registry', () => {
+  it('ships more than 200 cards', () => {
+    expect(POSTS.length).toBeGreaterThan(200);
+  });
+
   it('has unique post ids', () => {
     const ids = POSTS.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);

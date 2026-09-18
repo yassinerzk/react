@@ -70,7 +70,9 @@ The mobile app uses:
 
 ## Extending the app
 
-**Add a post**: append an object to the matching file in `packages/core/src/content/posts/`. Tests verify ids are unique, referenced themes, fonts and backgrounds exist, and Quran/hadith entries carry a source.
+**Add a post**: append an object to the matching file in `packages/core/src/content/posts/`. Tests verify ids are unique, referenced themes, fonts and backgrounds exist, Quran/hadith entries carry a source, and the catalogue stays above 200 cards.
+
+**Add Quran verse cards**: add a reference such as `'2:286'` or `'94:5-6'` with a category to `REFS` in `scripts/gen-quran-posts.mjs` and run `node scripts/gen-quran-posts.mjs`. The text and translation are copied from the bundled dataset, so they are exact; passages over 300 Arabic characters are skipped.
 
 **Add a category**: add the id to `CategoryId`, register it in `content/categories.ts`, create `posts/<name>.ts` and spread it into `posts/index.ts`. Optionally add a rule in `occasions.ts` so it appears in "Today's posts".
 
