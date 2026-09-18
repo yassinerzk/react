@@ -1,0 +1,120 @@
+import type { Locale, Post, StoryDesign } from './types';
+import { getArabicFont, getLatinFont } from './fonts';
+
+export const DEFAULT_DESIGN: StoryDesign = {
+  kind: 'greeting',
+  headline: '',
+  arabic: '',
+  translation: '',
+  source: '',
+  footer: '',
+  showTranslation: true,
+  showSource: true,
+  showHijriDate: true,
+  showFrame: false,
+  theme: 'emerald-night',
+  background: 'none',
+  decoration: 'crescent',
+  arabicFont: 'amiri',
+  latinFont: 'cormorant',
+  fontScale: 1,
+  align: 'center',
+};
+
+/** Builds an editable design from a catalogue post. */
+export function designFromPost(post: Post, locale: Locale): StoryDesign {
+  return {
+    ...DEFAULT_DESIGN,
+    postId: post.id,
+    kind: post.kind,
+    headline: post.headline?.ar ?? '',
+    arabic: post.arabic,
+    translation: post.translation ?? '',
+    source: post.source?.[locale] ?? post.source?.en ?? '',
+    showTranslation: !!post.translation,
+    showSource: !!post.source,
+    theme: post.theme,
+    background: post.background ?? 'none',
+    decoration: post.decoration,
+    arabicFont: post.font ?? (post.kind === 'quran' || post.kind === 'hadith' ? 'amiri' : 'aref-ruqaa'),
+  };
+}
+
+export const FONT_SCALE_MIN = 0.7;
+export const FONT_SCALE_MAX = 1.4;
+
+function stepSize(length: number, steps: ReadonlyArray<[number, number]>, fallback: number): number {
+  for (const [max, size] of steps) if (length <= max) return size;
+  return fallback;
+}
+
+/** Computed pixel sizes for a 1080x1920 card, derived from text length. */
+export interface CardTypography {
+  arabicSize: number;
+  arabicLineHeight: number;
+  arabicFamily: string;
+  arabicWeight: number;
+  headlineSize: number;
+  translationSize: number;
+  translationFamily: string;
+  translationItalic: boolean;
+  sourceSize: number;
+}
+
+export function computeTypography(design: StoryDesign): CardTypography {
+  const af = getArabicFont(design.arabicFont);
+  const lf = getLatinFont(design.latinFont);
+  const arabicLen = design.arabic.trim().length;
+  const translationLen = design.showTranslation ? design.translation.trim().length : 0;
+  // Long translations steal vertical space from the Arabic body; shrink both gently.
+  const crowd = translationLen > 160 ? 0.9 : translationLen > 100 ? 0.95 : 1;
+
+  const arabicBase = stepSize(
+    arabicLen,
+    [
+      [24, 118],
+      [48, 100],
+      [80, 86],
+      [120, 74],
+      [170, 64],
+      [230, 56],
+    ],
+    48,
+  );
+  const translationBase = stepSize(
+    translationLen,
+    [
+      [50, 46],
+      [110, 40],
+      [180, 36],
+      [260, 32],
+    ],
+    28,
+  );
+  const s = design.fontScale;
+  return {
+    arabicSize: Math.round(arabicBase * af.scale * s * crowd),
+    arabicLineHeight: af.lineHeight,
+    arabicFamily: af.family,
+    arabicWeight: af.weight,
+    headlineSize: Math.round(60 * Math.sqrt(s)),
+    translationSize: Math.round(translationBase * lf.scale * Math.sqrt(s) * crowd),
+    translationFamily: lf.family,
+    translationItalic: lf.italic,
+    sourceSize: Math.round(28 * Math.sqrt(s)),
+  };
+}
+
+/** Plain-text version of a design, handy as a WhatsApp caption. */
+export function designToText(design: StoryDesign): string {
+  return [
+    design.headline,
+    design.arabic,
+    design.showTranslation ? design.translation : '',
+    design.showSource && design.source ? `— ${design.source}` : '',
+    design.footer,
+  ]
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .join('\n\n');
+}

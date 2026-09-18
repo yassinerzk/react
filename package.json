@@ -2,57 +2,35 @@
   "name": "barakah-stories",
   "private": true,
   "version": "0.1.0",
-  "description": "Create and share Islamic WhatsApp story posts: Friday, morning duaa, Ramadan, Eid and more.",
-  "type": "module",
+  "description": "Islamic WhatsApp story posts: web app, Expo mobile app and shared core.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "vite --host",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview --host",
+    "dev": "npm run dev -w @barakah/web",
+    "build": "npm run build -w @barakah/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc -b",
-    "test": "vitest run",
-    "test:watch": "vitest",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test"
-  },
-  "dependencies": {
-    "@fontsource/amiri": "^5.3.0",
-    "@fontsource/aref-ruqaa": "^5.3.0",
-    "@fontsource/cairo": "^5.3.0",
-    "@fontsource/cormorant-garamond": "^5.3.0",
-    "@fontsource/inter": "^5.3.0",
-    "@fontsource/noto-naskh-arabic": "^5.3.0",
-    "@fontsource/reem-kufi": "^5.3.0",
-    "@fontsource/scheherazade-new": "^5.3.0",
-    "@fontsource/tajawal": "^5.3.0",
-    "html-to-image": "^1.11.13",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
-    "@testing-library/dom": "^10.4.2",
-    "@testing-library/jest-dom": "^6.9.0",
-    "@testing-library/react": "^16.3.3",
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
-    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.0.0",
-    "jsdom": "^27.0.0",
     "prettier": "^3.9.0",
     "typescript": "~5.9.0",
     "typescript-eslint": "^8.70.0",
-    "vite": "^7.3.6",
     "vitest": "^4.0.0"
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "type": "module"
 }

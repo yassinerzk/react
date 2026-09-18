@@ -6,7 +6,16 @@ import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'coverage'] },
+  {
+    ignores: [
+      '**/dist',
+      '**/node_modules',
+      'coverage',
+      'apps/mobile/.expo',
+      'apps/mobile/android',
+      'apps/mobile/ios',
+    ],
+  },
   {
     files: ['**/*.{ts,tsx}'],
     extends: [js.configs.recommended, ...tseslint.configs.recommended, reactHooks.configs.flat.recommended],
@@ -23,7 +32,7 @@ export default tseslint.config(
   },
   {
     // Registries export data next to the components they register; fast refresh is irrelevant there.
-    files: ['src/domain/**/*.tsx'],
+    files: ['apps/web/src/domain/**/*.tsx', 'apps/mobile/src/**/*.tsx'],
     rules: { 'react-refresh/only-export-components': 'off' },
   },
   prettier,

@@ -17,3 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - name: Bundle the Expo app for web (smoke test)
+        run: npm run export:web -w @barakah/mobile
+        env:
+          CI: '1'

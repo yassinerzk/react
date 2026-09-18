@@ -1,0 +1,66 @@
+import type { Post } from '../../types';
+
+export const occasionsPosts: Post[] = [
+  {
+    id: 'occasion-wedding',
+    category: 'occasions',
+    kind: 'dua',
+    headline: { en: 'Congratulations', ar: 'ألف مبروك' },
+    arabic: 'بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ',
+    translation: 'May Allah bless you, and shower His blessings upon you, and join you together in goodness.',
+    source: { en: 'Abu Dawud 2130, At-Tirmidhi 1091', ar: 'أبو داود ٢١٣٠، الترمذي ١٠٩١' },
+    theme: 'rose-gold',
+    decoration: 'lights',
+    font: 'aref-ruqaa',
+  },
+  {
+    id: 'occasion-newborn',
+    category: 'occasions',
+    kind: 'greeting',
+    headline: { en: 'A new blessing', ar: 'مولود جديد' },
+    arabic: 'بارَكَ اللهُ لَكَ في المَوهوب، وَشَكَرتَ الواهِب، وَبَلَغَ أَشُدَّهُ، وَرُزِقتَ بِرَّه',
+    translation:
+      'May Allah bless you in the one He has given you, may you thank the Giver, may the child reach maturity, and may you be granted their dutifulness.',
+    theme: 'teal-lagoon',
+    decoration: 'stars',
+    font: 'cairo',
+  },
+  {
+    id: 'occasion-travel',
+    category: 'occasions',
+    kind: 'dua',
+    headline: { en: 'Safe travels', ar: 'دعاء السفر' },
+    arabic:
+      'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ',
+    translation:
+      'Glory be to Him who has subjected this to us, and we could never have done it by ourselves. And indeed, to our Lord we will return.',
+    source: { en: 'Surah Az-Zukhruf 43:13-14', ar: 'سورة الزخرف ٤٣:١٣-١٤' },
+    theme: 'midnight-blue',
+    decoration: 'stars',
+    font: 'amiri',
+  },
+  {
+    id: 'occasion-condolence',
+    category: 'occasions',
+    kind: 'quran',
+    headline: { en: 'Condolences', ar: 'تعزية' },
+    arabic: 'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
+    translation: 'Indeed we belong to Allah, and indeed to Him we will return.',
+    source: { en: 'Surah Al-Baqarah 2:156', ar: 'سورة البقرة ٢:١٥٦' },
+    theme: 'charcoal-minimal',
+    decoration: 'none',
+    font: 'scheherazade',
+  },
+  {
+    id: 'occasion-recovery',
+    category: 'occasions',
+    kind: 'dua',
+    headline: { en: 'Get well soon', ar: 'دعاء للمريض' },
+    arabic: 'أَسْأَلُ اللَّهَ الْعَظِيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفِيَكَ',
+    translation: 'I ask Allah the Mighty, Lord of the Mighty Throne, to cure you.',
+    source: { en: 'At-Tirmidhi 2083, Abu Dawud 3106', ar: 'الترمذي ٢٠٨٣، أبو داود ٣١٠٦' },
+    theme: 'olive-sage',
+    decoration: 'sunrise',
+    font: 'naskh',
+  },
+];

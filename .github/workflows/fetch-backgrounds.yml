@@ -26,19 +26,19 @@ jobs:
           MANIFEST: ${{ inputs.manifest }}
         run: |
           set -euo pipefail
-          mkdir -p public/backgrounds/thumbs
+          mkdir -p packages/assets/backgrounds/thumbs
           echo "$MANIFEST" | jq -r 'to_entries[] | "\(.key) \(.value)"' | while read -r id url; do
             [[ "$id" =~ ^[a-z0-9-]+$ ]] || { echo "bad id: $id"; exit 1; }
             curl -fsSL "$url" -o "/tmp/$id.src"
-            convert "/tmp/$id.src" -auto-orient -resize 1080x1920^ -gravity center -extent 1080x1920 -strip -quality 82 "public/backgrounds/$id.webp"
-            convert "/tmp/$id.src" -auto-orient -resize 270x480^ -gravity center -extent 270x480 -strip -quality 70 "public/backgrounds/thumbs/$id.webp"
+            convert "/tmp/$id.src" -auto-orient -resize 1080x1920^ -gravity center -extent 1080x1920 -strip -quality 82 "packages/assets/backgrounds/$id.webp"
+            convert "/tmp/$id.src" -auto-orient -resize 270x480^ -gravity center -extent 270x480 -strip -quality 70 "packages/assets/backgrounds/thumbs/$id.webp"
             echo "ok $id"
           done
-          ls -la public/backgrounds public/backgrounds/thumbs
+          ls -la packages/assets/backgrounds packages/assets/backgrounds/thumbs
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/backgrounds
+          git add packages/assets/backgrounds
           git commit -m "Add photo backgrounds" || { echo "nothing to commit"; exit 0; }
           git push

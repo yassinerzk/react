@@ -1,77 +1,85 @@
 # Barakah Stories
 
-Create and share Islamic WhatsApp story posts: Jumu'ah greetings, morning and evening adhkar, Ramadan, Laylat al-Qadr, Eid al-Fitr, Dhul Hijjah and Arafah, Eid al-Adha, the Hijri new year and Ashura, Isra and Mi'raj, plus daily Quran verses, hadith, duaa and life occasions.
+Create and share Islamic WhatsApp story posts: Jumu'ah greetings, morning and evening adhkar, Ramadan, Laylat al-Qadr, Eid al-Fitr, Dhul Hijjah and Arafah, Eid al-Adha, the Hijri new year and Ashura, Isra and Mi'raj, plus daily Quran verses, hadith, duaa and life occasions. The mobile app also shows prayer times, a next-prayer countdown and a live Qibla compass.
 
-Pick a post, change any of the text, choose a background, decoration and font, then share it straight to your WhatsApp status at the native 1080x1920 size.
+Pick a post, change any of the text, choose a colour theme or a photo background, a decoration and a font, then share it straight to your WhatsApp status at the native 1080x1920 size.
 
-## Features
+## Workspaces
 
-- **Bilingual UI** (English / Arabic, RTL aware) with Arabic content and English translations.
-- **Today strip**: shows the Hijri date and suggests categories for the current day (Friday, Ramadan, the ten days of Dhul Hijjah, Eid, morning/evening…).
-- **Editor**: headline, Arabic text, translation, source, footer, toggles, 10 colour themes, 12 photo backgrounds (flowers, rivers, lakes, forests, desert, night sky, mosques), 9 decorations, 7 Arabic fonts, size slider, alignment, frame, "surprise me".
-- **Share**: native share sheet on phones (WhatsApp → My status), PNG download on desktop, copy-as-text caption.
-- **My posts**: save and reopen designs (stored locally in the browser).
-- Fonts are self-hosted so export works offline and without third-party requests.
+```
+packages/core     @barakah/core    Shared domain logic (pure TypeScript, no UI)
+packages/assets                    Photo backgrounds (WebP) used by both apps
+apps/web          @barakah/web     Vite + React web app (GitHub Pages)
+apps/mobile       @barakah/mobile  Expo (React Native) app for iOS, Android and web
+```
+
+Dependencies flow one way: apps import `@barakah/core`; core imports nothing from any app.
+
+### What lives in core
+
+- `types.ts` — every domain type. Add new ids here first.
+- `content/` — categories and posts, one file per category.
+- `themes.ts`, `backgrounds.ts`, `fonts.ts` — visual registries as data (gradients are structured so web renders CSS and mobile renders SVG).
+- `occasions.ts` — rules that decide what is relevant "today".
+- `design.ts` — the `StoryDesign` model, typography engine and caption text.
+- `hijri.ts` — Hijri date via `Intl`, with an arithmetic fallback for engines without the Umm al-Qura calendar.
+- `prayer.ts`, `cities.ts` — prayer times, next prayer, Qibla bearing (built on the `adhan` library) and preset cities.
+- `i18n/` — English and Arabic dictionaries.
 
 ## Getting started
 
-```bash
-npm install
-npm run dev        # http://localhost:5173
-npm run build      # production build in dist/
-npm run preview    # serve the build locally
-npm run check      # typecheck + lint + prettier + tests
-```
-
 Requires Node 20+.
 
-## Project structure
-
-```
-src/
-  app/            App shell, navigation and Zustand stores (settings, editor, library, toasts)
-  domain/         Pure, framework-light business layer
-    types.ts        All domain types (add ids here first)
-    content/        Categories + posts, one file per category
-    themes/         Theme registry (colours, gradient, pattern)
-    decorations/    SVG decoration registry (drawn in 1080x1920 space)
-    patterns/       Tiled geometric patterns
-    fonts/          Font registry + self-hosted font imports
-    occasions.ts    Rules that decide what is relevant "today"
-    design.ts       StoryDesign factory, typography engine, caption text
-  features/       Screen-level UI, one folder per feature
-    gallery/  today/  editor/  library/  story/ (StoryCard + preview)
-  shared/         Reusable, feature-agnostic code
-    ui/  hooks/  lib/ (hijri, export, share)  i18n/
-  styles/         Global CSS (design tokens, layout, story card)
+```bash
+npm install                 # installs all workspaces
+npm run check               # typecheck + lint + prettier + tests, everywhere
 ```
 
-Dependencies flow downward only: `features → domain/shared`, `shared → domain`, and `domain` imports nothing from the UI.
+### Web app
+
+```bash
+npm run dev                 # http://localhost:5173
+npm run build               # apps/web/dist
+```
+
+### Mobile app (Expo)
+
+```bash
+cd apps/mobile
+npx expo start              # scan the QR code with Expo Go on iOS or Android
+npx expo start --web        # run the same app in a browser
+```
+
+Store builds use [EAS Build](https://docs.expo.dev/build/introduction/): `npx eas build --platform all` after `npx eas login`.
+
+The mobile app uses:
+
+- `react-native-view-shot` to rasterise the story card at 1080x1920 and `expo-sharing` to open the native share sheet, where WhatsApp offers "My status".
+- `expo-location` for the user's position, reverse geocoding, and the compass heading that drives the Qibla dial.
+- `@expo-google-fonts/*` for the same Arabic and Latin faces as the web app.
+- Zustand with AsyncStorage for settings, the current draft, saved posts, recently opened posts and prayer settings.
 
 ## Extending the app
 
-**Add a post**: append an object to the matching file in `src/domain/content/posts/`. The test suite verifies ids are unique, referenced themes/decorations/fonts exist, and Quran/hadith entries carry a source.
+**Add a post**: append an object to the matching file in `packages/core/src/content/posts/`. Tests verify ids are unique, referenced themes, fonts and backgrounds exist, and Quran/hadith entries carry a source.
 
-**Add a category**: add the id to `CategoryId` in `domain/types.ts`, register it in `content/categories.ts`, create `posts/<name>.ts` and spread it into `posts/index.ts`. Optionally add a rule in `domain/occasions.ts` so it appears in the Today strip.
+**Add a category**: add the id to `CategoryId`, register it in `content/categories.ts`, create `posts/<name>.ts` and spread it into `posts/index.ts`. Optionally add a rule in `occasions.ts` so it appears in "Today's posts".
 
-**Add a theme**: add the id to `ThemeId` and an entry in `domain/themes/index.ts`. Themes are pure data.
+**Add a theme**: add the id to `ThemeId` and an entry in `themes.ts` using the `linear(...)` or `radial(...)` helpers.
 
-**Add a photo background**: put `public/backgrounds/<id>.webp` (1080x1920) and `public/backgrounds/thumbs/<id>.webp` (270x480) in place, add the id to `BackgroundId` and register it in `domain/backgrounds/index.ts`. A test checks both files exist. The `Fetch backgrounds` workflow (`workflow_dispatch`, input `manifest` = JSON of id → image URL) downloads, resizes and commits new photos for you.
+**Add a photo background**: put `packages/assets/backgrounds/<id>.webp` (1080x1920) and `thumbs/<id>.webp` (270x480) in place, add the id to `BackgroundId`, register it in `backgrounds.ts`, and add the two `require()` lines in `apps/mobile/src/backgrounds.ts`. The `Fetch backgrounds` GitHub workflow (`workflow_dispatch`, input `manifest` = JSON of id → image URL) downloads, resizes and commits photos for you.
 
-**Add a decoration**: write a component that draws in the 1080x1920 SVG viewBox and register it in `domain/decorations/index.tsx`.
+**Add a decoration**: it is SVG, so it exists twice: `apps/web/src/domain/decorations/index.tsx` (React DOM) and `apps/mobile/src/components/Decorations.tsx` (react-native-svg). The drawing code is the same apart from element names.
 
-**Add a font**: install the `@fontsource/*` package, import its CSS in `domain/fonts/index.ts` and add an entry to the registry.
+**Add a font**: web imports the `@fontsource/*` CSS in `apps/web/src/fonts.ts`; mobile loads `@expo-google-fonts/*` faces in `apps/mobile/src/fonts.ts`; the registry entry lives in core.
 
-**Add a UI language**: add the locale to `Locale`, create `shared/i18n/<locale>.ts` typed against `TranslationKey`, and register it in `DICTIONARIES` and `LOCALES`.
-
-## How sharing works
-
-The story card is rendered at its native size and scaled with CSS for preview. On export, `html-to-image` rasterises the same DOM node to a 1080x1920 PNG. On phones the Web Share API opens the share sheet, where WhatsApp offers "My status"; elsewhere the PNG is downloaded.
+**Add a UI language**: add the locale to `Locale`, create `i18n/<locale>.ts` typed against `TranslationKey`, and register it in `DICTIONARIES` and `LOCALES`.
 
 ## Deployment
 
-`vite.config.ts` uses a relative base path so the build works from any sub-path. A GitHub Pages workflow (`.github/workflows/deploy-pages.yml`) publishes `dist/` on every push to `main`; enable Pages with the "GitHub Actions" source in the repository settings.
+- **Web**: `.github/workflows/deploy-pages.yml` publishes `apps/web/dist` to GitHub Pages on pushes to `main` or on demand. Enable Pages with the "GitHub Actions" source in the repository settings first.
+- **CI**: `.github/workflows/ci.yml` runs the full check, builds the web app and bundles the Expo app for web as a smoke test.
 
 ## Content sources
 
-Quran text follows the standard Uthmani mushaf; hadith are quoted with their collection and number (Bukhari, Muslim, Tirmidhi, Abu Dawud, Ibn Majah). Please report any typo in the Arabic text.
+Quran text follows the standard Uthmani mushaf; hadith are quoted with their collection and number (Bukhari, Muslim, Tirmidhi, Abu Dawud, Ibn Majah). Prayer times come from the `adhan` library with the user's chosen calculation method and madhab. Please report any typo in the Arabic text.

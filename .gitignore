@@ -7,3 +7,9 @@ coverage
 npm-debug.log*
 .vite
 *.tsbuildinfo
+
+# workspaces
+**/dist
+apps/mobile/.expo
+apps/mobile/android
+apps/mobile/ios

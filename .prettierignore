@@ -1,3 +1,7 @@
 dist
 node_modules
 package-lock.json
+**/dist
+**/.expo
+apps/mobile/android
+apps/mobile/ios
