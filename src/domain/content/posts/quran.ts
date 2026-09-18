@@ -21,6 +21,7 @@ export const quranPosts: Post[] = [
     source: { en: 'Surah At-Talaq 65:3', ar: 'سورة الطلاق ٦٥:٣' },
     theme: 'teal-lagoon',
     decoration: 'crescent',
+    background: 'mountain-lake',
     font: 'aref-ruqaa',
   },
   {
@@ -45,6 +46,7 @@ export const quranPosts: Post[] = [
     source: { en: 'Surah Az-Zumar 39:53', ar: 'سورة الزمر ٣٩:٥٣' },
     theme: 'rose-gold',
     decoration: 'sunrise',
+    background: 'ocean-sunrise',
     font: 'amiri',
   },
   {

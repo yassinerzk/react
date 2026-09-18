@@ -19,6 +19,11 @@ export async function renderStoryToPng(node: HTMLElement): Promise<Blob> {
     cacheBust: false,
     style: { transform: 'none', margin: '0' },
   };
+  await Promise.all(
+    Array.from(node.querySelectorAll('img')).map((img) =>
+      img.complete ? Promise.resolve() : img.decode().catch(() => undefined),
+    ),
+  );
   // WebKit sometimes drops web fonts on the first render of a fresh page.
   // A throwaway pass warms its cache so the real pass is correct.
   if (isSafari()) await toBlob(node, options).catch(() => null);

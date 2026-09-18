@@ -36,6 +36,8 @@ export const en = {
   showHijriDate: 'Show Hijri date',
   showFrame: 'Frame',
   theme: 'Theme',
+  photo: 'Photo background',
+  photoNone: 'None',
   decoration: 'Decoration',
   arabicFont: 'Arabic font',
   latinFont: 'Translation font',

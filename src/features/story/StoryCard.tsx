@@ -2,6 +2,7 @@ import { forwardRef, useId } from 'react';
 import type { StoryDesign } from '@/domain/types';
 import { getTheme } from '@/domain/themes';
 import { getDecoration } from '@/domain/decorations';
+import { getBackground, PHOTO_PALETTE } from '@/domain/backgrounds';
 import { Pattern } from '@/domain/patterns/Pattern';
 import { computeTypography } from '@/domain/design';
 import { STORY_HEIGHT, STORY_WIDTH } from '@/shared/lib/exportImage';
@@ -26,9 +27,13 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
   const uid = useId().replace(/:/g, '');
   const { t } = useT();
   const theme = getTheme(design.theme);
+  const background = getBackground(design.background);
+  const palette = background
+    ? { ...PHOTO_PALETTE }
+    : { text: theme.text, muted: theme.muted, accent: theme.accent, decor: theme.decor };
   const { Component: Decoration } = getDecoration(design.decoration);
   const typo = computeTypography(design);
-  const dark = theme.mode === 'dark';
+  const dark = theme.mode === 'dark' || !!background;
   const shadow = dark ? '0 4px 24px rgba(0,0,0,0.35)' : 'none';
   const showKicker = design.kind === 'quran' || design.kind === 'hadith';
   const arabic = design.arabic.trim() || t('emptyArabic');
@@ -43,21 +48,28 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
         width: STORY_WIDTH,
         height: STORY_HEIGHT,
         background: theme.background,
-        color: theme.text,
+        color: palette.text,
       }}
     >
-      <Pattern id={theme.pattern} color={theme.patternColor} opacity={theme.patternOpacity} uid={uid} />
-      <Decoration color={theme.decor} uid={uid} />
+      {background ? (
+        <>
+          <img className="story-layer story-photo" src={background.src} alt="" decoding="async" />
+          <div className="story-layer" style={{ background: background.scrim }} />
+        </>
+      ) : (
+        <Pattern id={theme.pattern} color={theme.patternColor} opacity={theme.patternOpacity} uid={uid} />
+      )}
+      <Decoration color={palette.decor} uid={uid} />
       {design.showFrame && (
         <svg className="story-layer" viewBox="0 0 1080 1920" aria-hidden>
-          <rect x="52" y="52" width="976" height="1816" fill="none" stroke={theme.accent} strokeWidth="3" />
+          <rect x="52" y="52" width="976" height="1816" fill="none" stroke={palette.accent} strokeWidth="3" />
           <rect
             x="70"
             y="70"
             width="940"
             height="1780"
             fill="none"
-            stroke={theme.accent}
+            stroke={palette.accent}
             strokeWidth="1.5"
             opacity="0.7"
           />
@@ -70,7 +82,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
             <path
               key={`${x}-${y}`}
               d={`M${x} ${y - 26} l7 19 19 7 -19 7 -7 19 -7 -19 -19 -7 19 -7z`}
-              fill={theme.accent}
+              fill={palette.accent}
             />
           ))}
         </svg>
@@ -84,7 +96,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
         }}
       >
         {showKicker && (
-          <div className="story-kicker" style={{ color: theme.accent, fontFamily: typo.arabicFamily }}>
+          <div className="story-kicker" style={{ color: palette.accent, fontFamily: typo.arabicFamily }}>
             ✦ {t(KIND_KEY[design.kind])} ✦
           </div>
         )}
@@ -92,7 +104,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
           <div
             className="story-headline"
             style={{
-              color: theme.accent,
+              color: palette.accent,
               fontFamily: typo.arabicFamily,
               fontSize: typo.headlineSize,
               textShadow: shadow,
@@ -115,7 +127,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
         </div>
         {design.showTranslation && design.translation.trim() && (
           <>
-            <div className="story-divider" style={{ color: theme.accent }} aria-hidden>
+            <div className="story-divider" style={{ color: palette.accent }} aria-hidden>
               <span />
               <span>✦</span>
               <span />
@@ -124,7 +136,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
               className="story-translation"
               dir="ltr"
               style={{
-                color: theme.muted,
+                color: palette.muted,
                 fontFamily: typo.translationFamily,
                 fontStyle: typo.translationItalic ? 'italic' : 'normal',
                 fontSize: typo.translationSize,
@@ -140,7 +152,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
         {design.showSource && design.source.trim() && (
           <div
             className="story-source"
-            style={{ color: theme.accent, borderColor: theme.accent, fontSize: typo.sourceSize }}
+            style={{ color: palette.accent, borderColor: palette.accent, fontSize: typo.sourceSize }}
           >
             {design.source}
           </div>
@@ -148,7 +160,7 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
       </div>
 
       {footerParts.length > 0 && (
-        <div className="story-footer" style={{ color: theme.muted, textShadow: shadow }}>
+        <div className="story-footer" style={{ color: palette.muted, textShadow: shadow }}>
           {footerParts.map((part, i) => (
             <span key={i} dir="auto">
               {part}

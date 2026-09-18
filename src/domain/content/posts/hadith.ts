@@ -45,6 +45,7 @@ export const hadithPosts: Post[] = [
     source: { en: 'At-Tirmidhi 1924', ar: 'الترمذي ١٩٢٤' },
     theme: 'teal-lagoon',
     decoration: 'none',
+    background: 'forest-light',
     font: 'scheherazade',
   },
   {

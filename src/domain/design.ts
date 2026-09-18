@@ -13,6 +13,7 @@ export const DEFAULT_DESIGN: StoryDesign = {
   showHijriDate: true,
   showFrame: false,
   theme: 'emerald-night',
+  background: 'none',
   decoration: 'crescent',
   arabicFont: 'amiri',
   latinFont: 'cormorant',
@@ -33,6 +34,7 @@ export function designFromPost(post: Post, locale: Locale): StoryDesign {
     showTranslation: !!post.translation,
     showSource: !!post.source,
     theme: post.theme,
+    background: post.background ?? 'none',
     decoration: post.decoration,
     arabicFont: post.font ?? (post.kind === 'quran' || post.kind === 'hadith' ? 'amiri' : 'aref-ruqaa'),
   };

@@ -1,6 +1,7 @@
 import { useEditorStore } from '@/app/store';
 import { THEMES } from '@/domain/themes';
 import { DECORATIONS } from '@/domain/decorations';
+import { BACKGROUNDS } from '@/domain/backgrounds';
 import { ARABIC_FONTS, LATIN_FONTS } from '@/domain/fonts';
 import { FONT_SCALE_MAX, FONT_SCALE_MIN } from '@/domain/design';
 import { useT } from '@/shared/hooks/useT';
@@ -49,6 +50,33 @@ export function StylePanel() {
               onClick={() => patch({ theme: th.id })}
             >
               <span style={{ background: th.accent }} />
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="control">
+        <h3 className="control__title">{t('photo')}</h3>
+        <div className="photos">
+          <button
+            type="button"
+            className={cn('photo', design.background === 'none' && 'photo--active')}
+            aria-pressed={design.background === 'none'}
+            onClick={() => patch({ background: 'none' })}
+          >
+            {t('photoNone')}
+          </button>
+          {BACKGROUNDS.map((b) => (
+            <button
+              key={b.id}
+              type="button"
+              title={l(b.name)}
+              aria-label={l(b.name)}
+              aria-pressed={design.background === b.id}
+              className={cn('photo', design.background === b.id && 'photo--active')}
+              onClick={() => patch({ background: b.id })}
+            >
+              <img src={b.thumb} alt="" loading="lazy" />
             </button>
           ))}
         </div>

@@ -2,6 +2,9 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Locale, SavedDesign, StoryDesign } from '@/domain/types';
 import { DEFAULT_DESIGN } from '@/domain/design';
+
+/** Fills fields added after a design was persisted. */
+const migrateDesign = (d: Partial<StoryDesign> | undefined): StoryDesign => ({ ...DEFAULT_DESIGN, ...d });
 import { detectLocale } from '@/shared/i18n';
 import { newId } from '@/shared/lib/id';
 
@@ -56,7 +59,14 @@ export const useEditorStore = create<EditorState>()(
       patch: (partial) => set({ design: { ...get().design, ...partial } }),
       reset: () => set({ design: get().original }),
     }),
-    { name: 'barakah.editor', version: 1 },
+    {
+      name: 'barakah.editor',
+      version: 2,
+      migrate: (state) => {
+        const s = state as Partial<EditorState>;
+        return { ...s, design: migrateDesign(s.design), original: migrateDesign(s.original) };
+      },
+    },
   ),
 );
 
@@ -85,7 +95,14 @@ export const useLibraryStore = create<LibraryState>()(
       remove: (id) => set({ items: get().items.filter((i) => i.id !== id) }),
       get: (id) => get().items.find((i) => i.id === id),
     }),
-    { name: 'barakah.library', version: 1 },
+    {
+      name: 'barakah.library',
+      version: 2,
+      migrate: (state) => {
+        const s = state as Partial<LibraryState>;
+        return { ...s, items: (s.items ?? []).map((i) => ({ ...i, design: migrateDesign(i.design) })) };
+      },
+    },
   ),
 );
 

@@ -26,6 +26,7 @@ export const dhulHijjahPosts: Post[] = [
     source: { en: 'Sahih Muslim 1348', ar: 'صحيح مسلم ١٣٤٨' },
     theme: 'desert-dawn',
     decoration: 'kaaba',
+    background: 'desert-dusk',
     font: 'scheherazade',
   },
   {

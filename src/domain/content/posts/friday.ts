@@ -10,6 +10,7 @@ export const fridayPosts: Post[] = [
     translation: 'May Allah bless your Friday and forgive you and your loved ones.',
     theme: 'emerald-night',
     decoration: 'mosque',
+    background: 'mosque-sunset',
     font: 'aref-ruqaa',
   },
   {
@@ -77,6 +78,7 @@ export const fridayPosts: Post[] = [
     source: { en: 'Sahih al-Bukhari 935', ar: 'صحيح البخاري ٩٣٥' },
     theme: 'teal-lagoon',
     decoration: 'crescent',
+    background: 'mosque-sea',
     font: 'scheherazade',
   },
 ];

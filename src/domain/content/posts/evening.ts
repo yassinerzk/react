@@ -48,6 +48,7 @@ export const eveningPosts: Post[] = [
     translation: 'An evening of light and tranquility. May Allah make your evening happy with every good.',
     theme: 'midnight-blue',
     decoration: 'lanterns',
+    background: 'lavender-field',
     font: 'aref-ruqaa',
   },
   {
@@ -59,6 +60,7 @@ export const eveningPosts: Post[] = [
     source: { en: "Surah Ar-Ra'd 13:28", ar: 'سورة الرعد ١٣:٢٨' },
     theme: 'royal-purple',
     decoration: 'crescent',
+    background: 'starry-night',
     font: 'aref-ruqaa',
   },
 ];

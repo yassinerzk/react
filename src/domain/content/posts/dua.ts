@@ -66,6 +66,7 @@ export const duaPosts: Post[] = [
     source: { en: 'Surah Al-Isra 17:24', ar: 'سورة الإسراء ١٧:٢٤' },
     theme: 'rose-gold',
     decoration: 'none',
+    background: 'wildflowers',
     font: 'amiri',
   },
   {

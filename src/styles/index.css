@@ -499,6 +499,33 @@ html[dir='rtl'] .toggle input:checked + .toggle__track::after {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--bg-elev);
 }
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 8px;
+}
+.photo {
+  aspect-ratio: 9 / 16;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo--active {
+  border-color: var(--accent);
+}
 
 /* ---------- toasts ---------- */
 .toaster {
@@ -543,6 +570,10 @@ html[dir='rtl'] .toggle input:checked + .toggle__track::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+.story-photo {
+  object-fit: cover;
+  object-position: center;
 }
 .story-content {
   position: relative;

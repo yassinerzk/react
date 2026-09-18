@@ -8,7 +8,7 @@ Pick a post, change any of the text, choose a background, decoration and font, t
 
 - **Bilingual UI** (English / Arabic, RTL aware) with Arabic content and English translations.
 - **Today strip**: shows the Hijri date and suggests categories for the current day (Friday, Ramadan, the ten days of Dhul Hijjah, Eid, morning/evening…).
-- **Editor**: headline, Arabic text, translation, source, footer, toggles, 10 themes, 9 decorations, 7 Arabic fonts, size slider, alignment, frame, "surprise me".
+- **Editor**: headline, Arabic text, translation, source, footer, toggles, 10 colour themes, 12 photo backgrounds (flowers, rivers, lakes, forests, desert, night sky, mosques), 9 decorations, 7 Arabic fonts, size slider, alignment, frame, "surprise me".
 - **Share**: native share sheet on phones (WhatsApp → My status), PNG download on desktop, copy-as-text caption.
 - **My posts**: save and reopen designs (stored locally in the browser).
 - Fonts are self-hosted so export works offline and without third-party requests.
@@ -55,6 +55,8 @@ Dependencies flow downward only: `features → domain/shared`, `shared → domai
 **Add a category**: add the id to `CategoryId` in `domain/types.ts`, register it in `content/categories.ts`, create `posts/<name>.ts` and spread it into `posts/index.ts`. Optionally add a rule in `domain/occasions.ts` so it appears in the Today strip.
 
 **Add a theme**: add the id to `ThemeId` and an entry in `domain/themes/index.ts`. Themes are pure data.
+
+**Add a photo background**: put `public/backgrounds/<id>.webp` (1080x1920) and `public/backgrounds/thumbs/<id>.webp` (270x480) in place, add the id to `BackgroundId` and register it in `domain/backgrounds/index.ts`. A test checks both files exist. The `Fetch backgrounds` workflow (`workflow_dispatch`, input `manifest` = JSON of id → image URL) downloads, resizes and commits new photos for you.
 
 **Add a decoration**: write a component that draws in the 1080x1920 SVG viewBox and register it in `domain/decorations/index.tsx`.
 

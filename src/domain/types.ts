@@ -42,6 +42,21 @@ export type ThemeId =
 
 export type PatternId = 'star8' | 'zellige' | 'lattice' | 'dots' | 'none';
 
+export type BackgroundId =
+  | 'none'
+  | 'wildflowers'
+  | 'river-valley'
+  | 'mosque-sunset'
+  | 'mountain-lake'
+  | 'forest-light'
+  | 'desert-dusk'
+  | 'starry-night'
+  | 'mosque-courtyard'
+  | 'ocean-sunrise'
+  | 'cherry-blossom'
+  | 'lavender-field'
+  | 'mosque-sea';
+
 export type DecorationId =
   'none' | 'crescent' | 'lanterns' | 'mosque' | 'kaaba' | 'arch' | 'lights' | 'sunrise' | 'stars';
 
@@ -77,6 +92,8 @@ export interface Post {
   /** Suggested visual defaults. The user can override every one of them. */
   theme: ThemeId;
   decoration: DecorationId;
+  /** Optional photo background; when set it replaces the theme's gradient. */
+  background?: BackgroundId;
   font?: ArabicFontId;
   tags?: string[];
 }
@@ -98,6 +115,18 @@ export interface Theme {
   accent: string;
   /** Color used by decorations (silhouettes, lanterns). */
   decor: string;
+}
+
+/** A photographic background rendered under a legibility scrim. */
+export interface Background {
+  id: BackgroundId;
+  name: Localized;
+  /** Path relative to the app base URL, full size 1080x1920. */
+  src: string;
+  /** Small preview for the picker. */
+  thumb: string;
+  /** CSS gradient laid over the photo so text stays readable. */
+  scrim: string;
 }
 
 export interface ArabicFont {
@@ -139,6 +168,8 @@ export interface StoryDesign {
   showHijriDate: boolean;
   showFrame: boolean;
   theme: ThemeId;
+  /** Photo background; 'none' uses the theme gradient. */
+  background: BackgroundId;
   decoration: DecorationId;
   arabicFont: ArabicFontId;
   latinFont: LatinFontId;

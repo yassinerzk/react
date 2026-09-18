@@ -26,6 +26,7 @@ export const morningPosts: Post[] = [
     source: { en: 'At-Tirmidhi 3391', ar: 'سنن الترمذي ٣٣٩١' },
     theme: 'rose-gold',
     decoration: 'sunrise',
+    background: 'cherry-blossom',
     font: 'amiri',
   },
   {
@@ -62,6 +63,7 @@ export const morningPosts: Post[] = [
       'May your morning be filled with devotion and contentment, and your day with goodness and blessing.',
     theme: 'desert-dawn',
     decoration: 'lights',
+    background: 'wildflowers',
     font: 'aref-ruqaa',
   },
   {
@@ -73,6 +75,7 @@ export const morningPosts: Post[] = [
     source: { en: 'Surah Ash-Sharh 94:5-6', ar: 'سورة الشرح ٩٤:٥-٦' },
     theme: 'olive-sage',
     decoration: 'sunrise',
+    background: 'river-valley',
     font: 'amiri',
   },
   {
