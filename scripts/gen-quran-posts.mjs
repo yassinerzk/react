@@ -172,6 +172,22 @@ const MAX_ARABIC = 300;
 const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩';
 const ar = (n) => String(n).replace(/\d/g, (d) => AR_DIGITS[d]);
 
+/**
+ * Cards use a simplified orthography: rare Uthmani annotation marks are
+ * dropped or mapped to standard tashkeel so every bundled font (web subsets
+ * included) shapes the text correctly. The Quran reader keeps the full text.
+ */
+function simplify(text) {
+  return text
+    .replace(/\u0671/g, '\u0627') // alef wasla -> alef
+    .replace(/\u06E1/g, '\u0652') // small high dotless khah -> sukun
+    .replace(/\u0657/g, '\u064F') // inverted damma -> damma
+    .replace(/\u065E/g, '\u064E') // fatha with two dots -> fatha
+    .replace(/[\u0656\u06D6-\u06ED]/g, '') // subscript alef, pause marks, small letters
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 const chapters = new Map();
 const chapter = (id) => {
   if (!chapters.has(id))
@@ -186,7 +202,7 @@ REFS.forEach(([ref, category, headline], i) => {
   const [from, to] = range.split('-').map(Number);
   const ch = chapter(Number(s));
   const verses = ch.verses.filter((v) => v.id >= from && v.id <= (to ?? from));
-  const arabic = verses.map((v) => v.text).join(' ۝ ');
+  const arabic = verses.map((v) => simplify(v.text)).join(' ۝ ');
   if (arabic.length > MAX_ARABIC) return skipped.push(`${ref} (${arabic.length})`);
   const translation = verses.map((v) => v.translation.trim().replace(/\s+/g, ' ')).join(' ');
   const rangeEn = to ? `${from}-${to}` : `${from}`;

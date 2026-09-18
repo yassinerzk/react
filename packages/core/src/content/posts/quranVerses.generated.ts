@@ -6,7 +6,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-2-45',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَٱسۡتَعِينُواْ بِٱلصَّبۡرِ وَٱلصَّلَوٰةِۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى ٱلۡخَٰشِعِينَ',
+    arabic: 'وَاسْتَعِينُواْ بِالصَّبْرِ وَالصَّلَوٰةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَٰشِعِينَ',
     translation:
       'And seek help through patience and prayer, and indeed, it is difficult except for the humbly submissive [to Allah]',
     source: {
@@ -23,7 +23,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱسۡتَعِينُواْ بِٱلصَّبۡرِ وَٱلصَّلَوٰةِۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّـٰبِرِينَ',
+      'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ اسْتَعِينُواْ بِالصَّبْرِ وَالصَّلَوٰةِ إِنَّ اللَّهَ مَعَ الصَّـٰبِرِينَ',
     translation:
       'O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient',
     source: {
@@ -39,7 +39,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'كُتِبَ عَلَيۡكُمُ ٱلۡقِتَالُ وَهُوَ كُرۡهٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تَكۡرَهُواْ شَيۡـٔٗا وَهُوَ خَيۡرٞ لَّكُمۡۖ وَعَسَىٰٓ أَن تُحِبُّواْ شَيۡـٔٗا وَهُوَ شَرّٞ لَّكُمۡۚ وَٱللَّهُ يَعۡلَمُ وَأَنتُمۡ لَا تَعۡلَمُونَ',
+      'كُتِبَ عَلَيْكُمُ الْقِتَالُ وَهُوَ كُرْهَ لَّكُمْ وَعَسَىٰٓ أَن تَكْرَهُواْ شَيْـُٔا وَهُوَ خَيْرَ لَّكُمْ وَعَسَىٰٓ أَن تُحِبُّواْ شَيْـُٔا وَهُوَ شَرَّ لَّكُمْ وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ',
     translation:
       'Fighting has been enjoined upon you while it is hateful to you. But perhaps you hate a thing and it is good for you; and perhaps you love a thing and it is bad for you. And Allah Knows, while you know not',
     source: {
@@ -55,7 +55,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'ٱللَّهُ وَلِيُّ ٱلَّذِينَ ءَامَنُواْ يُخۡرِجُهُم مِّنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِۖ وَٱلَّذِينَ كَفَرُوٓاْ أَوۡلِيَآؤُهُمُ ٱلطَّـٰغُوتُ يُخۡرِجُونَهُم مِّنَ ٱلنُّورِ إِلَى ٱلظُّلُمَٰتِۗ أُوْلَـٰٓئِكَ أَصۡحَٰبُ ٱلنَّارِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+      'اللَّهُ وَلِيُّ الَّذِينَ ءَامَنُواْ يُخْرِجُهُم مِّنَ الظُّلُمَٰتِ إِلَى النُّورِ وَالَّذِينَ كَفَرُوٓاْ أَوْلِيَآؤُهُمُ الطَّـٰغُوتُ يُخْرِجُونَهُم مِّنَ النُّورِ إِلَى الظُّلُمَٰتِ أُوْلَـٰٓئِكَ أَصْحَٰبُ النَّارِ هُمْ فِيهَا خَٰلِدُونَ',
     translation:
       'Allah is the ally of those who believe. He brings them out from darknesses into the light. And those who disbelieve - their allies are Taghut. They take them out of the light into darknesses. Those are the companions of the Fire; they will abide eternally therein',
     source: {
@@ -72,7 +72,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قُلِ ٱللَّهُمَّ مَٰلِكَ ٱلۡمُلۡكِ تُؤۡتِي ٱلۡمُلۡكَ مَن تَشَآءُ وَتَنزِعُ ٱلۡمُلۡكَ مِمَّن تَشَآءُ وَتُعِزُّ مَن تَشَآءُ وَتُذِلُّ مَن تَشَآءُۖ بِيَدِكَ ٱلۡخَيۡرُۖ إِنَّكَ عَلَىٰ كُلِّ شَيۡءٖ قَدِيرٞ',
+      'قُلِ اللَّهُمَّ مَٰلِكَ الْمُلْكِ تُؤْتِي الْمُلْكَ مَن تَشَآءُ وَتَنزِعُ الْمُلْكَ مِمَّن تَشَآءُ وَتُعِزُّ مَن تَشَآءُ وَتُذِلُّ مَن تَشَآءُ بِيَدِكَ الْخَيْرُ إِنَّكَ عَلَىٰ كُلِّ شَيْء قَدِيرَ',
     translation:
       'Say, "O Allah, Owner of Sovereignty, You give sovereignty to whom You will and You take sovereignty away from whom You will. You honor whom You will and You humble whom You will. In Your hand is [all] good. Indeed, You are over all things competent',
     source: {
@@ -88,7 +88,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قُلۡ إِن كُنتُمۡ تُحِبُّونَ ٱللَّهَ فَٱتَّبِعُونِي يُحۡبِبۡكُمُ ٱللَّهُ وَيَغۡفِرۡ لَكُمۡ ذُنُوبَكُمۡۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ',
+      'قُلْ إِن كُنتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي يُحْبِبْكُمُ اللَّهُ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَاللَّهُ غَفُورَ رَّحِيمَ',
     translation:
       'Say, [O Muhammad], "If you should love Allah, then follow me, [so] Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful',
     source: {
@@ -104,7 +104,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'فَبِمَا رَحۡمَةٖ مِّنَ ٱللَّهِ لِنتَ لَهُمۡۖ وَلَوۡ كُنتَ فَظًّا غَلِيظَ ٱلۡقَلۡبِ لَٱنفَضُّواْ مِنۡ حَوۡلِكَۖ فَٱعۡفُ عَنۡهُمۡ وَٱسۡتَغۡفِرۡ لَهُمۡ وَشَاوِرۡهُمۡ فِي ٱلۡأَمۡرِۖ فَإِذَا عَزَمۡتَ فَتَوَكَّلۡ عَلَى ٱللَّهِۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلۡمُتَوَكِّلِينَ',
+      'فَبِمَا رَحْمَة مِّنَ اللَّهِ لِنتَ لَهُمْ وَلَوْ كُنتَ فَظًّا غَلِيظَ الْقَلْبِ لَانفَضُّواْ مِنْ حَوْلِكَ فَاعْفُ عَنْهُمْ وَاسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِي الْأَمْرِ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ',
     translation:
       'So by mercy from Allah, [O Muhammad], you were lenient with them. And if you had been rude [in speech] and harsh in heart, they would have disbanded from about you. So pardon them and ask forgiveness for them and consult them in the matter. And when you have decided, then rely upon Allah. Indeed, Allah loves those who rely [upon Him]',
     source: {
@@ -121,7 +121,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'كُلُّ نَفۡسٖ ذَآئِقَةُ ٱلۡمَوۡتِۗ وَإِنَّمَا تُوَفَّوۡنَ أُجُورَكُمۡ يَوۡمَ ٱلۡقِيَٰمَةِۖ فَمَن زُحۡزِحَ عَنِ ٱلنَّارِ وَأُدۡخِلَ ٱلۡجَنَّةَ فَقَدۡ فَازَۗ وَمَا ٱلۡحَيَوٰةُ ٱلدُّنۡيَآ إِلَّا مَتَٰعُ ٱلۡغُرُورِ',
+      'كُلُّ نَفْس ذَآئِقَةُ الْمَوْتِ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَٰمَةِ فَمَن زُحْزِحَ عَنِ النَّارِ وَأُدْخِلَ الْجَنَّةَ فَقَدْ فَازَ وَمَا الْحَيَوٰةُ الدُّنْيَآ إِلَّا مَتَٰعُ الْغُرُورِ',
     translation:
       'Every soul will taste death, and you will only be given your [full] compensation on the Day of Resurrection. So he who is drawn away from the Fire and admitted to Paradise has attained [his desire]. And what is the life of this world except the enjoyment of delusion',
     source: {
@@ -137,7 +137,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱصۡبِرُواْ وَصَابِرُواْ وَرَابِطُواْ وَٱتَّقُواْ ٱللَّهَ لَعَلَّكُمۡ تُفۡلِحُونَ',
+      'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ اصْبِرُواْ وَصَابِرُواْ وَرَابِطُواْ وَاتَّقُواْ اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ',
     translation:
       'O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful',
     source: {
@@ -153,7 +153,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَإِن يَمۡسَسۡكَ ٱللَّهُ بِضُرّٖ فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَۖ وَإِن يَمۡسَسۡكَ بِخَيۡرٖ فَهُوَ عَلَىٰ كُلِّ شَيۡءٖ قَدِيرٞ',
+      'وَإِن يَمْسَسْكَ اللَّهُ بِضُرّ فَلَا كَاشِفَ لَهُٓ إِلَّا هُوَ وَإِن يَمْسَسْكَ بِخَيْر فَهُوَ عَلَىٰ كُلِّ شَيْء قَدِيرَ',
     translation:
       'And if Allah should touch you with adversity, there is no remover of it except Him. And if He touches you with good - then He is over all things competent',
     source: {
@@ -168,7 +168,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-6-162',
     category: 'quran',
     kind: 'quran',
-    arabic: 'قُلۡ إِنَّ صَلَاتِي وَنُسُكِي وَمَحۡيَايَ وَمَمَاتِي لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+    arabic: 'قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَٰلَمِينَ',
     translation:
       'Say, "Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds',
     source: {
@@ -184,7 +184,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-7-55',
     category: 'quran',
     kind: 'quran',
-    arabic: 'ٱدۡعُواْ رَبَّكُمۡ تَضَرُّعٗا وَخُفۡيَةًۚ إِنَّهُۥ لَا يُحِبُّ ٱلۡمُعۡتَدِينَ',
+    arabic: 'ادْعُواْ رَبَّكُمْ تَضَرُّعُا وَخُفْيَةً إِنَّهُ لَا يُحِبُّ الْمُعْتَدِينَ',
     translation: 'Call upon your Lord in humility and privately; indeed, He does not like transgressors',
     source: {
       en: "Surah Al-A'raf 7:55",
@@ -198,7 +198,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-7-199',
     category: 'quran',
     kind: 'quran',
-    arabic: 'خُذِ ٱلۡعَفۡوَ وَأۡمُرۡ بِٱلۡعُرۡفِ وَأَعۡرِضۡ عَنِ ٱلۡجَٰهِلِينَ',
+    arabic: 'خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَٰهِلِينَ',
     translation: 'Take what is given freely, enjoin what is good, and turn away from the ignorant',
     source: {
       en: "Surah Al-A'raf 7:199",
@@ -213,7 +213,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'إِنَّمَا ٱلۡمُؤۡمِنُونَ ٱلَّذِينَ إِذَا ذُكِرَ ٱللَّهُ وَجِلَتۡ قُلُوبُهُمۡ وَإِذَا تُلِيَتۡ عَلَيۡهِمۡ ءَايَٰتُهُۥ زَادَتۡهُمۡ إِيمَٰنٗا وَعَلَىٰ رَبِّهِمۡ يَتَوَكَّلُونَ',
+      'إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ إِذَا ذُكِرَ اللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ ءَايَٰتُهُ زَادَتْهُمْ إِيمَٰنُا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ',
     translation:
       'The believers are only those who, when Allah is mentioned, their hearts become fearful, and when His verses are recited to them, it increases them in faith; and upon their Lord they rely',
     source: {
@@ -230,7 +230,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'فَإِن تَوَلَّوۡاْ فَقُلۡ حَسۡبِيَ ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَۖ عَلَيۡهِ تَوَكَّلۡتُۖ وَهُوَ رَبُّ ٱلۡعَرۡشِ ٱلۡعَظِيمِ',
+      'فَإِن تَوَلَّوْاْ فَقُلْ حَسْبِيَ اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ',
     translation:
       'But if they turn away, [O Muhammad], say, "Sufficient for me is Allah; there is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne',
     source: {
@@ -246,7 +246,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلنَّاسُ قَدۡ جَآءَتۡكُم مَّوۡعِظَةٞ مِّن رَّبِّكُمۡ وَشِفَآءٞ لِّمَا فِي ٱلصُّدُورِ وَهُدٗى وَرَحۡمَةٞ لِّلۡمُؤۡمِنِينَ',
+      'يَـٰٓأَيُّهَا النَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةَ مِّن رَّبِّكُمْ وَشِفَآءَ لِّمَا فِي الصُّدُورِ وَهُدُى وَرَحْمَةَ لِّلْمُؤْمِنِينَ',
     translation:
       'O mankind, there has to come to you instruction from your Lord and healing for what is in the breasts and guidance and mercy for the believers',
     source: {
@@ -262,7 +262,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قُلۡ بِفَضۡلِ ٱللَّهِ وَبِرَحۡمَتِهِۦ فَبِذَٰلِكَ فَلۡيَفۡرَحُواْ هُوَ خَيۡرٞ مِّمَّا يَجۡمَعُونَ',
+      'قُلْ بِفَضْلِ اللَّهِ وَبِرَحْمَتِهِ فَبِذَٰلِكَ فَلْيَفْرَحُواْ هُوَ خَيْرَ مِّمَّا يَجْمَعُونَ',
     translation:
       'Say, "In the bounty of Allah and in His mercy - in that let them rejoice; it is better than what they accumulate',
     source: {
@@ -279,7 +279,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قَالَ يَٰقَوۡمِ أَرَءَيۡتُمۡ إِن كُنتُ عَلَىٰ بَيِّنَةٖ مِّن رَّبِّي وَرَزَقَنِي مِنۡهُ رِزۡقًا حَسَنٗاۚ وَمَآ أُرِيدُ أَنۡ أُخَالِفَكُمۡ إِلَىٰ مَآ أَنۡهَىٰكُمۡ عَنۡهُۚ إِنۡ أُرِيدُ إِلَّا ٱلۡإِصۡلَٰحَ مَا ٱسۡتَطَعۡتُۚ وَمَا تَوۡفِيقِيٓ إِلَّا بِٱللَّهِۚ عَلَيۡهِ تَوَكَّلۡتُ وَإِلَيۡهِ أُنِيبُ',
+      'قَالَ يَٰقَوْمِ أَرَءَيْتُمْ إِن كُنتُ عَلَىٰ بَيِّنَة مِّن رَّبِّي وَرَزَقَنِي مِنْهُ رِزْقًا حَسَنُا وَمَآ أُرِيدُ أَنْ أُخَالِفَكُمْ إِلَىٰ مَآ أَنْهَىٰكُمْ عَنْهُ إِنْ أُرِيدُ إِلَّا الْإِصْلَٰحَ مَا اسْتَطَعْتُ وَمَا تَوْفِيقِيٓ إِلَّا بِاللَّهِ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ',
     translation:
       'He said, "O my people, have you considered: if I am upon clear evidence from my Lord and He has provided me with a good provision from Him...? And I do not intend to differ from you in that which I have forbidden you; I only intend reform as much as I am able. And my success is not but through Allah. Upon him I have relied, and to Him I return',
     source: {
@@ -295,7 +295,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَأَقِمِ ٱلصَّلَوٰةَ طَرَفَيِ ٱلنَّهَارِ وَزُلَفٗا مِّنَ ٱلَّيۡلِۚ إِنَّ ٱلۡحَسَنَٰتِ يُذۡهِبۡنَ ٱلسَّيِّـَٔاتِۚ ذَٰلِكَ ذِكۡرَىٰ لِلذَّـٰكِرِينَ',
+      'وَأَقِمِ الصَّلَوٰةَ طَرَفَيِ النَّهَارِ وَزُلَفُا مِّنَ الَّيْلِ إِنَّ الْحَسَنَٰتِ يُذْهِبْنَ السَّيِّـَٔاتِ ذَٰلِكَ ذِكْرَىٰ لِلذَّـٰكِرِينَ',
     translation:
       'And establish prayer at the two ends of the day and at the approach of the night. Indeed, good deeds do away with misdeeds. That is a reminder for those who remember',
     source: {
@@ -310,7 +310,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-11-115',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَٱصۡبِرۡ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجۡرَ ٱلۡمُحۡسِنِينَ',
+    arabic: 'وَاصْبِرْ فَإِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ',
     translation:
       'And be patient, for indeed, Allah does not allow to be lost the reward of those who do good',
     source: {
@@ -327,7 +327,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'لَهُۥ مُعَقِّبَٰتٞ مِّنۢ بَيۡنِ يَدَيۡهِ وَمِنۡ خَلۡفِهِۦ يَحۡفَظُونَهُۥ مِنۡ أَمۡرِ ٱللَّهِۗ إِنَّ ٱللَّهَ لَا يُغَيِّرُ مَا بِقَوۡمٍ حَتَّىٰ يُغَيِّرُواْ مَا بِأَنفُسِهِمۡۗ وَإِذَآ أَرَادَ ٱللَّهُ بِقَوۡمٖ سُوٓءٗا فَلَا مَرَدَّ لَهُۥۚ وَمَا لَهُم مِّن دُونِهِۦ مِن وَالٍ',
+      'لَهُ مُعَقِّبَٰتَ مِّن بَيْنِ يَدَيْهِ وَمِنْ خَلْفِهِ يَحْفَظُونَهُ مِنْ أَمْرِ اللَّهِ إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُواْ مَا بِأَنفُسِهِمْ وَإِذَآ أَرَادَ اللَّهُ بِقَوْم سُوٓءُا فَلَا مَرَدَّ لَهُ وَمَا لَهُم مِّن دُونِهِ مِن وَالٍ',
     translation:
       'For each one are successive [angels] before and behind him who protect him by the decree of Allah. Indeed, Allah will not change the condition of a people until they change what is in themselves. And when Allah intends for a people ill, there is no repelling it. And there is not for them besides Him any patron',
     source: {
@@ -342,7 +342,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-13-24',
     category: 'quran',
     kind: 'quran',
-    arabic: 'سَلَٰمٌ عَلَيۡكُم بِمَا صَبَرۡتُمۡۚ فَنِعۡمَ عُقۡبَى ٱلدَّارِ',
+    arabic: 'سَلَٰمٌ عَلَيْكُم بِمَا صَبَرْتُمْ فَنِعْمَ عُقْبَى الدَّارِ',
     translation: 'Peace be upon you for what you patiently endured. And excellent is the final home',
     source: {
       en: "Surah Ar-Ra'd 13:24",
@@ -356,7 +356,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-15-9',
     category: 'quran',
     kind: 'quran',
-    arabic: 'إِنَّا نَحۡنُ نَزَّلۡنَا ٱلذِّكۡرَ وَإِنَّا لَهُۥ لَحَٰفِظُونَ',
+    arabic: 'إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَٰفِظُونَ',
     translation: "Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian",
     source: {
       en: 'Surah Al-Hijr 15:9',
@@ -371,7 +371,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-16-18',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَإِن تَعُدُّواْ نِعۡمَةَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱللَّهَ لَغَفُورٞ رَّحِيمٞ',
+    arabic: 'وَإِن تَعُدُّواْ نِعْمَةَ اللَّهِ لَا تُحْصُوهَآ إِنَّ اللَّهَ لَغَفُورَ رَّحِيمَ',
     translation:
       'And if you should count the favors of Allah, you could not enumerate them. Indeed, Allah is Forgiving and Merciful',
     source: {
@@ -387,7 +387,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      '۞إِنَّ ٱللَّهَ يَأۡمُرُ بِٱلۡعَدۡلِ وَٱلۡإِحۡسَٰنِ وَإِيتَآيِٕ ذِي ٱلۡقُرۡبَىٰ وَيَنۡهَىٰ عَنِ ٱلۡفَحۡشَآءِ وَٱلۡمُنكَرِ وَٱلۡبَغۡيِۚ يَعِظُكُمۡ لَعَلَّكُمۡ تَذَكَّرُونَ',
+      'إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَٰنِ وَإِيتَآيِٕ ذِي الْقُرْبَىٰ وَيَنْهَىٰ عَنِ الْفَحْشَآءِ وَالْمُنكَرِ وَالْبَغْيِ يَعِظُكُمْ لَعَلَّكُمْ تَذَكَّرُونَ',
     translation:
       'Indeed, Allah orders justice and good conduct and giving to relatives and forbids immorality and bad conduct and oppression. He admonishes you that perhaps you will be reminded',
     source: {
@@ -403,7 +403,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'مَنۡ عَمِلَ صَٰلِحٗا مِّن ذَكَرٍ أَوۡ أُنثَىٰ وَهُوَ مُؤۡمِنٞ فَلَنُحۡيِيَنَّهُۥ حَيَوٰةٗ طَيِّبَةٗۖ وَلَنَجۡزِيَنَّهُمۡ أَجۡرَهُم بِأَحۡسَنِ مَا كَانُواْ يَعۡمَلُونَ',
+      'مَنْ عَمِلَ صَٰلِحُا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنَ فَلَنُحْيِيَنَّهُ حَيَوٰةُ طَيِّبَةُ وَلَنَجْزِيَنَّهُمْ أَجْرَهُم بِأَحْسَنِ مَا كَانُواْ يَعْمَلُونَ',
     translation:
       'Whoever does righteousness, whether male or female, while he is a believer - We will surely cause him to live a good life, and We will surely give them their reward [in the Hereafter] according to the best of what they used to do',
     source: {
@@ -420,7 +420,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَلَا تَمۡشِ فِي ٱلۡأَرۡضِ مَرَحًاۖ إِنَّكَ لَن تَخۡرِقَ ٱلۡأَرۡضَ وَلَن تَبۡلُغَ ٱلۡجِبَالَ طُولٗا',
+      'وَلَا تَمْشِ فِي الْأَرْضِ مَرَحًا إِنَّكَ لَن تَخْرِقَ الْأَرْضَ وَلَن تَبْلُغَ الْجِبَالَ طُولُا',
     translation:
       'And do not walk upon the earth exultantly. Indeed, you will never tear the earth [apart], and you will never reach the mountains in height',
     source: {
@@ -436,7 +436,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَنُنَزِّلُ مِنَ ٱلۡقُرۡءَانِ مَا هُوَ شِفَآءٞ وَرَحۡمَةٞ لِّلۡمُؤۡمِنِينَ وَلَا يَزِيدُ ٱلظَّـٰلِمِينَ إِلَّا خَسَارٗا',
+      'وَنُنَزِّلُ مِنَ الْقُرْءَانِ مَا هُوَ شِفَآءَ وَرَحْمَةَ لِّلْمُؤْمِنِينَ وَلَا يَزِيدُ الظَّـٰلِمِينَ إِلَّا خَسَارُا',
     translation:
       "And We send down of the Qur'an that which is healing and mercy for the believers, but it does not increase the wrongdoers except in loss",
     source: {
@@ -452,7 +452,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'ٱلۡمَالُ وَٱلۡبَنُونَ زِينَةُ ٱلۡحَيَوٰةِ ٱلدُّنۡيَاۖ وَٱلۡبَٰقِيَٰتُ ٱلصَّـٰلِحَٰتُ خَيۡرٌ عِندَ رَبِّكَ ثَوَابٗا وَخَيۡرٌ أَمَلٗا',
+      'الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَوٰةِ الدُّنْيَا وَالْبَٰقِيَٰتُ الصَّـٰلِحَٰتُ خَيْرٌ عِندَ رَبِّكَ ثَوَابُا وَخَيْرٌ أَمَلُا',
     translation:
       "Wealth and children are [but] adornment of the worldly life. But the enduring good deeds are better to your Lord for reward and better for [one's] hope",
     source: {
@@ -468,7 +468,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-19-96',
     category: 'quran',
     kind: 'quran',
-    arabic: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّـٰلِحَٰتِ سَيَجۡعَلُ لَهُمُ ٱلرَّحۡمَٰنُ وُدّٗا',
+    arabic: 'إِنَّ الَّذِينَ ءَامَنُواْ وَعَمِلُواْ الصَّـٰلِحَٰتِ سَيَجْعَلُ لَهُمُ الرَّحْمَٰنُ وُدُّا',
     translation:
       'Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection',
     source: {
@@ -483,7 +483,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-20-2-3',
     category: 'quran',
     kind: 'quran',
-    arabic: 'مَآ أَنزَلۡنَا عَلَيۡكَ ٱلۡقُرۡءَانَ لِتَشۡقَىٰٓ ۝ إِلَّا تَذۡكِرَةٗ لِّمَن يَخۡشَىٰ',
+    arabic: 'مَآ أَنزَلْنَا عَلَيْكَ الْقُرْءَانَ لِتَشْقَىٰٓ ۝ إِلَّا تَذْكِرَةُ لِّمَن يَخْشَىٰ',
     translation:
       "We have not sent down to you the Qur'an that you be distressed But only as a reminder for those who fear [Allah]",
     source: {
@@ -498,7 +498,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-20-46',
     category: 'quran',
     kind: 'quran',
-    arabic: 'قَالَ لَا تَخَافَآۖ إِنَّنِي مَعَكُمَآ أَسۡمَعُ وَأَرَىٰ',
+    arabic: 'قَالَ لَا تَخَافَآ إِنَّنِي مَعَكُمَآ أَسْمَعُ وَأَرَىٰ',
     translation: '[Allah] said, "Fear not. Indeed, I am with you both; I hear and I see',
     source: {
       en: 'Surah Taha 20:46',
@@ -513,7 +513,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-21-107',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَمَآ أَرۡسَلۡنَٰكَ إِلَّا رَحۡمَةٗ لِّلۡعَٰلَمِينَ',
+    arabic: 'وَمَآ أَرْسَلْنَٰكَ إِلَّا رَحْمَةُ لِّلْعَٰلَمِينَ',
     translation: 'And We have not sent you, [O Muhammad], except as a mercy to the worlds',
     source: {
       en: 'Surah Al-Anbya 21:107',
@@ -528,7 +528,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَعِبَادُ ٱلرَّحۡمَٰنِ ٱلَّذِينَ يَمۡشُونَ عَلَى ٱلۡأَرۡضِ هَوۡنٗا وَإِذَا خَاطَبَهُمُ ٱلۡجَٰهِلُونَ قَالُواْ سَلَٰمٗا',
+      'وَعِبَادُ الرَّحْمَٰنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنُا وَإِذَا خَاطَبَهُمُ الْجَٰهِلُونَ قَالُواْ سَلَٰمُا',
     translation:
       'And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace',
     source: {
@@ -543,7 +543,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-26-80',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَإِذَا مَرِضۡتُ فَهُوَ يَشۡفِينِ',
+    arabic: 'وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ',
     translation: 'And when I am ill, it is He who cures me',
     source: {
       en: "Surah Ash-Shu'ara 26:80",
@@ -559,7 +559,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'إِنَّكَ لَا تَهۡدِي مَنۡ أَحۡبَبۡتَ وَلَٰكِنَّ ٱللَّهَ يَهۡدِي مَن يَشَآءُۚ وَهُوَ أَعۡلَمُ بِٱلۡمُهۡتَدِينَ',
+      'إِنَّكَ لَا تَهْدِي مَنْ أَحْبَبْتَ وَلَٰكِنَّ اللَّهَ يَهْدِي مَن يَشَآءُ وَهُوَ أَعْلَمُ بِالْمُهْتَدِينَ',
     translation:
       'Indeed, [O Muhammad], you do not guide whom you like, but Allah guides whom He wills. And He is most knowing of the [rightly] guided',
     source: {
@@ -574,7 +574,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-29-2',
     category: 'quran',
     kind: 'quran',
-    arabic: 'أَحَسِبَ ٱلنَّاسُ أَن يُتۡرَكُوٓاْ أَن يَقُولُوٓاْ ءَامَنَّا وَهُمۡ لَا يُفۡتَنُونَ',
+    arabic: 'أَحَسِبَ النَّاسُ أَن يُتْرَكُوٓاْ أَن يَقُولُوٓاْ ءَامَنَّا وَهُمْ لَا يُفْتَنُونَ',
     translation: 'Do the people think that they will be left to say, "We believe" and they will not be tried',
     source: {
       en: "Surah Al-'Ankabut 29:2",
@@ -589,7 +589,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'ٱتۡلُ مَآ أُوحِيَ إِلَيۡكَ مِنَ ٱلۡكِتَٰبِ وَأَقِمِ ٱلصَّلَوٰةَۖ إِنَّ ٱلصَّلَوٰةَ تَنۡهَىٰ عَنِ ٱلۡفَحۡشَآءِ وَٱلۡمُنكَرِۗ وَلَذِكۡرُ ٱللَّهِ أَكۡبَرُۗ وَٱللَّهُ يَعۡلَمُ مَا تَصۡنَعُونَ',
+      'اتْلُ مَآ أُوحِيَ إِلَيْكَ مِنَ الْكِتَٰبِ وَأَقِمِ الصَّلَوٰةَ إِنَّ الصَّلَوٰةَ تَنْهَىٰ عَنِ الْفَحْشَآءِ وَالْمُنكَرِ وَلَذِكْرُ اللَّهِ أَكْبَرُ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُونَ',
     translation:
       'Recite, [O Muhammad], what has been revealed to you of the Book and establish prayer. Indeed, prayer prohibits immorality and wrongdoing, and the remembrance of Allah is greater. And Allah knows that which you do',
     source: {
@@ -605,8 +605,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-29-69',
     category: 'quran',
     kind: 'quran',
-    arabic:
-      'وَٱلَّذِينَ جَٰهَدُواْ فِينَا لَنَهۡدِيَنَّهُمۡ سُبُلَنَاۚ وَإِنَّ ٱللَّهَ لَمَعَ ٱلۡمُحۡسِنِينَ',
+    arabic: 'وَالَّذِينَ جَٰهَدُواْ فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا وَإِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ',
     translation:
       'And those who strive for Us - We will surely guide them to Our ways. And indeed, Allah is with the doers of good',
     source: {
@@ -622,7 +621,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَٰبُنَيَّ أَقِمِ ٱلصَّلَوٰةَ وَأۡمُرۡ بِٱلۡمَعۡرُوفِ وَٱنۡهَ عَنِ ٱلۡمُنكَرِ وَٱصۡبِرۡ عَلَىٰ مَآ أَصَابَكَۖ إِنَّ ذَٰلِكَ مِنۡ عَزۡمِ ٱلۡأُمُورِ',
+      'يَٰبُنَيَّ أَقِمِ الصَّلَوٰةَ وَأْمُرْ بِالْمَعْرُوفِ وَانْهَ عَنِ الْمُنكَرِ وَاصْبِرْ عَلَىٰ مَآ أَصَابَكَ إِنَّ ذَٰلِكَ مِنْ عَزْمِ الْأُمُورِ',
     translation:
       'O my son, establish prayer, enjoin what is right, forbid what is wrong, and be patient over what befalls you. Indeed, [all] that is of the matters [requiring] determination',
     source: {
@@ -638,7 +637,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَلَا تُصَعِّرۡ خَدَّكَ لِلنَّاسِ وَلَا تَمۡشِ فِي ٱلۡأَرۡضِ مَرَحًاۖ إِنَّ ٱللَّهَ لَا يُحِبُّ كُلَّ مُخۡتَالٖ فَخُورٖ',
+      'وَلَا تُصَعِّرْ خَدَّكَ لِلنَّاسِ وَلَا تَمْشِ فِي الْأَرْضِ مَرَحًا إِنَّ اللَّهَ لَا يُحِبُّ كُلَّ مُخْتَال فَخُور',
     translation:
       'And do not turn your cheek [in contempt] toward people and do not walk through the earth exultantly. Indeed, Allah does not like everyone self-deluded and boastful',
     source: {
@@ -655,7 +654,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱذۡكُرُواْ ٱللَّهَ ذِكۡرٗا كَثِيرٗا ۝ وَسَبِّحُوهُ بُكۡرَةٗ وَأَصِيلًا',
+      'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ اذْكُرُواْ اللَّهَ ذِكْرُا كَثِيرُا ۝ وَسَبِّحُوهُ بُكْرَةُ وَأَصِيلًا',
     translation:
       'O you who have believed, remember Allah with much remembrance And exalt Him morning and afternoon',
     source: {
@@ -671,7 +670,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'إِنَّ ٱللَّهَ وَمَلَـٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِيِّۚ يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ صَلُّواْ عَلَيۡهِ وَسَلِّمُواْ تَسۡلِيمًا',
+      'إِنَّ اللَّهَ وَمَلَـٰٓئِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ صَلُّواْ عَلَيْهِ وَسَلِّمُواْ تَسْلِيمًا',
     translation:
       'Indeed, Allah confers blessing upon the Prophet, and His angels [ask Him to do so]. O you who have believed, ask [Allah to confer] blessing upon him and ask [Allah to grant him] peace',
     source: {
@@ -686,7 +685,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-33-70',
     category: 'quran',
     kind: 'quran',
-    arabic: 'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱتَّقُواْ ٱللَّهَ وَقُولُواْ قَوۡلٗا سَدِيدٗا',
+    arabic: 'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ اتَّقُواْ اللَّهَ وَقُولُواْ قَوْلُا سَدِيدُا',
     translation: 'O you who have believed, fear Allah and speak words of appropriate justice',
     source: {
       en: 'Surah Al-Ahzab 33:70',
@@ -702,7 +701,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَقَالُواْ ٱلۡحَمۡدُ لِلَّهِ ٱلَّذِيٓ أَذۡهَبَ عَنَّا ٱلۡحَزَنَۖ إِنَّ رَبَّنَا لَغَفُورٞ شَكُورٌ',
+      'وَقَالُواْ الْحَمْدُ لِلَّهِ الَّذِيٓ أَذْهَبَ عَنَّا الْحَزَنَ إِنَّ رَبَّنَا لَغَفُورَ شَكُورٌ',
     translation:
       'And they will say, "Praise to Allah, who has removed from us [all] sorrow. Indeed, our Lord is Forgiving and Appreciative',
     source: {
@@ -717,7 +716,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-36-58',
     category: 'quran',
     kind: 'quran',
-    arabic: 'سَلَٰمٞ قَوۡلٗا مِّن رَّبّٖ رَّحِيمٖ',
+    arabic: 'سَلَٰمَ قَوْلُا مِّن رَّبّ رَّحِيم',
     translation: '[And] "Peace," a word from a Merciful Lord',
     source: {
       en: 'Surah Ya-Sin 36:58',
@@ -731,7 +730,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-36-82',
     category: 'quran',
     kind: 'quran',
-    arabic: 'إِنَّمَآ أَمۡرُهُۥٓ إِذَآ أَرَادَ شَيۡـًٔا أَن يَقُولَ لَهُۥ كُن فَيَكُونُ',
+    arabic: 'إِنَّمَآ أَمْرُهُٓ إِذَآ أَرَادَ شَيْـًٔا أَن يَقُولَ لَهُ كُن فَيَكُونُ',
     translation: 'His command is only when He intends a thing that He says to it, "Be," and it is',
     source: {
       en: 'Surah Ya-Sin 36:82',
@@ -747,7 +746,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قُلۡ يَٰعِبَادِ ٱلَّذِينَ ءَامَنُواْ ٱتَّقُواْ رَبَّكُمۡۚ لِلَّذِينَ أَحۡسَنُواْ فِي هَٰذِهِ ٱلدُّنۡيَا حَسَنَةٞۗ وَأَرۡضُ ٱللَّهِ وَٰسِعَةٌۗ إِنَّمَا يُوَفَّى ٱلصَّـٰبِرُونَ أَجۡرَهُم بِغَيۡرِ حِسَابٖ',
+      'قُلْ يَٰعِبَادِ الَّذِينَ ءَامَنُواْ اتَّقُواْ رَبَّكُمْ لِلَّذِينَ أَحْسَنُواْ فِي هَٰذِهِ الدُّنْيَا حَسَنَةَ وَأَرْضُ اللَّهِ وَٰسِعَةٌ إِنَّمَا يُوَفَّى الصَّـٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَاب',
     translation:
       'Say, "O My servants who have believed, fear your Lord. For those who do good in this world is good, and the earth of Allah is spacious. Indeed, the patient will be given their reward without account',
     source: {
@@ -763,7 +762,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'أَلَيۡسَ ٱللَّهُ بِكَافٍ عَبۡدَهُۥۖ وَيُخَوِّفُونَكَ بِٱلَّذِينَ مِن دُونِهِۦۚ وَمَن يُضۡلِلِ ٱللَّهُ فَمَا لَهُۥ مِنۡ هَادٖ',
+      'أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ وَيُخَوِّفُونَكَ بِالَّذِينَ مِن دُونِهِ وَمَن يُضْلِلِ اللَّهُ فَمَا لَهُ مِنْ هَاد',
     translation:
       'Is not Allah sufficient for His Servant [Prophet Muhammad]? And [yet], they threaten you with those [they worship] other than Him. And whoever Allah leaves astray - for him there is no guide',
     source: {
@@ -779,7 +778,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'فَسَتَذۡكُرُونَ مَآ أَقُولُ لَكُمۡۚ وَأُفَوِّضُ أَمۡرِيٓ إِلَى ٱللَّهِۚ إِنَّ ٱللَّهَ بَصِيرُۢ بِٱلۡعِبَادِ',
+      'فَسَتَذْكُرُونَ مَآ أَقُولُ لَكُمْ وَأُفَوِّضُ أَمْرِيٓ إِلَى اللَّهِ إِنَّ اللَّهَ بَصِيرُ بِالْعِبَادِ',
     translation:
       'And you will remember what I [now] say to you, and I entrust my affair to Allah. Indeed, Allah is Seeing of [His] servants',
     source: {
@@ -796,7 +795,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'إِنَّ ٱلَّذِينَ قَالُواْ رَبُّنَا ٱللَّهُ ثُمَّ ٱسۡتَقَٰمُواْ تَتَنَزَّلُ عَلَيۡهِمُ ٱلۡمَلَـٰٓئِكَةُ أَلَّا تَخَافُواْ وَلَا تَحۡزَنُواْ وَأَبۡشِرُواْ بِٱلۡجَنَّةِ ٱلَّتِي كُنتُمۡ تُوعَدُونَ',
+      'إِنَّ الَّذِينَ قَالُواْ رَبُّنَا اللَّهُ ثُمَّ اسْتَقَٰمُواْ تَتَنَزَّلُ عَلَيْهِمُ الْمَلَـٰٓئِكَةُ أَلَّا تَخَافُواْ وَلَا تَحْزَنُواْ وَأَبْشِرُواْ بِالْجَنَّةِ الَّتِي كُنتُمْ تُوعَدُونَ',
     translation:
       'Indeed, those who have said, "Our Lord is Allah " and then remained on a right course - the angels will descend upon them, [saying], "Do not fear and do not grieve but receive good tidings of Paradise, which you were promised',
     source: {
@@ -812,7 +811,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَلَا تَسۡتَوِي ٱلۡحَسَنَةُ وَلَا ٱلسَّيِّئَةُۚ ٱدۡفَعۡ بِٱلَّتِي هِيَ أَحۡسَنُ فَإِذَا ٱلَّذِي بَيۡنَكَ وَبَيۡنَهُۥ عَدَٰوَةٞ كَأَنَّهُۥ وَلِيٌّ حَمِيمٞ',
+      'وَلَا تَسْتَوِي الْحَسَنَةُ وَلَا السَّيِّئَةُ ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَٰوَةَ كَأَنَّهُ وَلِيٌّ حَمِيمَ',
     translation:
       'And not equal are the good deed and the bad. Repel [evil] by that [deed] which is better; and thereupon the one whom between you and him is enmity [will become] as though he was a devoted friend',
     source: {
@@ -827,7 +826,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-42-30',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَمَآ أَصَٰبَكُم مِّن مُّصِيبَةٖ فَبِمَا كَسَبَتۡ أَيۡدِيكُمۡ وَيَعۡفُواْ عَن كَثِيرٖ',
+    arabic: 'وَمَآ أَصَٰبَكُم مِّن مُّصِيبَة فَبِمَا كَسَبَتْ أَيْدِيكُمْ وَيَعْفُواْ عَن كَثِير',
     translation:
       'And whatever strikes you of disaster - it is for what your hands have earned; but He pardons much',
     source: {
@@ -844,7 +843,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقۡنَٰكُم مِّن ذَكَرٖ وَأُنثَىٰ وَجَعَلۡنَٰكُمۡ شُعُوبٗا وَقَبَآئِلَ لِتَعَارَفُوٓاْۚ إِنَّ أَكۡرَمَكُمۡ عِندَ ٱللَّهِ أَتۡقَىٰكُمۡۚ إِنَّ ٱللَّهَ عَلِيمٌ خَبِيرٞ',
+      'يَـٰٓأَيُّهَا النَّاسُ إِنَّا خَلَقْنَٰكُم مِّن ذَكَر وَأُنثَىٰ وَجَعَلْنَٰكُمْ شُعُوبُا وَقَبَآئِلَ لِتَعَارَفُوٓاْ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَىٰكُمْ إِنَّ اللَّهَ عَلِيمٌ خَبِيرَ',
     translation:
       'O mankind, indeed We have created you from male and female and made you peoples and tribes that you may know one another. Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted',
     source: {
@@ -860,7 +859,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَلَقَدۡ خَلَقۡنَا ٱلۡإِنسَٰنَ وَنَعۡلَمُ مَا تُوَسۡوِسُ بِهِۦ نَفۡسُهُۥۖ وَنَحۡنُ أَقۡرَبُ إِلَيۡهِ مِنۡ حَبۡلِ ٱلۡوَرِيدِ',
+      'وَلَقَدْ خَلَقْنَا الْإِنسَٰنَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ',
     translation:
       'And We have already created man and know what his soul whispers to him, and We are closer to him than [his] jugular vein',
     source: {
@@ -875,7 +874,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-51-56',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَمَا خَلَقۡتُ ٱلۡجِنَّ وَٱلۡإِنسَ إِلَّا لِيَعۡبُدُونِ',
+    arabic: 'وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ',
     translation: 'And I did not create the jinn and mankind except to worship Me',
     source: {
       en: 'Surah Adh-Dhariyat 51:56',
@@ -890,7 +889,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-54-17',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَلَقَدۡ يَسَّرۡنَا ٱلۡقُرۡءَانَ لِلذِّكۡرِ فَهَلۡ مِن مُّدَّكِرٖ',
+    arabic: 'وَلَقَدْ يَسَّرْنَا الْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِر',
     translation:
       "And We have certainly made the Qur'an easy for remembrance, so is there any who will remember",
     source: {
@@ -920,7 +919,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'هُوَ ٱلَّذِي خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضَ فِي سِتَّةِ أَيَّامٖ ثُمَّ ٱسۡتَوَىٰ عَلَى ٱلۡعَرۡشِۖ يَعۡلَمُ مَا يَلِجُ فِي ٱلۡأَرۡضِ وَمَا يَخۡرُجُ مِنۡهَا وَمَا يَنزِلُ مِنَ ٱلسَّمَآءِ وَمَا يَعۡرُجُ فِيهَاۖ وَهُوَ مَعَكُمۡ أَيۡنَ مَا كُنتُمۡۚ وَٱللَّهُ بِمَا تَعۡمَلُونَ بَصِيرٞ',
+      'هُوَ الَّذِي خَلَقَ السَّمَٰوَٰتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّام ثُمَّ اسْتَوَىٰ عَلَى الْعَرْشِ يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا وَمَا يَنزِلُ مِنَ السَّمَآءِ وَمَا يَعْرُجُ فِيهَا وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرَ',
     translation:
       'It is He who created the heavens and earth in six days and then established Himself above the Throne. He knows what penetrates into the earth and what emerges from it and what descends from the heaven and what ascends therein; and He is with you wherever you are. And Allah, of what you do, is Seeing',
     source: {
@@ -937,7 +936,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ إِذَا قِيلَ لَكُمۡ تَفَسَّحُواْ فِي ٱلۡمَجَٰلِسِ فَٱفۡسَحُواْ يَفۡسَحِ ٱللَّهُ لَكُمۡۖ وَإِذَا قِيلَ ٱنشُزُواْ فَٱنشُزُواْ يَرۡفَعِ ٱللَّهُ ٱلَّذِينَ ءَامَنُواْ مِنكُمۡ وَٱلَّذِينَ أُوتُواْ ٱلۡعِلۡمَ دَرَجَٰتٖۚ وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ',
+      'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُوٓاْ إِذَا قِيلَ لَكُمْ تَفَسَّحُواْ فِي الْمَجَٰلِسِ فَافْسَحُواْ يَفْسَحِ اللَّهُ لَكُمْ وَإِذَا قِيلَ انشُزُواْ فَانشُزُواْ يَرْفَعِ اللَّهُ الَّذِينَ ءَامَنُواْ مِنكُمْ وَالَّذِينَ أُوتُواْ الْعِلْمَ دَرَجَٰت وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرَ',
     translation:
       'O you who have believed, when you are told, "Space yourselves" in assemblies, then make space; Allah will make space for you. And when you are told, "Arise," then arise; Allah will raise those who have believed among you and those who were given knowledge, by degrees. And Allah is Acquainted with what you do',
     source: {
@@ -953,7 +952,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'مَآ أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذۡنِ ٱللَّهِۗ وَمَن يُؤۡمِنۢ بِٱللَّهِ يَهۡدِ قَلۡبَهُۥۚ وَٱللَّهُ بِكُلِّ شَيۡءٍ عَلِيمٞ',
+      'مَآ أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذْنِ اللَّهِ وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمَ',
     translation:
       'No disaster strikes except by permission of Allah. And whoever believes in Allah - He will guide his heart. And Allah is Knowing of all things',
     source: {
@@ -969,7 +968,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'ٱلَّذِي خَلَقَ ٱلۡمَوۡتَ وَٱلۡحَيَوٰةَ لِيَبۡلُوَكُمۡ أَيُّكُمۡ أَحۡسَنُ عَمَلٗاۚ وَهُوَ ٱلۡعَزِيزُ ٱلۡغَفُورُ',
+      'الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلُا وَهُوَ الْعَزِيزُ الْغَفُورُ',
     translation:
       '[He] who created death and life to test you [as to] which of you is best in deed - and He is the Exalted in Might, the Forgiving',
     source: {
@@ -984,7 +983,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-68-4',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٖ',
+    arabic: 'وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيم',
     translation: 'And indeed, you are of a great moral character',
     source: {
       en: 'Surah Al-Qalam 68:4',
@@ -998,7 +997,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-73-8',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَٱذۡكُرِ ٱسۡمَ رَبِّكَ وَتَبَتَّلۡ إِلَيۡهِ تَبۡتِيلٗا',
+    arabic: 'وَاذْكُرِ اسْمَ رَبِّكَ وَتَبَتَّلْ إِلَيْهِ تَبْتِيلُا',
     translation: 'And remember the name of your Lord and devote yourself to Him with [complete] devotion',
     source: {
       en: 'Surah Al-Muzzammil 73:8',
@@ -1013,7 +1012,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-76-9',
     category: 'quran',
     kind: 'quran',
-    arabic: 'إِنَّمَا نُطۡعِمُكُمۡ لِوَجۡهِ ٱللَّهِ لَا نُرِيدُ مِنكُمۡ جَزَآءٗ وَلَا شُكُورًا',
+    arabic: 'إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ اللَّهِ لَا نُرِيدُ مِنكُمْ جَزَآءُ وَلَا شُكُورًا',
     translation:
       '[Saying], "We feed you only for the countenance of Allah. We wish not from you reward or gratitude',
     source: {
@@ -1028,7 +1027,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-87-14-15',
     category: 'quran',
     kind: 'quran',
-    arabic: 'قَدۡ أَفۡلَحَ مَن تَزَكَّىٰ ۝ وَذَكَرَ ٱسۡمَ رَبِّهِۦ فَصَلَّىٰ',
+    arabic: 'قَدْ أَفْلَحَ مَن تَزَكَّىٰ ۝ وَذَكَرَ اسْمَ رَبِّهِ فَصَلَّىٰ',
     translation:
       'He has certainly succeeded who purifies himself And mentions the name of his Lord and prays',
     source: {
@@ -1044,7 +1043,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيَّتُهَا ٱلنَّفۡسُ ٱلۡمُطۡمَئِنَّةُ ۝ ٱرۡجِعِيٓ إِلَىٰ رَبِّكِ رَاضِيَةٗ مَّرۡضِيَّةٗ ۝ فَٱدۡخُلِي فِي عِبَٰدِي ۝ وَٱدۡخُلِي جَنَّتِي',
+      'يَـٰٓأَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ ۝ ارْجِعِيٓ إِلَىٰ رَبِّكِ رَاضِيَةُ مَّرْضِيَّةُ ۝ فَادْخُلِي فِي عِبَٰدِي ۝ وَادْخُلِي جَنَّتِي',
     translation:
       '[To the righteous it will be said], "O reassured soul Return to your Lord, well-pleased and pleasing [to Him] And enter among My [righteous] servants And enter My Paradise',
     source: {
@@ -1060,7 +1059,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-91-9-10',
     category: 'quran',
     kind: 'quran',
-    arabic: 'قَدۡ أَفۡلَحَ مَن زَكَّىٰهَا ۝ وَقَدۡ خَابَ مَن دَسَّىٰهَا',
+    arabic: 'قَدْ أَفْلَحَ مَن زَكَّىٰهَا ۝ وَقَدْ خَابَ مَن دَسَّىٰهَا',
     translation: 'He has succeeded who purifies it And he has failed who instills it [with corruption]',
     source: {
       en: 'Surah Ash-Shams 91:9-10',
@@ -1088,7 +1087,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-93-4',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَلَلۡأٓخِرَةُ خَيۡرٞ لَّكَ مِنَ ٱلۡأُولَىٰ',
+    arabic: 'وَلَلْأٓخِرَةُ خَيْرَ لَّكَ مِنَ الْأُولَىٰ',
     translation: 'And the Hereafter is better for you than the first [life]',
     source: {
       en: 'Surah Ad-Duhaa 93:4',
@@ -1103,7 +1102,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-93-7-8',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَوَجَدَكَ ضَآلّٗا فَهَدَىٰ ۝ وَوَجَدَكَ عَآئِلٗا فَأَغۡنَىٰ',
+    arabic: 'وَوَجَدَكَ ضَآلُّا فَهَدَىٰ ۝ وَوَجَدَكَ عَآئِلُا فَأَغْنَىٰ',
     translation:
       'And He found you lost and guided [you] And He found you poor and made [you] self-sufficient',
     source: {
@@ -1118,7 +1117,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-93-11',
     category: 'quran',
     kind: 'quran',
-    arabic: 'وَأَمَّا بِنِعۡمَةِ رَبِّكَ فَحَدِّثۡ',
+    arabic: 'وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ',
     translation: 'But as for the favor of your Lord, report [it]',
     source: {
       en: 'Surah Ad-Duhaa 93:11',
@@ -1133,7 +1132,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'أَلَمۡ نَشۡرَحۡ لَكَ صَدۡرَكَ ۝ وَوَضَعۡنَا عَنكَ وِزۡرَكَ ۝ ٱلَّذِيٓ أَنقَضَ ظَهۡرَكَ ۝ وَرَفَعۡنَا لَكَ ذِكۡرَكَ',
+      'أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ ۝ وَوَضَعْنَا عَنكَ وِزْرَكَ ۝ الَّذِيٓ أَنقَضَ ظَهْرَكَ ۝ وَرَفَعْنَا لَكَ ذِكْرَكَ',
     translation:
       'Did We not expand for you, [O Muhammad], your breast And We removed from you your burden Which had weighed upon your back And raised high for you your repute',
     source: {
@@ -1149,7 +1148,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-96-1',
     category: 'quran',
     kind: 'quran',
-    arabic: 'ٱقۡرَأۡ بِٱسۡمِ رَبِّكَ ٱلَّذِي خَلَقَ',
+    arabic: 'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ',
     translation: 'Recite in the name of your Lord who created',
     source: {
       en: "Surah Al-'Alaq 96:1",
@@ -1164,7 +1163,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'وَٱلۡعَصۡرِ ۝ إِنَّ ٱلۡإِنسَٰنَ لَفِي خُسۡرٍ ۝ إِلَّا ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّـٰلِحَٰتِ وَتَوَاصَوۡاْ بِٱلۡحَقِّ وَتَوَاصَوۡاْ بِٱلصَّبۡرِ',
+      'وَالْعَصْرِ ۝ إِنَّ الْإِنسَٰنَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ ءَامَنُواْ وَعَمِلُواْ الصَّـٰلِحَٰتِ وَتَوَاصَوْاْ بِالْحَقِّ وَتَوَاصَوْاْ بِالصَّبْرِ',
     translation:
       'By time Indeed, mankind is in loss Except for those who have believed and done righteous deeds and advised each other to truth and advised each other to patience',
     source: {
@@ -1179,7 +1178,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-110-3',
     category: 'quran',
     kind: 'quran',
-    arabic: 'فَسَبِّحۡ بِحَمۡدِ رَبِّكَ وَٱسۡتَغۡفِرۡهُۚ إِنَّهُۥ كَانَ تَوَّابَۢا',
+    arabic: 'فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ إِنَّهُ كَانَ تَوَّابَا',
     translation:
       'Then exalt [Him] with praise of your Lord and ask forgiveness of Him. Indeed, He is ever Accepting of repentance',
     source: {
@@ -1196,7 +1195,7 @@ export const quranVersePosts: Post[] = [
     category: 'quran',
     kind: 'quran',
     arabic:
-      'قُلۡ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ ۝ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ۝ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ',
+      'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدُ',
     translation:
       'Say, "He is Allah, [who is] One Allah, the Eternal Refuge He neither begets nor is born Nor is there to Him any equivalent',
     source: {
@@ -1212,7 +1211,7 @@ export const quranVersePosts: Post[] = [
     category: 'friday',
     kind: 'quran',
     arabic:
-      'فَإِذَا قُضِيَتِ ٱلصَّلَوٰةُ فَٱنتَشِرُواْ فِي ٱلۡأَرۡضِ وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ وَٱذۡكُرُواْ ٱللَّهَ كَثِيرٗا لَّعَلَّكُمۡ تُفۡلِحُونَ',
+      'فَإِذَا قُضِيَتِ الصَّلَوٰةُ فَانتَشِرُواْ فِي الْأَرْضِ وَابْتَغُواْ مِن فَضْلِ اللَّهِ وَاذْكُرُواْ اللَّهَ كَثِيرُا لَّعَلَّكُمْ تُفْلِحُونَ',
     translation:
       'And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah, and remember Allah often that you may succeed',
     source: {
@@ -1229,7 +1228,7 @@ export const quranVersePosts: Post[] = [
     category: 'ramadan',
     kind: 'quran',
     arabic:
-      'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ كُتِبَ عَلَيۡكُمُ ٱلصِّيَامُ كَمَا كُتِبَ عَلَى ٱلَّذِينَ مِن قَبۡلِكُمۡ لَعَلَّكُمۡ تَتَّقُونَ',
+      'يَـٰٓأَيُّهَا الَّذِينَ ءَامَنُواْ كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ',
     translation:
       'O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous',
     source: {
@@ -1245,7 +1244,7 @@ export const quranVersePosts: Post[] = [
     category: 'ramadan',
     kind: 'quran',
     arabic:
-      'أَيَّامٗا مَّعۡدُودَٰتٖۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوۡ عَلَىٰ سَفَرٖ فَعِدَّةٞ مِّنۡ أَيَّامٍ أُخَرَۚ وَعَلَى ٱلَّذِينَ يُطِيقُونَهُۥ فِدۡيَةٞ طَعَامُ مِسۡكِينٖۖ فَمَن تَطَوَّعَ خَيۡرٗا فَهُوَ خَيۡرٞ لَّهُۥۚ وَأَن تَصُومُواْ خَيۡرٞ لَّكُمۡ إِن كُنتُمۡ تَعۡلَمُونَ',
+      'أَيَّامُا مَّعْدُودَٰت فَمَن كَانَ مِنكُم مَّرِيضًا أَوْ عَلَىٰ سَفَر فَعِدَّةَ مِّنْ أَيَّامٍ أُخَرَ وَعَلَى الَّذِينَ يُطِيقُونَهُ فِدْيَةَ طَعَامُ مِسْكِين فَمَن تَطَوَّعَ خَيْرُا فَهُوَ خَيْرَ لَّهُ وَأَن تَصُومُواْ خَيْرَ لَّكُمْ إِن كُنتُمْ تَعْلَمُونَ',
     translation:
       '[Fasting for] a limited number of days. So whoever among you is ill or on a journey [during them] - then an equal number of days [are to be made up]. And upon those who are able [to fast, but with hardship] - a ransom [as substitute] of feeding a poor person [each day]. And whoever volunteers excess - it is better for him. But to fast is best for you, if you only knew',
     source: {
@@ -1261,7 +1260,7 @@ export const quranVersePosts: Post[] = [
     category: 'laylat-al-qadr',
     kind: 'quran',
     arabic:
-      'إِنَّآ أَنزَلۡنَٰهُ فِي لَيۡلَةٖ مُّبَٰرَكَةٍۚ إِنَّا كُنَّا مُنذِرِينَ ۝ فِيهَا يُفۡرَقُ كُلُّ أَمۡرٍ حَكِيمٍ',
+      'إِنَّآ أَنزَلْنَٰهُ فِي لَيْلَة مُّبَٰرَكَةٍ إِنَّا كُنَّا مُنذِرِينَ ۝ فِيهَا يُفْرَقُ كُلُّ أَمْرٍ حَكِيمٍ',
     translation:
       'Indeed, We sent it down during a blessed night. Indeed, We were to warn [mankind] On that night is made distinct every precise matter',
     source: {
@@ -1278,7 +1277,7 @@ export const quranVersePosts: Post[] = [
     category: 'dhul-hijjah',
     kind: 'quran',
     arabic:
-      'وَأَذِّن فِي ٱلنَّاسِ بِٱلۡحَجِّ يَأۡتُوكَ رِجَالٗا وَعَلَىٰ كُلِّ ضَامِرٖ يَأۡتِينَ مِن كُلِّ فَجٍّ عَمِيقٖ',
+      'وَأَذِّن فِي النَّاسِ بِالْحَجِّ يَأْتُوكَ رِجَالُا وَعَلَىٰ كُلِّ ضَامِر يَأْتِينَ مِن كُلِّ فَجٍّ عَمِيق',
     translation:
       'And proclaim to the people the Hajj [pilgrimage]; they will come to you on foot and on every lean camel; they will come from every distant pass',
     source: {
@@ -1294,7 +1293,7 @@ export const quranVersePosts: Post[] = [
     category: 'dhul-hijjah',
     kind: 'quran',
     arabic:
-      'لِّيَشۡهَدُواْ مَنَٰفِعَ لَهُمۡ وَيَذۡكُرُواْ ٱسۡمَ ٱللَّهِ فِيٓ أَيَّامٖ مَّعۡلُومَٰتٍ عَلَىٰ مَا رَزَقَهُم مِّنۢ بَهِيمَةِ ٱلۡأَنۡعَٰمِۖ فَكُلُواْ مِنۡهَا وَأَطۡعِمُواْ ٱلۡبَآئِسَ ٱلۡفَقِيرَ',
+      'لِّيَشْهَدُواْ مَنَٰفِعَ لَهُمْ وَيَذْكُرُواْ اسْمَ اللَّهِ فِيٓ أَيَّام مَّعْلُومَٰتٍ عَلَىٰ مَا رَزَقَهُم مِّن بَهِيمَةِ الْأَنْعَٰمِ فَكُلُواْ مِنْهَا وَأَطْعِمُواْ الْبَآئِسَ الْفَقِيرَ',
     translation:
       'That they may witness benefits for themselves and mention the name of Allah on known days over what He has provided for them of [sacrificial] animals. So eat of them and feed the miserable and poor',
     source: {
@@ -1309,7 +1308,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-22-32',
     category: 'dhul-hijjah',
     kind: 'quran',
-    arabic: 'ذَٰلِكَۖ وَمَن يُعَظِّمۡ شَعَـٰٓئِرَ ٱللَّهِ فَإِنَّهَا مِن تَقۡوَى ٱلۡقُلُوبِ',
+    arabic: 'ذَٰلِكَ وَمَن يُعَظِّمْ شَعَـٰٓئِرَ اللَّهِ فَإِنَّهَا مِن تَقْوَى الْقُلُوبِ',
     translation:
       'That [is so]. And whoever honors the symbols of Allah - indeed, it is from the piety of hearts',
     source: {
@@ -1326,7 +1325,7 @@ export const quranVersePosts: Post[] = [
     category: 'dhul-hijjah',
     kind: 'quran',
     arabic:
-      'وَإِذۡ بَوَّأۡنَا لِإِبۡرَٰهِيمَ مَكَانَ ٱلۡبَيۡتِ أَن لَّا تُشۡرِكۡ بِي شَيۡـٔٗا وَطَهِّرۡ بَيۡتِيَ لِلطَّآئِفِينَ وَٱلۡقَآئِمِينَ وَٱلرُّكَّعِ ٱلسُّجُودِ',
+      'وَإِذْ بَوَّأْنَا لِإِبْرَٰهِيمَ مَكَانَ الْبَيْتِ أَن لَّا تُشْرِكْ بِي شَيْـُٔا وَطَهِّرْ بَيْتِيَ لِلطَّآئِفِينَ وَالْقَآئِمِينَ وَالرُّكَّعِ السُّجُودِ',
     translation:
       'And [mention, O Muhammad], when We designated for Abraham the site of the House, [saying], "Do not associate anything with Me and purify My House for those who perform Tawaf and those who stand [in prayer] and those who bow and prostrate',
     source: {
@@ -1341,7 +1340,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-53-9-10',
     category: 'isra-miraj',
     kind: 'quran',
-    arabic: 'فَكَانَ قَابَ قَوۡسَيۡنِ أَوۡ أَدۡنَىٰ ۝ فَأَوۡحَىٰٓ إِلَىٰ عَبۡدِهِۦ مَآ أَوۡحَىٰ',
+    arabic: 'فَكَانَ قَابَ قَوْسَيْنِ أَوْ أَدْنَىٰ ۝ فَأَوْحَىٰٓ إِلَىٰ عَبْدِهِ مَآ أَوْحَىٰ',
     translation:
       'And was at a distance of two bow lengths or nearer And he revealed to His Servant what he revealed',
     source: {
@@ -1358,7 +1357,7 @@ export const quranVersePosts: Post[] = [
     category: 'evening',
     kind: 'quran',
     arabic:
-      'وَمِنَ ٱلَّيۡلِ فَتَهَجَّدۡ بِهِۦ نَافِلَةٗ لَّكَ عَسَىٰٓ أَن يَبۡعَثَكَ رَبُّكَ مَقَامٗا مَّحۡمُودٗا',
+      'وَمِنَ الَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةُ لَّكَ عَسَىٰٓ أَن يَبْعَثَكَ رَبُّكَ مَقَامُا مَّحْمُودُا',
     translation:
       'And from [part of] the night, pray with it as additional [worship] for you; it is expected that your Lord will resurrect you to a praised station',
     source: {
@@ -1374,7 +1373,7 @@ export const quranVersePosts: Post[] = [
     category: 'evening',
     kind: 'quran',
     arabic:
-      'وَءَايَةٞ لَّهُمُ ٱلَّيۡلُ نَسۡلَخُ مِنۡهُ ٱلنَّهَارَ فَإِذَا هُم مُّظۡلِمُونَ ۝ وَٱلشَّمۡسُ تَجۡرِي لِمُسۡتَقَرّٖ لَّهَاۚ ذَٰلِكَ تَقۡدِيرُ ٱلۡعَزِيزِ ٱلۡعَلِيمِ',
+      'وَءَايَةَ لَّهُمُ الَّيْلُ نَسْلَخُ مِنْهُ النَّهَارَ فَإِذَا هُم مُّظْلِمُونَ ۝ وَالشَّمْسُ تَجْرِي لِمُسْتَقَرّ لَّهَا ذَٰلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ',
     translation:
       'And a sign for them is the night. We remove from it [the light of] day, so they are [left] in darkness And the sun runs [on course] toward its stopping point. That is the determination of the Exalted in Might, the Knowing',
     source: {
@@ -1389,7 +1388,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-73-6',
     category: 'evening',
     kind: 'quran',
-    arabic: 'إِنَّ نَاشِئَةَ ٱلَّيۡلِ هِيَ أَشَدُّ وَطۡـٔٗا وَأَقۡوَمُ قِيلًا',
+    arabic: 'إِنَّ نَاشِئَةَ الَّيْلِ هِيَ أَشَدُّ وَطْـُٔا وَأَقْوَمُ قِيلًا',
     translation:
       'Indeed, the hours of the night are more effective for concurrence [of heart and tongue] and more suitable for words',
     source: {
@@ -1406,7 +1405,7 @@ export const quranVersePosts: Post[] = [
     category: 'evening',
     kind: 'quran',
     arabic:
-      'تَبَارَكَ ٱلَّذِي جَعَلَ فِي ٱلسَّمَآءِ بُرُوجٗا وَجَعَلَ فِيهَا سِرَٰجٗا وَقَمَرٗا مُّنِيرٗا ۝ وَهُوَ ٱلَّذِي جَعَلَ ٱلَّيۡلَ وَٱلنَّهَارَ خِلۡفَةٗ لِّمَنۡ أَرَادَ أَن يَذَّكَّرَ أَوۡ أَرَادَ شُكُورٗا',
+      'تَبَارَكَ الَّذِي جَعَلَ فِي السَّمَآءِ بُرُوجُا وَجَعَلَ فِيهَا سِرَٰجُا وَقَمَرُا مُّنِيرُا ۝ وَهُوَ الَّذِي جَعَلَ الَّيْلَ وَالنَّهَارَ خِلْفَةُ لِّمَنْ أَرَادَ أَن يَذَّكَّرَ أَوْ أَرَادَ شُكُورُا',
     translation:
       'Blessed is He who has placed in the sky great stars and placed therein a [burning] lamp and luminous moon And it is He who has made the night and the day in succession for whoever desires to remember or desires gratitude',
     source: {
@@ -1422,7 +1421,7 @@ export const quranVersePosts: Post[] = [
     category: 'morning',
     kind: 'quran',
     arabic:
-      'فَسُبۡحَٰنَ ٱللَّهِ حِينَ تُمۡسُونَ وَحِينَ تُصۡبِحُونَ ۝ وَلَهُ ٱلۡحَمۡدُ فِي ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِ وَعَشِيّٗا وَحِينَ تُظۡهِرُونَ',
+      'فَسُبْحَٰنَ اللَّهِ حِينَ تُمْسُونَ وَحِينَ تُصْبِحُونَ ۝ وَلَهُ الْحَمْدُ فِي السَّمَٰوَٰتِ وَالْأَرْضِ وَعَشِيُّا وَحِينَ تُظْهِرُونَ',
     translation:
       'So exalted is Allah when you reach the evening and when you reach the morning And to Him is [due all] praise throughout the heavens and the earth. And [exalted is He] at night and when you are at noon',
     source: {
@@ -1438,7 +1437,7 @@ export const quranVersePosts: Post[] = [
     category: 'morning',
     kind: 'quran',
     arabic:
-      'فَالِقُ ٱلۡإِصۡبَاحِ وَجَعَلَ ٱلَّيۡلَ سَكَنٗا وَٱلشَّمۡسَ وَٱلۡقَمَرَ حُسۡبَانٗاۚ ذَٰلِكَ تَقۡدِيرُ ٱلۡعَزِيزِ ٱلۡعَلِيمِ',
+      'فَالِقُ الْإِصْبَاحِ وَجَعَلَ الَّيْلَ سَكَنُا وَالشَّمْسَ وَالْقَمَرَ حُسْبَانُا ذَٰلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ',
     translation:
       '[He is] the cleaver of daybreak and has made the night for rest and the sun and moon for calculation. That is the determination of the Exalted in Might, the Knowing',
     source: {
@@ -1455,7 +1454,7 @@ export const quranVersePosts: Post[] = [
     category: 'morning',
     kind: 'quran',
     arabic:
-      'وَجَعَلۡنَا نَوۡمَكُمۡ سُبَاتٗا ۝ وَجَعَلۡنَا ٱلَّيۡلَ لِبَاسٗا ۝ وَجَعَلۡنَا ٱلنَّهَارَ مَعَاشٗا',
+      'وَجَعَلْنَا نَوْمَكُمْ سُبَاتُا ۝ وَجَعَلْنَا الَّيْلَ لِبَاسُا ۝ وَجَعَلْنَا النَّهَارَ مَعَاشُا',
     translation:
       'And made your sleep [a means for] rest And made the night as clothing And made the day for livelihood',
     source: {
@@ -1470,7 +1469,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-93-1-2',
     category: 'morning',
     kind: 'quran',
-    arabic: 'وَٱلضُّحَىٰ ۝ وَٱلَّيۡلِ إِذَا سَجَىٰ',
+    arabic: 'وَالضُّحَىٰ ۝ وَالَّيْلِ إِذَا سَجَىٰ',
     translation: 'By the morning brightness And [by] the night when it covers with darkness',
     source: {
       en: 'Surah Ad-Duhaa 93:1-2',
@@ -1485,7 +1484,7 @@ export const quranVersePosts: Post[] = [
     category: 'morning',
     kind: 'quran',
     arabic:
-      'وَٱلشَّمۡسِ وَضُحَىٰهَا ۝ وَٱلۡقَمَرِ إِذَا تَلَىٰهَا ۝ وَٱلنَّهَارِ إِذَا جَلَّىٰهَا ۝ وَٱلَّيۡلِ إِذَا يَغۡشَىٰهَا',
+      'وَالشَّمْسِ وَضُحَىٰهَا ۝ وَالْقَمَرِ إِذَا تَلَىٰهَا ۝ وَالنَّهَارِ إِذَا جَلَّىٰهَا ۝ وَالَّيْلِ إِذَا يَغْشَىٰهَا',
     translation:
       'By the sun and its brightness And [by] the moon when it follows it And [by] the day when it displays it And [by] the night when it covers it',
     source: {
@@ -1506,7 +1505,7 @@ export const quranVersePosts: Post[] = [
       ar: 'للزواج',
     },
     arabic:
-      'وَمِنۡ ءَايَٰتِهِۦٓ أَنۡ خَلَقَ لَكُم مِّنۡ أَنفُسِكُمۡ أَزۡوَٰجٗا لِّتَسۡكُنُوٓاْ إِلَيۡهَا وَجَعَلَ بَيۡنَكُم مَّوَدَّةٗ وَرَحۡمَةًۚ إِنَّ فِي ذَٰلِكَ لَأٓيَٰتٖ لِّقَوۡمٖ يَتَفَكَّرُونَ',
+      'وَمِنْ ءَايَٰتِهِٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجُا لِّتَسْكُنُوٓاْ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةُ وَرَحْمَةً إِنَّ فِي ذَٰلِكَ لَأٓيَٰت لِّقَوْم يَتَفَكَّرُونَ',
     translation:
       'And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought',
     source: {
@@ -1526,7 +1525,7 @@ export const quranVersePosts: Post[] = [
       ar: 'للأسرة',
     },
     arabic:
-      'وَٱلَّذِينَ يَقُولُونَ رَبَّنَا هَبۡ لَنَا مِنۡ أَزۡوَٰجِنَا وَذُرِّيَّـٰتِنَا قُرَّةَ أَعۡيُنٖ وَٱجۡعَلۡنَا لِلۡمُتَّقِينَ إِمَامًا',
+      'وَالَّذِينَ يَقُولُونَ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَٰجِنَا وَذُرِّيَّـٰتِنَا قُرَّةَ أَعْيُن وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا',
     translation:
       'And those who say, "Our Lord, grant us from among our wives and offspring comfort to our eyes and make us an example for the righteous',
     source: {
@@ -1545,7 +1544,7 @@ export const quranVersePosts: Post[] = [
       en: 'For our parents',
       ar: 'للوالدين',
     },
-    arabic: 'رَبَّنَا ٱغۡفِرۡ لِي وَلِوَٰلِدَيَّ وَلِلۡمُؤۡمِنِينَ يَوۡمَ يَقُومُ ٱلۡحِسَابُ',
+    arabic: 'رَبَّنَا اغْفِرْ لِي وَلِوَٰلِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ',
     translation: 'Our Lord, forgive me and my parents and the believers the Day the account is established',
     source: {
       en: 'Surah Ibrahim 14:41',
@@ -1565,7 +1564,7 @@ export const quranVersePosts: Post[] = [
       ar: 'بر الوالدين',
     },
     arabic:
-      'وَوَصَّيۡنَا ٱلۡإِنسَٰنَ بِوَٰلِدَيۡهِ حَمَلَتۡهُ أُمُّهُۥ وَهۡنًا عَلَىٰ وَهۡنٖ وَفِصَٰلُهُۥ فِي عَامَيۡنِ أَنِ ٱشۡكُرۡ لِي وَلِوَٰلِدَيۡكَ إِلَيَّ ٱلۡمَصِيرُ',
+      'وَوَصَّيْنَا الْإِنسَٰنَ بِوَٰلِدَيْهِ حَمَلَتْهُ أُمُّهُ وَهْنًا عَلَىٰ وَهْن وَفِصَٰلُهُ فِي عَامَيْنِ أَنِ اشْكُرْ لِي وَلِوَٰلِدَيْكَ إِلَيَّ الْمَصِيرُ',
     translation:
       'And We have enjoined upon man [care] for his parents. His mother carried him, [increasing her] in weakness upon weakness, and his weaning is in two years. Be grateful to Me and to your parents; to Me is the [final] destination',
     source: {
@@ -1581,7 +1580,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَلَمَّا بَرَزُواْ لِجَالُوتَ وَجُنُودِهِۦ قَالُواْ رَبَّنَآ أَفۡرِغۡ عَلَيۡنَا صَبۡرٗا وَثَبِّتۡ أَقۡدَامَنَا وَٱنصُرۡنَا عَلَى ٱلۡقَوۡمِ ٱلۡكَٰفِرِينَ',
+      'وَلَمَّا بَرَزُواْ لِجَالُوتَ وَجُنُودِهِ قَالُواْ رَبَّنَآ أَفْرِغْ عَلَيْنَا صَبْرُا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَٰفِرِينَ',
     translation:
       'And when they went forth to [face] Goliath and his soldiers, they said, "Our Lord, pour upon us patience and plant firmly our feet and give us victory over the disbelieving people',
     source: {
@@ -1597,7 +1596,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَمَا كَانَ قَوۡلَهُمۡ إِلَّآ أَن قَالُواْ رَبَّنَا ٱغۡفِرۡ لَنَا ذُنُوبَنَا وَإِسۡرَافَنَا فِيٓ أَمۡرِنَا وَثَبِّتۡ أَقۡدَامَنَا وَٱنصُرۡنَا عَلَى ٱلۡقَوۡمِ ٱلۡكَٰفِرِينَ',
+      'وَمَا كَانَ قَوْلَهُمْ إِلَّآ أَن قَالُواْ رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِيٓ أَمْرِنَا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَٰفِرِينَ',
     translation:
       'And their words were not but that they said, "Our Lord, forgive us our sins and the excess [committed] in our affairs and plant firmly our feet and give us victory over the disbelieving people',
     source: {
@@ -1614,7 +1613,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَمَا تَنقِمُ مِنَّآ إِلَّآ أَنۡ ءَامَنَّا بِـَٔايَٰتِ رَبِّنَا لَمَّا جَآءَتۡنَاۚ رَبَّنَآ أَفۡرِغۡ عَلَيۡنَا صَبۡرٗا وَتَوَفَّنَا مُسۡلِمِينَ',
+      'وَمَا تَنقِمُ مِنَّآ إِلَّآ أَنْ ءَامَنَّا بِـَٔايَٰتِ رَبِّنَا لَمَّا جَآءَتْنَا رَبَّنَآ أَفْرِغْ عَلَيْنَا صَبْرُا وَتَوَفَّنَا مُسْلِمِينَ',
     translation:
       'And you do not resent us except because we believed in the signs of our Lord when they came to us. Our Lord, pour upon us patience and let us die as Muslims [in submission to You]',
     source: {
@@ -1629,7 +1628,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-7-151',
     category: 'dua',
     kind: 'dua',
-    arabic: 'قَالَ رَبِّ ٱغۡفِرۡ لِي وَلِأَخِي وَأَدۡخِلۡنَا فِي رَحۡمَتِكَۖ وَأَنتَ أَرۡحَمُ ٱلرَّـٰحِمِينَ',
+    arabic: 'قَالَ رَبِّ اغْفِرْ لِي وَلِأَخِي وَأَدْخِلْنَا فِي رَحْمَتِكَ وَأَنتَ أَرْحَمُ الرَّـٰحِمِينَ',
     translation:
       '[Moses] said, "My Lord, forgive me and my brother and admit us into Your mercy, for You are the most merciful of the merciful',
     source: {
@@ -1645,7 +1644,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'إِذۡ أَوَى ٱلۡفِتۡيَةُ إِلَى ٱلۡكَهۡفِ فَقَالُواْ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحۡمَةٗ وَهَيِّئۡ لَنَا مِنۡ أَمۡرِنَا رَشَدٗا',
+      'إِذْ أَوَى الْفِتْيَةُ إِلَى الْكَهْفِ فَقَالُواْ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحْمَةُ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدُا',
     translation:
       '[Mention] when the youths retreated to the cave and said, "Our Lord, grant us from Yourself mercy and prepare for us from our affair right guidance',
     source: {
@@ -1666,7 +1665,7 @@ export const quranVersePosts: Post[] = [
       ar: 'دعاء ذي النون',
     },
     arabic:
-      'وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبٗا فَظَنَّ أَن لَّن نَّقۡدِرَ عَلَيۡهِ فَنَادَىٰ فِي ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبۡحَٰنَكَ إِنِّي كُنتُ مِنَ ٱلظَّـٰلِمِينَ',
+      'وَذَا النُّونِ إِذ ذَّهَبَ مُغَٰضِبُا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِي الظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّي كُنتُ مِنَ الظَّـٰلِمِينَ',
     translation:
       'And [mention] the man of the fish, when he went off in anger and thought that We would not decree [anything] upon him. And he called out within the darknesses, "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers',
     source: {
@@ -1681,7 +1680,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-21-89',
     category: 'dua',
     kind: 'dua',
-    arabic: 'وَزَكَرِيَّآ إِذۡ نَادَىٰ رَبَّهُۥ رَبِّ لَا تَذَرۡنِي فَرۡدٗا وَأَنتَ خَيۡرُ ٱلۡوَٰرِثِينَ',
+    arabic: 'وَزَكَرِيَّآ إِذْ نَادَىٰ رَبَّهُ رَبِّ لَا تَذَرْنِي فَرْدُا وَأَنتَ خَيْرُ الْوَٰرِثِينَ',
     translation:
       'And [mention] Zechariah, when he called to his Lord, "My Lord, do not leave me alone [with no heir], while you are the best of inheritors',
     source: {
@@ -1696,7 +1695,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-23-118',
     category: 'dua',
     kind: 'dua',
-    arabic: 'وَقُل رَّبِّ ٱغۡفِرۡ وَٱرۡحَمۡ وَأَنتَ خَيۡرُ ٱلرَّـٰحِمِينَ',
+    arabic: 'وَقُل رَّبِّ اغْفِرْ وَارْحَمْ وَأَنتَ خَيْرُ الرَّـٰحِمِينَ',
     translation:
       'And, [O Muhammad], say, "My Lord, forgive and have mercy, and You are the best of the merciful',
     source: {
@@ -1713,7 +1712,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَٱلَّذِينَ يَقُولُونَ رَبَّنَا ٱصۡرِفۡ عَنَّا عَذَابَ جَهَنَّمَۖ إِنَّ عَذَابَهَا كَانَ غَرَامًا',
+      'وَالَّذِينَ يَقُولُونَ رَبَّنَا اصْرِفْ عَنَّا عَذَابَ جَهَنَّمَ إِنَّ عَذَابَهَا كَانَ غَرَامًا',
     translation:
       'And those who say, "Our Lord, avert from us the punishment of Hell. Indeed, its punishment is ever adhering',
     source: {
@@ -1729,7 +1728,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'رَبِّ هَبۡ لِي حُكۡمٗا وَأَلۡحِقۡنِي بِٱلصَّـٰلِحِينَ ۝ وَٱجۡعَل لِّي لِسَانَ صِدۡقٖ فِي ٱلۡأٓخِرِينَ ۝ وَٱجۡعَلۡنِي مِن وَرَثَةِ جَنَّةِ ٱلنَّعِيمِ',
+      'رَبِّ هَبْ لِي حُكْمُا وَأَلْحِقْنِي بِالصَّـٰلِحِينَ ۝ وَاجْعَل لِّي لِسَانَ صِدْق فِي الْأٓخِرِينَ ۝ وَاجْعَلْنِي مِن وَرَثَةِ جَنَّةِ النَّعِيمِ',
     translation:
       '[And he said], "My Lord, grant me authority and join me with the righteous And grant me a reputation of honor among later generations And place me among the inheritors of the Garden of Pleasure',
     source: {
@@ -1745,7 +1744,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'فَتَبَسَّمَ ضَاحِكٗا مِّن قَوۡلِهَا وَقَالَ رَبِّ أَوۡزِعۡنِيٓ أَنۡ أَشۡكُرَ نِعۡمَتَكَ ٱلَّتِيٓ أَنۡعَمۡتَ عَلَيَّ وَعَلَىٰ وَٰلِدَيَّ وَأَنۡ أَعۡمَلَ صَٰلِحٗا تَرۡضَىٰهُ وَأَدۡخِلۡنِي بِرَحۡمَتِكَ فِي عِبَادِكَ ٱلصَّـٰلِحِينَ',
+      'فَتَبَسَّمَ ضَاحِكُا مِّن قَوْلِهَا وَقَالَ رَبِّ أَوْزِعْنِيٓ أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِيٓ أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَٰلِدَيَّ وَأَنْ أَعْمَلَ صَٰلِحُا تَرْضَىٰهُ وَأَدْخِلْنِي بِرَحْمَتِكَ فِي عِبَادِكَ الصَّـٰلِحِينَ',
     translation:
       'So [Solomon] smiled, amused at her speech, and said, "My Lord, enable me to be grateful for Your favor which You have bestowed upon me and upon my parents and to do righteousness of which You approve. And admit me by Your mercy into [the ranks of] Your righteous servants',
     source: {
@@ -1762,7 +1761,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّي لِمَآ أَنزَلۡتَ إِلَيَّ مِنۡ خَيۡرٖ فَقِيرٞ',
+      'فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى الظِّلِّ فَقَالَ رَبِّ إِنِّي لِمَآ أَنزَلْتَ إِلَيَّ مِنْ خَيْر فَقِيرَ',
     translation:
       'So he watered [their flocks] for them; then he went back to the shade and said, "My Lord, indeed I am, for whatever good You would send down to me, in need',
     source: {
@@ -1778,7 +1777,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَٱلَّذِينَ جَآءُو مِنۢ بَعۡدِهِمۡ يَقُولُونَ رَبَّنَا ٱغۡفِرۡ لَنَا وَلِإِخۡوَٰنِنَا ٱلَّذِينَ سَبَقُونَا بِٱلۡإِيمَٰنِ وَلَا تَجۡعَلۡ فِي قُلُوبِنَا غِلّٗا لِّلَّذِينَ ءَامَنُواْ رَبَّنَآ إِنَّكَ رَءُوفٞ رَّحِيمٌ',
+      'وَالَّذِينَ جَآءُو مِن بَعْدِهِمْ يَقُولُونَ رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَٰنِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَٰنِ وَلَا تَجْعَلْ فِي قُلُوبِنَا غِلُّا لِّلَّذِينَ ءَامَنُواْ رَبَّنَآ إِنَّكَ رَءُوفَ رَّحِيمٌ',
     translation:
       'And [there is a share for] those who came after them, saying, "Our Lord, forgive us and our brothers who preceded us in faith and put not in our hearts [any] resentment toward those who have believed. Our Lord, indeed You are Kind and Merciful',
     source: {
@@ -1794,7 +1793,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'رَّبِّ ٱغۡفِرۡ لِي وَلِوَٰلِدَيَّ وَلِمَن دَخَلَ بَيۡتِيَ مُؤۡمِنٗا وَلِلۡمُؤۡمِنِينَ وَٱلۡمُؤۡمِنَٰتِۖ وَلَا تَزِدِ ٱلظَّـٰلِمِينَ إِلَّا تَبَارَۢا',
+      'رَّبِّ اغْفِرْ لِي وَلِوَٰلِدَيَّ وَلِمَن دَخَلَ بَيْتِيَ مُؤْمِنُا وَلِلْمُؤْمِنِينَ وَالْمُؤْمِنَٰتِ وَلَا تَزِدِ الظَّـٰلِمِينَ إِلَّا تَبَارَا',
     translation:
       'My Lord, forgive me and my parents and whoever enters my house a believer and the believing men and believing women. And do not increase the wrongdoers except in destruction',
     source: {
@@ -1811,7 +1810,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'ٱلَّذِينَ يَقُولُونَ رَبَّنَآ إِنَّنَآ ءَامَنَّا فَٱغۡفِرۡ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ ٱلنَّارِ',
+      'الَّذِينَ يَقُولُونَ رَبَّنَآ إِنَّنَآ ءَامَنَّا فَاغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ النَّارِ',
     translation:
       'Those who say, "Our Lord, indeed we have believed, so forgive us our sins and protect us from the punishment of the Fire',
     source: {
@@ -1826,7 +1825,7 @@ export const quranVersePosts: Post[] = [
     id: 'qv-3-53',
     category: 'dua',
     kind: 'dua',
-    arabic: 'رَبَّنَآ ءَامَنَّا بِمَآ أَنزَلۡتَ وَٱتَّبَعۡنَا ٱلرَّسُولَ فَٱكۡتُبۡنَا مَعَ ٱلشَّـٰهِدِينَ',
+    arabic: 'رَبَّنَآ ءَامَنَّا بِمَآ أَنزَلْتَ وَاتَّبَعْنَا الرَّسُولَ فَاكْتُبْنَا مَعَ الشَّـٰهِدِينَ',
     translation:
       'Our Lord, we have believed in what You revealed and have followed the messenger Jesus, so register us among the witnesses [to truth]',
     source: {
@@ -1842,7 +1841,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'فَقَالُواْ عَلَى ٱللَّهِ تَوَكَّلۡنَا رَبَّنَا لَا تَجۡعَلۡنَا فِتۡنَةٗ لِّلۡقَوۡمِ ٱلظَّـٰلِمِينَ ۝ وَنَجِّنَا بِرَحۡمَتِكَ مِنَ ٱلۡقَوۡمِ ٱلۡكَٰفِرِينَ',
+      'فَقَالُواْ عَلَى اللَّهِ تَوَكَّلْنَا رَبَّنَا لَا تَجْعَلْنَا فِتْنَةُ لِّلْقَوْمِ الظَّـٰلِمِينَ ۝ وَنَجِّنَا بِرَحْمَتِكَ مِنَ الْقَوْمِ الْكَٰفِرِينَ',
     translation:
       'So they said, "Upon Allah do we rely. Our Lord, make us not [objects of] trial for the wrongdoing people And save us by Your mercy from the disbelieving people',
     source: {
@@ -1859,7 +1858,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'وَإِذۡ قَالَ إِبۡرَٰهِيمُ رَبِّ ٱجۡعَلۡ هَٰذَا ٱلۡبَلَدَ ءَامِنٗا وَٱجۡنُبۡنِي وَبَنِيَّ أَن نَّعۡبُدَ ٱلۡأَصۡنَامَ',
+      'وَإِذْ قَالَ إِبْرَٰهِيمُ رَبِّ اجْعَلْ هَٰذَا الْبَلَدَ ءَامِنُا وَاجْنُبْنِي وَبَنِيَّ أَن نَّعْبُدَ الْأَصْنَامَ',
     translation:
       'And [mention, O Muhammad], when Abraham said, "My Lord, make this city [Makkah] secure and keep me and my sons away from worshipping idols',
     source: {
@@ -1875,7 +1874,7 @@ export const quranVersePosts: Post[] = [
     category: 'dua',
     kind: 'dua',
     arabic:
-      'رَّبَّنَآ إِنَّنَا سَمِعۡنَا مُنَادِيٗا يُنَادِي لِلۡإِيمَٰنِ أَنۡ ءَامِنُواْ بِرَبِّكُمۡ فَـَٔامَنَّاۚ رَبَّنَا فَٱغۡفِرۡ لَنَا ذُنُوبَنَا وَكَفِّرۡ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ ٱلۡأَبۡرَارِ',
+      'رَّبَّنَآ إِنَّنَا سَمِعْنَا مُنَادِيُا يُنَادِي لِلْإِيمَٰنِ أَنْ ءَامِنُواْ بِرَبِّكُمْ فَـَٔامَنَّا رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ الْأَبْرَارِ',
     translation:
       "Our Lord, indeed we have heard a caller calling to faith, [saying], 'Believe in your Lord,' and we have believed. Our Lord, so forgive us our sins and remove from us our misdeeds and cause us to die with the righteous",
     source: {
