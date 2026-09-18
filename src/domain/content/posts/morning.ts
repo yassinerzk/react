@@ -1,0 +1,89 @@
+import type { Post } from '@/domain/types';
+
+export const morningPosts: Post[] = [
+  {
+    id: 'morning-asbahna',
+    category: 'morning',
+    kind: 'dhikr',
+    headline: { en: 'Morning adhkar', ar: 'أذكار الصباح' },
+    arabic:
+      'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+    translation:
+      'We have entered the morning and the whole kingdom belongs to Allah. All praise is for Allah. There is no god but Allah alone, without partner. To Him belongs the kingdom and the praise, and He is able to do all things.',
+    source: { en: 'Sahih Muslim 2723', ar: 'صحيح مسلم ٢٧٢٣' },
+    theme: 'desert-dawn',
+    decoration: 'sunrise',
+    font: 'naskh',
+  },
+  {
+    id: 'morning-bika-asbahna',
+    category: 'morning',
+    kind: 'dua',
+    arabic:
+      'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ',
+    translation:
+      'O Allah, by You we enter the morning and by You we enter the evening, by You we live and by You we die, and to You is the resurrection.',
+    source: { en: 'At-Tirmidhi 3391', ar: 'سنن الترمذي ٣٣٩١' },
+    theme: 'rose-gold',
+    decoration: 'sunrise',
+    font: 'amiri',
+  },
+  {
+    id: 'morning-afiyah',
+    category: 'morning',
+    kind: 'dua',
+    arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ',
+    translation: 'O Allah, I ask You for well-being in this world and in the Hereafter.',
+    source: { en: 'Abu Dawud 5074, Ibn Majah 3871', ar: 'أبو داود ٥٠٧٤، ابن ماجه ٣٨٧١' },
+    theme: 'ivory-gold',
+    decoration: 'arch',
+    font: 'scheherazade',
+  },
+  {
+    id: 'morning-tasbih',
+    category: 'morning',
+    kind: 'dhikr',
+    headline: { en: 'One hundred times', ar: 'مئة مرة' },
+    arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+    translation:
+      'Glory be to Allah and praise Him. Whoever says it one hundred times in the morning and the evening, no one will come on the Day of Resurrection with anything better.',
+    source: { en: 'Sahih Muslim 2692', ar: 'صحيح مسلم ٢٦٩٢' },
+    theme: 'teal-lagoon',
+    decoration: 'stars',
+    font: 'reem-kufi',
+  },
+  {
+    id: 'morning-greeting',
+    category: 'morning',
+    kind: 'greeting',
+    headline: { en: 'Good morning', ar: 'صباح الخير' },
+    arabic: 'صَباحُكُم طاعَةٌ وَرِضا، وَيَومُكُم خَيرٌ وَبَرَكَة',
+    translation:
+      'May your morning be filled with devotion and contentment, and your day with goodness and blessing.',
+    theme: 'desert-dawn',
+    decoration: 'lights',
+    font: 'aref-ruqaa',
+  },
+  {
+    id: 'morning-ease',
+    category: 'morning',
+    kind: 'quran',
+    arabic: 'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا',
+    translation: 'For indeed, with hardship comes ease. Indeed, with hardship comes ease.',
+    source: { en: 'Surah Ash-Sharh 94:5-6', ar: 'سورة الشرح ٩٤:٥-٦' },
+    theme: 'olive-sage',
+    decoration: 'sunrise',
+    font: 'amiri',
+  },
+  {
+    id: 'morning-knowledge',
+    category: 'morning',
+    kind: 'quran',
+    arabic: 'رَّبِّ زِدْنِي عِلْمًا',
+    translation: 'My Lord, increase me in knowledge.',
+    source: { en: 'Surah Ta-Ha 20:114', ar: 'سورة طه ٢٠:١١٤' },
+    theme: 'midnight-blue',
+    decoration: 'stars',
+    font: 'aref-ruqaa',
+  },
+];
