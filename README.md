@@ -6,6 +6,19 @@ Pick a post, change any of the text, choose a colour theme or a photo background
 
 The mobile app also includes a Quran reader that remembers where you stopped and which chapters you finished, and a hadith library with Sahih al-Bukhari and Sahih Muslim that you can read by topic or search, with a filter that shows only supplications. Signing up keeps saved posts and reading progress in sync across devices.
 
+## Features at a glance
+
+- **Story cards**: 305 editable cards in 14 categories, 10 colour themes, 12 photo backgrounds, 9 decorations, 7 Arabic fonts, automatic text sizing, native share to WhatsApp status or PNG download, saved posts, recently opened posts, and "Today's posts" picked from the date and time.
+- **Create a story from anything**: a "Create story" button on every Quran verse and every hadith opens the editor pre-filled with the text, translation and reference.
+- **Prayer**: times for your location or a preset city, next-prayer countdown, live Qibla compass, calculation method and madhab settings.
+- **Quran**: all 114 surahs offline, reader that remembers where you stopped and which surahs you finished.
+- **Hadith**: Sahih al-Bukhari and Sahih Muslim by topic or search, with a supplications-only filter.
+- **Accounts** (optional): sign up to sync saved posts and Quran progress across devices.
+- **Monetization foundation**: app-name line on free stories, removable with Pro or a rewarded ad; billing and ad SDKs pluggable behind one interface.
+- **Bilingual**: English and Arabic interface with right-to-left layout.
+
+For a full summary of what has been built, how it is verified, and what is still open, read [`docs/OVERVIEW.md`](docs/OVERVIEW.md).
+
 ## Workspaces
 
 ```
@@ -107,6 +120,13 @@ Free stories carry the app name at the bottom; Pro users, or anyone who watches 
 
 - **Web**: `.github/workflows/deploy-pages.yml` publishes `apps/web/dist` to GitHub Pages on pushes to `main` or on demand. Enable Pages with the "GitHub Actions" source in the repository settings first.
 - **CI**: `.github/workflows/ci.yml` runs the full check, builds the web app and bundles the Expo app for web as a smoke test.
+
+## Documentation
+
+- [`docs/OVERVIEW.md`](docs/OVERVIEW.md) — one-page summary: features, architecture, data sources, verification, open items, request log.
+- [`docs/MONETIZATION.md`](docs/MONETIZATION.md) — tiers, entitlement model, RevenueCat and AdMob integration steps.
+- [`supabase/schema.sql`](supabase/schema.sql) — database schema for accounts and sync.
+- [`.github/workflows/`](.github/workflows/) — CI, GitHub Pages deploy, Android build, background photo import.
 
 ## Content sources
 
