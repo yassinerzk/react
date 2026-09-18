@@ -21,7 +21,7 @@ export const ramadanPosts: Post[] = [
     arabic: 'اللَّهُمَّ بَلِّغْنا رَمَضانَ لا فاقِدينَ وَلا مَفقودين',
     translation: 'O Allah, let us reach Ramadan, neither missing anyone nor being missed.',
     theme: 'midnight-blue',
-    decoration: 'lanterns',
+    decoration: 'none',
     background: 'mosque-courtyard',
     font: 'cairo',
   },
