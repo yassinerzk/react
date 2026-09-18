@@ -67,6 +67,23 @@ export function continuePosition(progress: Pick<QuranProgress, 'lastRead' | 'fin
   return { surah: next?.id ?? 1, ayah: 1 };
 }
 
+/**
+ * Simplified orthography for story cards: rare Uthmani annotation marks are
+ * dropped or mapped to standard tashkeel so every font (including web font
+ * subsets) shapes the text. The reader keeps the full Uthmani text.
+ * Keep in sync with scripts/gen-quran-posts.mjs.
+ */
+export function simplifyUthmani(text: string): string {
+  return text
+    .replace(/\u0671/g, '\u0627')
+    .replace(/\u06E1/g, '\u0652')
+    .replace(/\u0657/g, '\u064F')
+    .replace(/\u065E/g, '\u064E')
+    .replace(/[\u0656\u06D6-\u06ED]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function formatAyahRef(surah: number, ayah: number): string {
   return `${surah}:${ayah}`;
 }

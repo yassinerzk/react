@@ -1,4 +1,13 @@
-import { HADITH_BOOKS, isDua, mergeEditions, normalizeText, searchHadith, type HadithEntry } from './hadith';
+import {
+  HADITH_BOOKS,
+  isDua,
+  mergeEditions,
+  normalizeText,
+  searchHadith,
+  type HadithEntry,
+  extractMatn,
+  stripNarrator,
+} from './hadith';
 
 const entries: HadithEntry[] = [
   {
@@ -48,6 +57,33 @@ describe('hadith', () => {
     expect(searchHadith(entries, 'hajj', { duaOnly: true })).toEqual([]);
     expect(searchHadith(entries, 'allah', { duaOnly: true }).map((e) => e.number)).toEqual([2]);
     expect(searchHadith(entries, '')).toEqual([]);
+  });
+
+  it('extracts the matn and strips the narrator', () => {
+    expect(
+      extractMatn(
+        'حَدَّثَنَا فُلَانٌ قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ ‏"‏‏.',
+      ),
+    ).toBe('إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ');
+    // Diacritised marker, no closing quote (as in the Bukhari 1 edition text).
+    expect(
+      extractMatn(
+        'حَدَّثَنَا الْحُمَيْدِيُّ ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ : " إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى',
+      ),
+    ).toBe('إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى');
+    // No quotes at all: text after the diacritised marker and the lead verb.
+    expect(
+      extractMatn(
+        'عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ الدِّينُ النَّصِيحَةُ لِلَّهِ وَلِرَسُولِهِ',
+      ),
+    ).toBe('الدِّينُ النَّصِيحَةُ لِلَّهِ وَلِرَسُولِهِ');
+    expect(
+      stripNarrator(
+        'Narrated \'Umar: I heard Allah\'s Messenger (ﷺ) saying, "The reward of deeds depends upon the intentions."',
+      ),
+    ).toBe('The reward of deeds depends upon the intentions');
+    expect(stripNarrator('Narrated Tamim: Religion is sincerity.')).toBe('Religion is sincerity.');
+    expect(stripNarrator('Plain text')).toBe('Plain text');
   });
 
   it('merges English and Arabic editions by number', () => {

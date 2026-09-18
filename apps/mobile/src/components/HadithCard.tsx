@@ -1,6 +1,9 @@
 import { memo } from 'react';
-import { Text, View } from 'react-native';
-import { getSection, HADITH_BOOKS, toLocaleDigits, type HadithEntry } from '@barakah/core';
+import { Pressable, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { designFromHadith, getSection, HADITH_BOOKS, toLocaleDigits, type HadithEntry } from '@barakah/core';
+import { useEditorStore } from '../store';
 import { useT } from '../i18n';
 import { ui } from '../theme';
 
@@ -12,7 +15,13 @@ interface HadithCardProps {
 
 export const HadithCard = memo(function HadithCard({ entry, showBook, arabicSize = 21 }: HadithCardProps) {
   const { t, locale, font, row, textAlign } = useT();
+  const router = useRouter();
+  const loadDesign = useEditorStore((s) => s.load);
   const section = getSection(entry.book, entry.section);
+  const createStory = () => {
+    loadDesign(designFromHadith(entry, locale));
+    router.push('/editor');
+  };
   return (
     <View
       style={{
@@ -55,11 +64,34 @@ export const HadithCard = memo(function HadithCard({ entry, showBook, arabicSize
       >
         {entry.en}
       </Text>
-      {entry.grade && (
-        <Text style={{ color: ui.textMuted, fontFamily: font.medium, fontSize: 12 }}>
-          {t('grade')}: {entry.grade}
-        </Text>
-      )}
+      <View style={{ flexDirection: row, justifyContent: 'space-between', alignItems: 'center' }}>
+        {entry.grade ? (
+          <Text style={{ color: ui.textMuted, fontFamily: font.medium, fontSize: 12 }}>
+            {t('grade')}: {entry.grade}
+          </Text>
+        ) : (
+          <View />
+        )}
+        <Pressable
+          onPress={createStory}
+          accessibilityRole="button"
+          style={({ pressed }) => ({
+            flexDirection: row,
+            alignItems: 'center',
+            gap: 6,
+            paddingVertical: 6,
+            paddingHorizontal: 12,
+            borderRadius: 999,
+            backgroundColor: ui.accent,
+            opacity: pressed ? 0.7 : 1,
+          })}
+        >
+          <Ionicons name="share-social-outline" size={14} color={ui.accentInk} />
+          <Text style={{ color: ui.accentInk, fontFamily: font.semibold, fontSize: 12 }}>
+            {t('createStory')}
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 });

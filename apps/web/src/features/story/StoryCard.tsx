@@ -8,6 +8,9 @@ import {
   type StoryDesign,
   SCRIMS,
   gradientToCss,
+  WATERMARK_TEXT,
+  shouldShowWatermark,
+  FREE_ENTITLEMENTS,
 } from '@barakah/core';
 import { getDecoration } from '@/domain/decorations';
 import { backgroundSrc } from '@/shared/lib/backgrounds';
@@ -44,6 +47,8 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
   const showKicker = design.kind === 'quran' || design.kind === 'hadith';
   const arabic = design.arabic.trim() || t('emptyArabic');
   const footerParts = [design.footer.trim(), design.showHijriDate ? hijriLabel : ''].filter(Boolean);
+  // The web app has no billing yet, so every story carries the app name.
+  const showWatermark = shouldShowWatermark(design.hideWatermark, FREE_ENTITLEMENTS);
 
   return (
     <div
@@ -169,6 +174,13 @@ export const StoryCard = forwardRef<HTMLDivElement, StoryCardProps>(function Sto
           </div>
         )}
       </div>
+
+      {showWatermark && (
+        <div className="story-watermark" style={{ color: palette.muted, textShadow: shadow }}>
+          <span aria-hidden>☪</span>
+          <span>{WATERMARK_TEXT}</span>
+        </div>
+      )}
 
       {footerParts.length > 0 && (
         <div className="story-footer" style={{ color: palette.muted, textShadow: shadow }}>

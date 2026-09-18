@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { FlatList, Text, View, type ViewToken } from 'react-native';
+import { FlatList, Pressable, Text, View, type ViewToken } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getChapterMeta, toLocaleDigits, type QuranVerse } from '@barakah/core';
+import { designFromVerses, getChapterMeta, toLocaleDigits, type QuranVerse } from '@barakah/core';
+import { Ionicons } from '@expo/vector-icons';
 import { useT } from '../../src/i18n';
 import { ui } from '../../src/theme';
-import { useQuranStore } from '../../src/store';
+import { useEditorStore, useQuranStore } from '../../src/store';
 import { loadChapter } from '../../src/quran/chapters';
 import { Button, Chip } from '../../src/components/ui';
 
@@ -27,6 +28,12 @@ export default function SurahScreen() {
   const setLastRead = useQuranStore((s) => s.setLastRead);
   const markFinished = useQuranStore((s) => s.markFinished);
   const unmarkFinished = useQuranStore((s) => s.unmarkFinished);
+  const loadDesign = useEditorStore((s) => s.load);
+  const createStory = (verse: QuranVerse) => {
+    if (!meta) return;
+    loadDesign(designFromVerses(meta, [verse], locale));
+    router.push('/editor');
+  };
   const listRef = useRef<FlatList<QuranVerse>>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const done = finished.includes(surah);
@@ -160,6 +167,23 @@ export default function SurahScreen() {
                 {toLocaleDigits(item.id, locale)}. {item.translation}
               </Text>
             )}
+            <Pressable
+              onPress={() => createStory(item)}
+              accessibilityRole="button"
+              accessibilityLabel={t('createStory')}
+              style={({ pressed }) => ({
+                flexDirection: row,
+                alignItems: 'center',
+                gap: 6,
+                alignSelf: 'flex-start',
+                opacity: pressed ? 0.6 : 1,
+              })}
+            >
+              <Ionicons name="share-social-outline" size={16} color={ui.accent} />
+              <Text style={{ color: ui.accent, fontFamily: font.medium, fontSize: 13 }}>
+                {t('createStory')}
+              </Text>
+            </Pressable>
           </View>
         )}
       />

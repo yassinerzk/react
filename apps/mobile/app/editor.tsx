@@ -2,7 +2,9 @@ import { useRef, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { designToText } from '@barakah/core';
+import { designToText, shouldShowWatermark } from '@barakah/core';
+import { useEntitlementStore } from '../src/monetization/store';
+import { WatermarkRow } from '../src/features/editor/WatermarkRow';
 import { useT } from '../src/i18n';
 import { ui } from '../src/theme';
 import { useEditorStore, useLibraryStore, useToastStore } from '../src/store';
@@ -27,6 +29,8 @@ export default function EditorScreen() {
   const setSavedId = useEditorStore((s) => s.setSavedId);
   const upsert = useLibraryStore((s) => s.upsert);
   const toast = useToastStore((s) => s.show);
+  const entitlements = useEntitlementStore((s) => s.entitlements);
+  const showWatermark = shouldShowWatermark(design.hideWatermark, entitlements);
   const cardRef = useRef<View>(null);
   const [panel, setPanel] = useState<Panel>('text');
   const [busy, setBusy] = useState(false);
@@ -74,7 +78,13 @@ export default function EditorScreen() {
         </View>
 
         <View style={{ alignSelf: 'center', borderRadius: 18, overflow: 'hidden' }}>
-          <StoryCard ref={cardRef} design={design} width={cardWidth} hijriLabel={hijriLabel} />
+          <StoryCard
+            ref={cardRef}
+            design={design}
+            width={cardWidth}
+            hijriLabel={hijriLabel}
+            showWatermark={showWatermark}
+          />
         </View>
         <View style={{ alignSelf: 'center', width: cardWidth, gap: 6 }}>
           <Button
@@ -87,6 +97,7 @@ export default function EditorScreen() {
           <Text style={{ color: ui.textMuted, fontFamily: font.regular, fontSize: 12, textAlign: 'center' }}>
             {t('tipShare')}
           </Text>
+          <WatermarkRow />
         </View>
 
         <View

@@ -86,6 +86,10 @@ The mobile app uses:
 
 **Add a UI language**: add the locale to `Locale`, create `i18n/<locale>.ts` typed against `TranslationKey`, and register it in `DICTIONARIES` and `LOCALES`.
 
+## Monetization
+
+Free stories carry the app name at the bottom; Pro users, or anyone who watches a rewarded ad, can remove it. Billing and ad SDKs are not integrated yet: the UI talks to a `MonetizationAdapter` from core, a dev adapter simulates both flows in Expo Go, and `docs/MONETIZATION.md` describes the RevenueCat and AdMob integration steps.
+
 ## Deployment
 
 - **Web**: `.github/workflows/deploy-pages.yml` publishes `apps/web/dist` to GitHub Pages on pushes to `main` or on demand. Enable Pages with the "GitHub Actions" source in the repository settings first.

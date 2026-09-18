@@ -172,6 +172,8 @@ export interface StoryDesign {
   showSource: boolean;
   showHijriDate: boolean;
   showFrame: boolean;
+  /** User asked to drop the app name; honoured only with an entitlement. */
+  hideWatermark: boolean;
   theme: ThemeId;
   /** Photo background; 'none' uses the theme gradient. */
   background: BackgroundId;

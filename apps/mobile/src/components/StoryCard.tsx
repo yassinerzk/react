@@ -10,6 +10,7 @@ import {
   PHOTO_PALETTE,
   SCRIMS,
   themeBaseColor,
+  WATERMARK_TEXT,
   type StoryDesign,
 } from '@barakah/core';
 import { useT } from '../i18n';
@@ -27,6 +28,8 @@ interface StoryCardProps {
   /** Rendered width in logical pixels; everything scales from 1080. */
   width: number;
   hijriLabel?: string;
+  /** Draw the app name at the bottom (free tier). Defaults to true. */
+  showWatermark?: boolean;
 }
 
 /**
@@ -35,7 +38,7 @@ interface StoryCardProps {
  * (captured at 1080x1920) are pixel-for-pixel the same layout.
  */
 export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
-  { design, width, hijriLabel },
+  { design, width, hijriLabel, showWatermark = true },
   ref,
 ) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
@@ -265,6 +268,37 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
           </View>
         )}
       </View>
+
+      {showWatermark && (
+        <View
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 300 * u,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 10 * u,
+            opacity: 0.75,
+          }}
+        >
+          <Text style={{ color: palette.muted, fontSize: 24 * u }}>☪</Text>
+          <Text
+            style={[
+              {
+                color: palette.muted,
+                fontFamily: 'Cairo_600SemiBold',
+                fontSize: 24 * u,
+                letterSpacing: 1.5 * u,
+              },
+              shadow,
+            ]}
+          >
+            {WATERMARK_TEXT}
+          </Text>
+        </View>
+      )}
 
       {footerParts.length > 0 && (
         <View

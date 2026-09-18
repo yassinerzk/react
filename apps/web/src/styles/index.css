@@ -640,6 +640,22 @@ html[dir='rtl'] .toggle input:checked + .toggle__track::after {
   letter-spacing: 0.02em;
   padding: 0 100px;
 }
+.story-watermark {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Cairo', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
 .story-footer span + span::before {
   content: '·';
   margin-inline-end: 28px;

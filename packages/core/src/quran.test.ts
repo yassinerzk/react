@@ -5,6 +5,7 @@ import {
   QURAN_INDEX,
   quranPercent,
   removeFinished,
+  simplifyUthmani,
 } from './quran';
 
 describe('quran', () => {
@@ -25,6 +26,12 @@ describe('quran', () => {
     expect(quranPercent([])).toBe(0);
     expect(quranPercent([2])).toBeCloseTo(4.6, 1); // Al-Baqarah has 286 verses
     expect(quranPercent(QURAN_INDEX.map((c) => c.id))).toBe(100);
+  });
+
+  it('simplifies Uthmani marks for cards', () => {
+    expect(simplifyUthmani('ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَ ۛ فِيهِ ۛ')).toBe(
+      'ذَٰلِكَ الْكِتَٰبُ لَا رَيْبَ فِيهِ',
+    );
   });
 
   it('suggests where to continue', () => {

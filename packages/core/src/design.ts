@@ -1,5 +1,8 @@
 import type { Locale, Post, StoryDesign } from './types';
 import { getArabicFont, getLatinFont } from './fonts';
+import { toLocaleDigits } from './hijri';
+import { simplifyUthmani, type QuranChapterMeta, type QuranVerse } from './quran';
+import { extractMatn, HADITH_BOOKS, stripNarrator, type HadithEntry } from './hadith';
 
 export const DEFAULT_DESIGN: StoryDesign = {
   kind: 'greeting',
@@ -12,6 +15,7 @@ export const DEFAULT_DESIGN: StoryDesign = {
   showSource: true,
   showHijriDate: true,
   showFrame: false,
+  hideWatermark: false,
   theme: 'emerald-night',
   background: 'none',
   decoration: 'crescent',
@@ -37,6 +41,52 @@ export function designFromPost(post: Post, locale: Locale): StoryDesign {
     background: post.background ?? 'none',
     decoration: post.decoration,
     arabicFont: post.font ?? (post.kind === 'quran' || post.kind === 'hadith' ? 'amiri' : 'aref-ruqaa'),
+  };
+}
+
+/** A story pre-filled from one or more consecutive Quran verses. */
+export function designFromVerses(
+  chapter: QuranChapterMeta,
+  verses: QuranVerse[],
+  locale: Locale,
+): StoryDesign {
+  const from = verses[0]?.id ?? 1;
+  const to = verses[verses.length - 1]?.id ?? from;
+  const range = from === to ? `${from}` : `${from}-${to}`;
+  const rangeAr =
+    from === to ? toLocaleDigits(from, 'ar') : `${toLocaleDigits(from, 'ar')}-${toLocaleDigits(to, 'ar')}`;
+  const source = {
+    en: `Surah ${chapter.transliteration} ${chapter.id}:${range}`,
+    ar: `سورة ${chapter.name} ${toLocaleDigits(chapter.id, 'ar')}:${rangeAr}`,
+  };
+  return {
+    ...DEFAULT_DESIGN,
+    kind: 'quran',
+    arabic: verses.map((v) => simplifyUthmani(v.text)).join(' ۝ '),
+    translation: verses.map((v) => v.translation.trim()).join(' '),
+    source: source[locale],
+    theme: 'ivory-gold',
+    decoration: 'arch',
+    arabicFont: 'amiri',
+  };
+}
+
+/** A story pre-filled from a hadith. */
+export function designFromHadith(entry: HadithEntry, locale: Locale): StoryDesign {
+  const book = HADITH_BOOKS[entry.book];
+  const source = {
+    en: `${book.name} ${entry.number}`,
+    ar: `${book.nameAr} ${toLocaleDigits(entry.number, 'ar')}`,
+  };
+  return {
+    ...DEFAULT_DESIGN,
+    kind: 'hadith',
+    arabic: extractMatn(entry.ar),
+    translation: stripNarrator(entry.en),
+    source: source[locale],
+    theme: 'emerald-night',
+    decoration: 'none',
+    arabicFont: 'naskh',
   };
 }
 

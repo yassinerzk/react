@@ -105,6 +105,70 @@ export function isDua(entry: Pick<HadithEntry, 'en' | 'ar'>): boolean {
   return DUA_MARKERS.some((re) => re.test(text));
 }
 
+const DIACRITICS = /[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g;
+const QUOTE_OPEN = /["\u201C\u00AB]/;
+const QUOTE_CLOSE = /["\u201D\u00BB]/;
+
+/** Index in `original` of the character at `strippedIndex` after diacritics are removed. */
+function originalIndex(original: string, strippedIndex: number): number {
+  let seen = 0;
+  for (let i = 0; i < original.length; i++) {
+    if (DIACRITICS.test(original[i])) {
+      DIACRITICS.lastIndex = 0;
+      continue;
+    }
+    DIACRITICS.lastIndex = 0;
+    if (seen === strippedIndex) return i;
+    seen++;
+  }
+  return original.length;
+}
+
+const SALLA = 'صلى الله عليه وسلم';
+const LEAD_WORDS = /^(?:\s*(?:يقول|قال|قالت|فقال|أنه|انه|:|ـ|،|\.|["\u201C\u00AB])\s*)+/;
+
+/**
+ * The Prophet's words for a card: the quoted passage when the text has one
+ * (an unclosed quote runs to the end), otherwise what follows the last
+ * "صلى الله عليه وسلم", matched without diacritics. Falls back to the text.
+ */
+export function extractMatn(arabic: string): string {
+  const cleaned = arabic
+    .replace(/[\u200f\u200e]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const open = cleaned.search(QUOTE_OPEN);
+  if (open >= 0) {
+    const rest = cleaned.slice(open + 1);
+    const close = rest.search(QUOTE_CLOSE);
+    const inner = (close >= 0 ? rest.slice(0, close) : rest).trim().replace(/[\s.،]+$/, '');
+    if (inner.length >= 12) return inner;
+  }
+  const stripped = cleaned.replace(DIACRITICS, '');
+  const marker = stripped.lastIndexOf(SALLA);
+  if (marker > 0) {
+    const after = cleaned.slice(originalIndex(cleaned, marker + SALLA.length)).replace(/^[\s:ـ.،]+/, '');
+    const strippedAfter = after.replace(DIACRITICS, '');
+    const remainder = strippedAfter.replace(LEAD_WORDS, '');
+    const body = after
+      .slice(originalIndex(after, strippedAfter.length - remainder.length))
+      .replace(/^[\s:ـ.،]+/, '')
+      .trim();
+    if (body.length > 12) return body;
+  }
+  return cleaned;
+}
+
+/**
+ * English text for a card: the first quoted saying when it is substantial,
+ * otherwise the text without its "Narrated X:" prefix.
+ */
+export function stripNarrator(english: string): string {
+  const withoutNarrator = english.replace(/^\s*Narrated\s+[^:]{1,80}:\s*/i, '').trim();
+  const quoted = withoutNarrator.match(/["\u201C]\s*([^"\u201D]{20,})\s*["\u201D]?/);
+  return quoted ? quoted[1].trim().replace(/[\s.]+$/, '') : withoutNarrator;
+}
+
 export interface HadithSearchOptions {
   duaOnly?: boolean;
   limit?: number;
