@@ -15,13 +15,13 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 | Repo layout           | ✅ Collapsed to one clone, up to date with `origin` at `d5a11fc`                                       |
 | Local `npm run check` | ✅ Passing — typecheck, lint, format, 350 tests                                                        |
 | Android build (CI)    | ✅ Run 35419403039 succeeded — APK + AAB produced (debug-signed, version 0.1.0)                        |
-| Release signing       | ❌ No keystore yet; builds are debug-signed and cannot go to Play                                      |
+| Release signing       | ✅ Keystore secrets set; run 35421731036 produced a signed 1.0.0 AAB                                   |
 | Device testing        | ✅ Share to WhatsApp, location + prayer times, Qibla compass and export all verified on a phone        |
 | Play Console          | ✅ Organization account, one app already live — production access granted, closed testing not required |
 | Store listing copy    | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through                              |
-| Accounts + deletion   | ⏳ Code and web page done — needs the Supabase project, keys, and a throwaway-account test             |
+| Accounts + deletion   | ✅ Verified end to end on device and in the database; web page live                                    |
 | Store graphics        | ❌ Icon, feature graphic and screenshots still to produce                                              |
-| Privacy policy        | ✅ Covers optional accounts and deletion — needs GitHub Pages enabled for a public URL                 |
+| Privacy policy        | ✅ Live at yassinerzk.github.io/react/privacy.html                                                     |
 | App version           | ✅ `1.0.0` / `versionCode 1`                                                                           |
 
 ---
@@ -439,3 +439,27 @@ carries no compliance surface. Worth considering before committing to accounts a
 4. **Read the Arabic** in `docs/STORE-LISTING.md` before it goes live.
 5. **Store graphics** — icon, feature graphic, and screenshots taken from the real app once the
    APK is installed.
+
+---
+
+## Submission details (ready to paste)
+
+**Privacy policy URL:** https://yassinerzk.github.io/react/privacy.html
+**Account deletion URL:** https://yassinerzk.github.io/react/delete-account.html
+
+Both verified live (HTTP 200) on 2026-09-19 after the first successful Pages deploy.
+
+**Data Safety — what to declare**
+
+| Data type                      | Collected | Shared | Purpose            | Linked to identity | Deletable |
+| ------------------------------ | --------- | ------ | ------------------ | ------------------ | --------- |
+| Approximate + precise location | No*       | No     | App functionality  | No                 | n/a       |
+| Email address                  | Yes       | No     | Account management | Yes                | Yes       |
+| User content (saved posts)     | Yes       | No     | App functionality  | Yes                | Yes       |
+
+\* Location never reaches our servers. It is read on-device for prayer times and Qibla; only the
+place-name lookup goes to the platform geocoder, which is the OS, not us. Email and saved posts are
+collected only if the user chooses to sign up.
+
+Also: **no ads**, **no analytics**, **no advertising ID**, data encrypted in transit, and users can
+request deletion (give the URL above).
