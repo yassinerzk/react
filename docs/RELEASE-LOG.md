@@ -1,0 +1,396 @@
+# Release log — first Android release
+
+Running record of everything done on the way to publishing Barakah Stories v1 on Google Play.
+Kept up to date as work happens; newest entries at the bottom of the log.
+
+**Goal:** a signed AAB accepted on the Play Store, image-only stories. Audio/video export is
+explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
+
+---
+
+## Status at a glance
+
+| Area                  | State                                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------------------ |
+| Repo layout           | ✅ Collapsed to one clone, up to date with `origin` at `d5a11fc`                                       |
+| Local `npm run check` | ✅ Passing — typecheck, lint, format, 350 tests                                                        |
+| Android build (CI)    | ✅ Run 35419403039 succeeded — APK + AAB produced (debug-signed, version 0.1.0)                        |
+| Release signing       | ❌ No keystore yet; builds are debug-signed and cannot go to Play                                      |
+| Device testing        | ✅ Share to WhatsApp, location + prayer times, Qibla compass and export all verified on a phone        |
+| Play Console          | ✅ Organization account, one app already live — production access granted, closed testing not required |
+| Store listing copy    | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through                              |
+| Store graphics        | ❌ Icon, feature graphic and screenshots still to produce                                              |
+| Privacy policy        | ✅ Written and ready — needs GitHub Pages enabled to give it a public URL                              |
+| App version           | ✅ `1.0.0` / `versionCode 1`                                                                           |
+
+---
+
+## Log
+
+### 2026-09-19 — Repo cleanup
+
+The working copy had drifted into three nested clones of the same repo, each newer than the last,
+with the actual latest code two levels deep inside `apps/mobile/` and nothing locally holding the
+remote head.
+
+Audited all three for anything unique before touching them:
+
+- No unpushed commits in any clone.
+- No uncommitted work except a cosmetic re-format of `apps/mobile/tsconfig.json` (whitespace only).
+- No secrets, `.env` files or keystores — only the tracked `.env.example` template.
+
+Actions:
+
+- Fast-forwarded the root repo from `eb0e3c8` to `d5a11fc` (8 commits), which brought in the
+  monorepo layout, the Android build workflow, `docs/OVERVIEW.md` and the release-signing script.
+- Deleted the nested `react/` clone.
+- Reinstalled workspace dependencies (the root `node_modules` was the stale web-only install).
+
+Result: one clone at `C:\Users\user\SAAS Projects\react`, clean tree, matching `origin`.
+
+### 2026-09-19 — Android build pre-flight
+
+Read `.github/workflows/android-build.yml` and `scripts/android-release-signing.mjs` before
+re-running, to avoid burning runs on avoidable failures. Findings in the next two sections.
+
+### 2026-09-19 — Local toolchain repair
+
+`npm run check` could not run on this Windows machine. Two separate problems, neither of which
+affects CI:
+
+**1. Platform binaries missing from the lockfile.** `package-lock.json` contains only the Linux
+builds of `rollup` and `esbuild` — it was generated in a Linux cloud session. On Windows,
+`npm ci`/`npm install` therefore can never install `@rollup/rollup-win32-x64-msvc` or
+`@esbuild/win32-x64`, and every Vite/vitest run dies at startup. Worked around locally with:
+
+```bash
+npm i @rollup/rollup-win32-x64-msvc@<rollup version> @esbuild/win32-x64@<esbuild version> --no-save
+```
+
+Install both in **one** command — a second `npm i --no-save` prunes the package the first one
+added. The lockfile is deliberately left untouched so CI (`ubuntu-latest`) keeps working; the
+trade-off is that this has to be redone after any `npm ci`. A durable fix would be to regenerate
+the lockfile on a machine that resolves optional dependencies for every platform, but that risks
+dropping the Linux entries CI depends on, so it is not worth doing before the release.
+
+**2. Line endings.** `core.autocrlf` was `true` and the repo has no `.gitattributes`, so every file
+was checked out CRLF while Prettier expects LF — `format:check` failed on 266 files with no real
+drift. Fixed locally with `git config core.autocrlf false` plus a Prettier rewrite. Verified this
+changed **no content**: blob hashes are identical to the index and `git diff --numstat` is empty.
+Recommend committing a `.gitattributes` containing `* text=auto eol=lf` so this does not recur on
+any Windows checkout.
+
+**Result:** the full check passes — typecheck, lint, format, and 350 tests (348 in core across 9
+files, 2 in web). The tree is clean, so the code that CI will build is verified good before the
+first Android run.
+
+### 2026-09-19 — Play compliance review
+
+**Account type resolved.** The Play developer account is an **organization** account, registered
+earlier in 2026, with one app already live. The 12-testers-for-14-days closed-test requirement
+applies to _individual_ accounts registered since late 2023, so it does **not** apply here, and
+production access is already granted. The longest wall-clock item in the plan is removed.
+
+**Account deletion — avoided rather than solved.** Play requires any app that allows account
+creation to offer account deletion both in-app and through a web URL. The app has `signOut` but no
+delete path (`apps/mobile/src/auth/store.ts`; the only `delete` on the Me tab removes a single
+saved post). This is **not a blocker for v1**, because accounts are inert in the shipped build:
+`apps/mobile/src/auth/supabase.ts` returns a null client unless `EXPO_PUBLIC_SUPABASE_URL` and
+`EXPO_PUBLIC_SUPABASE_ANON_KEY` are set, `authEnabled` is then false, and the Me tab hides sign-up.
+CI builds without a `.env`, so v1 ships with no account creation at all.
+
+Decision: **ship v1 with accounts off.** It keeps the Data Safety declaration to location only, and
+removes the deletion requirement entirely. Before accounts are ever enabled, account deletion must
+be built first — in-app _and_ as a public web URL.
+
+**Location claim is inaccurate.** `apps/mobile/app.json` tells the user location "never leaves your
+device", but `apps/mobile/app/(tabs)/prayer.tsx:39` calls `Location.reverseGeocodeAsync`, which
+passes the coordinates to the platform geocoder (Google Play Services on Android, Apple on iOS) to
+get a place name. Prayer times and Qibla themselves are computed locally by `adhan`, so only the
+place-name lookup leaves the device — but the copy as written is wrong and the Data Safety form
+must not repeat it. Fix the permission string before submitting.
+
+**Network egress, full list** (needed for the Data Safety form):
+
+- `cdn.jsdelivr.net` — hadith collections on first use (`packages/core/src/hadith.ts:47`); the CDN
+  sees the device IP like any web request.
+- Platform geocoder — coordinates, for the place name only.
+- Supabase — **not reached in v1**, accounts disabled.
+- No analytics, no ads, no advertising ID, no tracking SDK in v1.
+
+### 2026-09-19 — Submission materials drafted
+
+- `apps/mobile/app.json`: version `0.1.0` → `1.0.0`, and both location permission strings (iOS
+  `infoPlist` and the `expo-location` plugin) rewritten to drop the false "never leaves your
+  device" claim.
+- `docs/PRIVACY.md` — full policy written for v1 as it actually behaves: no accounts, no analytics,
+  no ads, location used on-device with the place-name lookup disclosed, jsDelivr disclosed.
+  **Two placeholders must be filled before publishing: `[COMPANY]` and `[CONTACT EMAIL]`.**
+- `docs/STORE-LISTING.md` — app name, short and full descriptions in English and Arabic, within
+  Play's character limits, plus the graphics specs still outstanding.
+
+### 2026-09-19 — First successful Android build
+
+Run **35419403039** (`workflow_dispatch`, ~14 min) completed green. Every step passed, including
+Gradle — so the **Java 17 concern is cleared**; the pinned JDK builds RN 0.86 / Expo 57 fine and
+the workflow needs no change. `Configure release signing` skipped as designed (no keystore
+secrets), so both artifacts are debug-signed.
+
+The runner built commit `d5a11fc`, so this APK is version **0.1.0** with the old location strings
+— the `1.0.0` bump is still uncommitted. Fine for device testing, not for Play.
+
+Artifacts downloaded to `~/Downloads/barakah-android/`.
+
+**Size analysis.** The APK is 104 MB and the AAB 71 MB, which looks alarming and mostly is not:
+
+| Component              | Size    | Note                                          |
+| ---------------------- | ------- | --------------------------------------------- |
+| `lib/`                 | 73.7 MB | Native libs for **all four ABIs**             |
+| dex (5 files)          | 42.3 MB | R8/ProGuard is off by default in React Native |
+| `res/`                 | 12.2 MB | Photo backgrounds and icons                   |
+| `index.android.bundle` | 5.8 MB  | JS + bundled Quran text                       |
+
+The APK is a _universal_ build carrying arm64-v8a, armeabi-v7a, x86 and x86_64 at once. No real
+user ever downloads that: Play splits the AAB per device, shipping one ABI and one density, so the
+actual download will be far smaller — confirm the real figure in Play Console after the first
+upload, which reports it directly.
+
+Two optimisations for later, neither a v1 blocker:
+
+- **Enable R8** (`enableProguardInReleaseBuilds`). 42 MB of dex is large because React Native
+  leaves minification off by default. Real savings, but it can break reflection-based code, so it
+  needs a full device pass afterwards — not something to do days before a first release.
+- **Drop x86/x86_64.** Only emulators and ChromeOS need them. This shrinks the universal APK a lot
+  but changes nothing for Play users, since the AAB already ships one ABI per device. Low value.
+
+Hermes is enabled (`libhermesvm.so` present), which is correct.
+
+### 2026-09-19 — Device testing passed
+
+The debug-signed APK from run 35419403039 was installed on a real Android phone and the four paths
+that had never run on hardware all worked:
+
+- Share → WhatsApp → My status, at the full 1080x1920 size
+- Location permission, real city, prayer times
+- Live Qibla compass
+- Exported image quality — Arabic shaping, fonts, decorations, backgrounds
+
+This retires the largest unknown in the project. Every remaining item is process rather than
+engineering: signing, listing assets, and the Play submission itself.
+
+Still untested on hardware: iOS (needs an Apple developer account and an EAS build), the hadith
+download over mobile data, and behaviour in airplane mode.
+
+### 2026-09-19 — Privacy policy finalised
+
+Legal entity is **Klay Creative Lab LLC**, contact **info@klaycreate.com**. The entity named in
+the policy matches the verified organisation on the Play account, which is what a reviewer checks.
+
+Published in two places, kept identical:
+
+- `docs/PRIVACY.md` — the source of truth for editing.
+- `apps/web/public/privacy.html` — a standalone, theme-aware page that Vite copies verbatim into
+  the build, so once Pages is enabled it is served at `<pages-url>/privacy.html`. That is the URL
+  for the Play listing. It has no dependency on the React app, so it renders even if the app
+  bundle fails.
+
+Whenever one changes, change the other.
+
+---
+
+## Android build — what we know
+
+The workflow (`.github/workflows/android-build.yml`) runs on `workflow_dispatch` or a tag matching
+`android-v*`. It builds natively on the runner rather than through EAS, so no Expo account is
+needed. Steps: checkout → Node 22 → Java 17 → Gradle → `npm ci` → `expo prebuild --platform
+android` → optional release signing → `./gradlew :app:assembleRelease :app:bundleRelease` → upload
+`barakah-stories.apk` and `barakah-stories.aab` as a run artifact (30-day retention).
+
+**The previous run failed** in the runner setup step, before the app was built: the `setup-android`
+action asked the SDK manager for a package named `tools` that no longer exists. That step was
+unnecessary — the runner already ships the Android SDK — and was removed in `d5a11fc`. The
+workflow has not been re-run since.
+
+App identity (`apps/mobile/app.json`):
+
+- Package / bundle id: `com.barakah.stories`
+- Version `0.1.0`, `versionCode 1`
+- Permissions: `ACCESS_COARSE_LOCATION`, `ACCESS_FINE_LOCATION` (foreground only)
+- New architecture enabled, portrait only, adaptive + monochrome icons present
+
+### Release signing
+
+Without keystore secrets the workflow signs with the **debug key**. That APK installs on your own
+phone for testing, but Play will reject a debug-signed AAB. To produce an uploadable build, four
+repository secrets must exist:
+
+| Secret                      | What it is                          |
+| --------------------------- | ----------------------------------- |
+| `ANDROID_KEYSTORE_BASE64`   | The upload keystore, base64-encoded |
+| `ANDROID_KEYSTORE_PASSWORD` | Store password                      |
+| `ANDROID_KEY_ALIAS`         | Key alias inside the keystore       |
+| `ANDROID_KEY_PASSWORD`      | Key password                        |
+
+`scripts/android-release-signing.mjs` patches the generated `build.gradle` to use them. Guard this
+keystore carefully — losing it means losing the ability to update the app, unless Play App Signing
+is enabled (recommended, and it is the default for new apps).
+
+### Risks to watch in the first run
+
+- **Java version.** The workflow pins Java 17. React Native 0.86 / Expo 57 are recent enough that
+  the toolchain may want a newer JDK. If Gradle fails on a Java version or AGP compatibility
+  message, bump `java-version` to 21 and re-run. _(Unverified — check the run log.)_
+- **`npm ci`** needs `package-lock.json` in sync with all workspaces. It is committed and was
+  generated from this layout, so it should be fine.
+- **Output paths** in the "Rename outputs" step are hard-coded; the step lists the output tree
+  first, so a path mismatch will be visible in the log.
+
+---
+
+## Checklist to publish
+
+### Build
+
+- [ ] Re-run "Android build" from the Actions tab; download `barakah-stories.apk`
+- [ ] Install the APK on a real Android phone
+- [ ] Bump `version` to `1.0.0` in `apps/mobile/app.json` before the production build
+- [ ] Create the upload keystore, add the four secrets, re-run for a release-signed AAB
+
+### Device testing (never done on hardware)
+
+- [ ] Share a story → WhatsApp → My status, at full 1080x1920
+- [ ] Location permission prompt and prayer times for the real location
+- [ ] Live Qibla compass against a known bearing
+- [ ] PNG capture quality (fonts, Arabic shaping, decorations, photo backgrounds)
+- [ ] Hadith download on mobile data, and behaviour offline
+- [ ] Arabic RTL interface end to end
+
+### Play Console
+
+- [x] Developer account — organization, already live with one app, production access granted
+- [x] Closed testing — **not required** (organization account)
+- [ ] Fix the location permission string in `app.json` (it wrongly claims location never leaves
+      the device) before submitting
+- [ ] Data safety form — **location only**: approximate + precise location, used for app
+      functionality (prayer times, Qibla), not collected off-device, not shared, not linked to an
+      identity. No email or user content, since accounts are off in v1.
+- [ ] Content rating questionnaire
+- [ ] Privacy policy URL — required; must be publicly reachable before submitting
+- [ ] Ads declaration: **no ads in v1** (AdMob is not integrated); update when it ships
+- [ ] Confirm Play's target API level requirement is met by the Expo template
+- [ ] Build v1 **without** `EXPO_PUBLIC_SUPABASE_*` set, so sign-up stays hidden
+
+### Store listing assets
+
+- [ ] App icon 512×512
+- [ ] Feature graphic 1024×500
+- [ ] 2–8 phone screenshots (gallery, editor, prayer + Qibla, Quran reader, hadith search)
+- [ ] Short description (80 chars) and full description, English + Arabic
+- [ ] Category and contact details
+
+---
+
+## Decisions
+
+**Ship v1 without audio.** Audio on a WhatsApp status requires a video, which means replacing the
+PNG export with an on-device MP4 encoder — plausibly more work than every other open item combined.
+Getting v1 live unblocks device feedback, the Play listing and the closed-test clock, all of which
+run in parallel with the audio work.
+
+**Audio policy, set before any recording happens:**
+
+- Voice only — a cappella nasheed and natural ambience, no instruments, since a large part of the
+  audience holds instrumental music to be impermissible.
+- Recitation must be properly licensed. Commercial recordings by well-known qaris are **not** free
+  to redistribute, and this app is monetized. Preferred path: commission a qari for a curated set
+  of short passages with a written buyout.
+- Clips cut at **ayah boundaries**, never at an arbitrary 30-second mark.
+- Attribution (reciter, surah:ayah) shown in-app and on the exported card.
+- Loudness-normalise everything to ≈ −16 LUFS.
+
+**Monetization boundary.** `docs/MONETIZATION.md` commits to keeping religious content free in
+every tier. Audio must respect that: gate the **video export** and premium ambience/nasheed packs,
+keep a free recitation set. Do not paywall the Quran itself.
+
+**Encoder choice for v1.1:** a small native Expo module (Android `MediaCodec`/`MediaMuxer`, iOS
+`AVAssetWriter`) rather than `ffmpeg-kit-react-native` (retired upstream in 2025, and the H.264
+builds are GPL — both need confirming, but neither risk is worth taking) or a render server (per-
+export cost on a free-heavy product, and every story would leave the device). On web,
+`canvas.captureStream()` + `MediaRecorder` needs no dependency at all.
+
+---
+
+## Deferred to v1.1
+
+### Audio/video story export
+
+Work that can start now, in parallel with v1, because it is procurement rather than code:
+
+- [ ] Fix the passage list: 40–60 short recitations mapped to the existing 14 card categories
+- [ ] Get a quote from a qari for a buyout of that set
+- [ ] Shortlist CC0 ambience (rain, birds before fajr, wind, water, room tone) and normalise it
+- [ ] Decide Pro price and model (still open from `docs/MONETIZATION.md`)
+
+### Accounts and account deletion
+
+Decided 2026-09-19: accounts stay **off in v1** and ship in v1.1, so the first Play submission
+declares location only and carries no deletion obligation. The sign-up code already exists and is
+inert without keys; this section is what it takes to switch it on legitimately.
+
+**Why deletion needs a server.** The anon key shipped in the app cannot delete an auth user — that
+requires the `service_role` key, which must never be in an APK. The cheapest correct answer is a
+`security definer` SQL function, so there is no server code to deploy. Both tables already declare
+`on delete cascade` against `auth.users`, so removing the user removes their rows:
+
+```sql
+create or replace function public.delete_account()
+returns void language sql security definer set search_path = '' as $$
+  delete from auth.users where id = auth.uid();
+$$;
+revoke execute on function public.delete_account() from anon;
+grant execute on function public.delete_account() to authenticated;
+```
+
+Test this against a throwaway project first — Supabase periodically tightens DML on the `auth`
+schema, and if it is blocked the fallback is an Edge Function holding the service-role key.
+
+**Play requires a web deletion route too**, reachable without reinstalling the app; an in-app
+button alone does not satisfy the policy. Plan: a self-contained `apps/web/public/delete-account.html`
+that loads supabase-js from a CDN, signs the user in and calls the same RPC. It deploys free with
+the existing Pages site. The anon key in that page is fine — anon keys are public by design.
+
+Checklist:
+
+- [ ] Create the Supabase project and run `supabase/schema.sql`
+- [ ] Add `delete_account()` and verify it against a throwaway account
+- [ ] In-app delete on the Me tab: confirm dialog, sign-out on success, English + Arabic strings
+- [ ] `delete-account.html` in `apps/web/public`, linked from the store listing and privacy policy
+- [ ] Wire `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_ANON_KEY` into the build as secrets
+- [ ] Update `docs/PRIVACY.md` — it currently states there is no account system
+- [ ] Update the Data Safety form: email address and user content, with the deletion URL
+
+**Cost.** Supabase's free tier covers roughly 50k monthly active users and 500 MB of database.
+Storage binds before user count here — saved designs are JSON blobs, so on the order of 10,000
+users before 500 MB bites, then about $25/month. Free projects pause after ~a week of inactivity,
+which stops applying once there are real users. Free-tier terms can change; "free forever" is not
+something to promise in the listing.
+
+**Cheaper alternative if the real goal is just "don't lose my posts":** Android Auto Backup and the
+iCloud key-value store restore app data onto a new device with no account, no server and no
+deletion obligation. It does not sync two phones used at once, but it costs nothing to run and
+carries no compliance surface. Worth considering before committing to accounts at all.
+
+---
+
+## Blocked on you
+
+1. **Trigger the Android build** — `gh` is not installed locally, so the workflow has to be started
+   from the repository's Actions tab (or install the GitHub CLI and it can be done from here).
+   Everything else waits on a working build.
+2. **Enable GitHub Pages** (Settings → Pages → source "GitHub Actions") and run the deploy
+   workflow, so the privacy policy has a public URL to paste into the Play listing.
+3. **Keystore** — generated locally with `keytool`; the passwords are yours to choose and must not
+   pass through this log, the repo, or the chat.
+4. **Read the Arabic** in `docs/STORE-LISTING.md` before it goes live.
+5. **Store graphics** — icon, feature graphic, and screenshots taken from the real app once the
+   APK is installed.

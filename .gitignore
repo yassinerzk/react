@@ -14,3 +14,8 @@ apps/mobile/.expo
 apps/mobile/android
 apps/mobile/ios
 .env
+
+# Signing material — never commit these.
+*.jks
+*.keystore
+*.b64
