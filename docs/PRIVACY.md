@@ -3,18 +3,44 @@
 **Last updated:** 19 September 2026
 
 Barakah Stories is made by Klay Creative Lab LLC. This policy explains what the app does with your
-information. The short version: the app is built to work without collecting anything about you,
-and we do not operate a server that stores your data.
+information. The short version: the app works fully without an account and keeps everything on
+your device. If you choose to sign up, we store only your email, your saved posts and your reading
+progress, so they follow you between devices — and you can delete all of it at any time.
 
 ## What we collect
 
-**Nothing is sent to us.** We do not run an account system in this version of the app, we do not
-use analytics, we do not use advertising, and we have no way to identify you. We do not sell or
-share personal information with anyone.
+We do not use analytics, we do not use advertising, and we do not sell or share personal
+information with anyone.
 
-Everything you create in the app — your story designs, saved posts, recently opened posts, your
-language, theme and prayer settings, and your Quran reading progress — is stored **only on your
-device**, in the app's own storage. It is removed when you uninstall the app.
+You can use the whole app **without an account**. If you never sign up, everything you create —
+your story designs, saved posts, recently opened posts, your language, theme and prayer settings,
+and your Quran reading progress — is stored **only on your device**, in the app's own storage, and
+is removed when you uninstall the app. We receive nothing.
+
+## If you create an account
+
+Signing up is optional. It exists for one purpose: keeping your saved posts and Quran reading
+progress available on more than one device.
+
+If you do sign up, we store:
+
+- **Your email address**, used to identify your account and let you sign in.
+- **Your saved story designs** and **your Quran reading progress**, so they can be synced.
+
+Your password is never visible to us. Accounts run on [Supabase](https://supabase.com), which
+processes this data on our behalf as our hosting provider; it is not sold or shared with anyone
+else. Your data is protected so that only your own account can read or write it.
+
+## Deleting your account
+
+You can delete your account at any time, and doing so permanently removes your account, your
+synced posts and your synced reading progress. It cannot be undone.
+
+- **In the app:** Me → Account → Delete account.
+- **On the web:** visit the delete-account page linked from our Play Store listing, sign in, and
+  confirm. You do not need to reinstall the app to do this.
+
+Posts saved on your device stay on your device; uninstalling the app removes those.
 
 ## Location
 
@@ -68,9 +94,8 @@ protections, such as your screen lock and device encryption.
 
 ## Changes to this policy
 
-If a future version of the app adds features that handle data differently — for example optional
-accounts that sync your saved posts between devices — this policy will be updated before that
-version is released, and the date at the top will change.
+If a future version of the app adds features that handle data differently, this policy will be
+updated before that version is released, and the date at the top will change.
 
 ## Contact
 

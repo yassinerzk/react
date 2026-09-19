@@ -131,6 +131,13 @@ export const en = {
   syncNow: 'Sync now',
   synced: 'Your posts and reading progress are synced.',
   syncHint: 'Sign up to keep your saved posts and Quran progress across devices.',
+  deleteAccount: 'Delete account',
+  deleteAccountTitle: 'Delete your account?',
+  deleteAccountBody:
+    'This permanently deletes your account, your synced posts and your reading progress. It cannot be undone. Posts saved on this device stay on this device.',
+  deleteAccountConfirm: 'Delete permanently',
+  deleteAccountDone: 'Your account and synced data have been deleted.',
+  deleting: 'Deleting…',
   attribution: 'Quran text and translation: quran-json (CC BY 4.0). Hadith: hadith-api dataset.',
   createStory: 'Create story',
   appNameOnStory: 'App name on story',

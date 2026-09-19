@@ -133,6 +133,13 @@ export const ar: Record<TranslationKey, string> = {
   syncNow: 'مزامنة الآن',
   synced: 'تمت مزامنة منشوراتك وتقدّمك في القراءة.',
   syncHint: 'أنشئ حسابًا لحفظ منشوراتك وتقدّمك في القرآن على كل أجهزتك.',
+  deleteAccount: 'حذف الحساب',
+  deleteAccountTitle: 'حذف حسابك؟',
+  deleteAccountBody:
+    'سيُحذف حسابك ومنشوراتك المتزامنة وتقدّمك في القراءة نهائيًا، ولا يمكن التراجع عن ذلك. أما المنشورات المحفوظة على هذا الجهاز فتبقى عليه.',
+  deleteAccountConfirm: 'احذف نهائيًا',
+  deleteAccountDone: 'تم حذف حسابك وبياناتك المتزامنة.',
+  deleting: 'جارٍ الحذف…',
   attribution: 'نص القرآن والترجمة: quran-json (CC BY 4.0). الحديث: مجموعة hadith-api.',
   createStory: 'أنشئ قصة',
   appNameOnStory: 'اسم التطبيق على القصة',

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Pressable, Text, TextInput, View } from 'react-native';
+import { Alert, FlatList, Pressable, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useT } from '../../src/i18n';
@@ -24,10 +24,28 @@ function AccountPanel() {
   const signUp = useAuthStore((s) => s.signUp);
   const signIn = useAuthStore((s) => s.signIn);
   const signOut = useAuthStore((s) => s.signOut);
+  const deleteAccount = useAuthStore((s) => s.deleteAccount);
   const [mode, setMode] = useState<'signup' | 'signin'>('signup');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [syncing, setSyncing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const confirmDelete = () => {
+    Alert.alert(t('deleteAccountTitle'), t('deleteAccountBody'), [
+      { text: t('cancel'), style: 'cancel' },
+      {
+        text: t('deleteAccountConfirm'),
+        style: 'destructive',
+        onPress: async () => {
+          setDeleting(true);
+          const ok = await deleteAccount();
+          setDeleting(false);
+          toast(ok ? t('deleteAccountDone') : t('authError'), ok ? 'success' : 'error');
+        },
+      },
+    ]);
+  };
 
   const sync = async () => {
     if (!user) return;
@@ -83,6 +101,14 @@ function AccountPanel() {
           />
           <Button label={t('signOut')} size="sm" variant="ghost" onPress={signOut} />
         </View>
+        <Button
+          label={deleting ? t('deleting') : t('deleteAccount')}
+          size="sm"
+          variant="danger"
+          disabled={deleting}
+          onPress={confirmDelete}
+          style={{ alignSelf: row === 'row' ? 'flex-start' : 'flex-end' }}
+        />
       </View>
     );
   }

@@ -20,6 +20,10 @@ jobs:
       CI: '1'
       EXPO_NO_TELEMETRY: '1'
       HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+      # Baked into the JS bundle by Metro during :app:bundleRelease. Without them
+      # the app still builds and simply hides sign-up (see src/auth/supabase.ts).
+      EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
     steps:
       - uses: actions/checkout@v4
 

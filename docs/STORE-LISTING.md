@@ -89,8 +89,11 @@ WORKS OFFLINE
 The Quran, all the cards, the fonts and the backgrounds are inside the app. Only the hadith
 collections are downloaded once, then cached on your device.
 
-NO ACCOUNT, NO TRACKING
-There is no sign-up, no analytics and no advertising. What you create stays on your phone.
+NO TRACKING
+No analytics and no advertising. Everything you make stays on your phone unless you choose to
+sign up, and signing up is entirely optional — it only syncs your saved posts and reading
+progress between your devices. You can delete your account, and everything synced with it, at
+any time from inside the app.
 
 Quran text follows the standard Uthmani mushaf. Hadith are quoted with their collection and
 number. If you ever spot a typo in the Arabic, please tell us and we will fix it quickly.
@@ -145,8 +148,10 @@ number. If you ever spot a typo in the Arabic, please tell us and we will fix it
 القرآن والبطاقات والخطوط والخلفيات كلها داخل التطبيق. تُنزَّل كتب الحديث مرة واحدة فقط ثم تُحفظ
 على جهازك.
 
-بلا حساب وبلا تتبّع
-لا تسجيل دخول، ولا تحليلات، ولا إعلانات. ما تصنعه يبقى على هاتفك.
+بلا تتبّع
+لا تحليلات ولا إعلانات. ما تصنعه يبقى على هاتفك ما لم تختر إنشاء حساب، وإنشاء الحساب اختياري
+تمامًا ويقتصر على مزامنة منشوراتك المحفوظة وتقدّمك في القراءة بين أجهزتك. ويمكنك حذف حسابك وكل ما
+تمت مزامنته معه في أي وقت من داخل التطبيق.
 
 نص القرآن وفق الرسم العثماني المعتمد، والأحاديث منسوبة إلى كتبها وأرقامها. إن لاحظت أي خطأ
 مطبعي في النص العربي فأخبرنا وسنصححه سريعًا.

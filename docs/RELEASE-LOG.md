@@ -19,8 +19,9 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 | Device testing        | ✅ Share to WhatsApp, location + prayer times, Qibla compass and export all verified on a phone        |
 | Play Console          | ✅ Organization account, one app already live — production access granted, closed testing not required |
 | Store listing copy    | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through                              |
+| Accounts + deletion   | ⏳ Code and web page done — needs the Supabase project, keys, and a throwaway-account test             |
 | Store graphics        | ❌ Icon, feature graphic and screenshots still to produce                                              |
-| Privacy policy        | ✅ Written and ready — needs GitHub Pages enabled to give it a public URL                              |
+| Privacy policy        | ✅ Covers optional accounts and deletion — needs GitHub Pages enabled for a public URL                 |
 | App version           | ✅ `1.0.0` / `versionCode 1`                                                                           |
 
 ---
@@ -85,6 +86,10 @@ files, 2 in web). The tree is clean, so the code that CI will build is verified 
 first Android run.
 
 ### 2026-09-19 — Play compliance review
+
+> **Partly superseded the same day.** The "ship v1 with accounts off" decision below was reversed —
+> accounts ship in v1 and deletion was built. See "Accounts moved into v1". The account-type and
+> location findings still stand; the Supabase line in the egress list no longer does.
 
 **Account type resolved.** The Play developer account is an **organization** account, registered
 earlier in 2026, with one app already live. The 12-testers-for-14-days closed-test requirement
@@ -164,6 +169,46 @@ Two optimisations for later, neither a v1 blocker:
   but changes nothing for Play users, since the AAB already ships one ABI per device. Low value.
 
 Hermes is enabled (`libhermesvm.so` present), which is correct.
+
+### 2026-09-19 — Accounts moved into v1
+
+Reversing the earlier "accounts off in v1" decision at the owner's request: sign-up ships in v1, so
+Play's account-deletion requirement now applies and had to be built.
+
+**Deletion, without a server.** The anon key cannot touch `auth.users` and the service-role key must
+never reach a client, so `supabase/schema.sql` gains a `delete_account()` security-definer function
+that deletes only `auth.uid()`. The existing `on delete cascade` foreign keys remove the user's
+`saved_designs` and `quran_progress` rows with them, so one function is the whole backend.
+
+- `apps/mobile/src/auth/store.ts` — `deleteAccount()` calls the RPC, then signs out locally so the
+  device stops retrying with a token whose user no longer exists.
+- Me tab — danger-styled button, native confirm dialog, busy state, success/error toast.
+- `packages/core/src/i18n/{en,ar}.ts` — seven new strings in both languages.
+
+**Web deletion route.** Play requires deletion to be reachable without reinstalling the app, so
+`apps/web/public/delete-account.html` signs the user in and calls the same RPC. It is standalone
+(supabase-js from a CDN) and degrades to a contact fallback when the keys are absent, so it is
+never a broken form.
+
+**Documents corrected.** Both privacy copies said "we do not operate a server that stores your
+data" and the listing promised "no sign-up" — both would have been false claims on a shipping
+listing. Rewritten with "If you create an account" and "Deleting your account" sections, in English
+and Arabic.
+
+**Build.** `android-build.yml` now passes `EXPO_PUBLIC_SUPABASE_URL` and
+`EXPO_PUBLIC_SUPABASE_ANON_KEY` at job level so Metro bakes them in during `bundleRelease`.
+Without the secrets the app still builds and hides sign-up.
+
+Outstanding for this feature:
+
+- [ ] Create the Supabase project and run the updated `supabase/schema.sql`
+- [ ] **Verify `delete_account()` against a throwaway account before submitting.** If Supabase has
+      restricted DML on the `auth` schema, the fallback is an Edge Function holding the
+      service-role key.
+- [ ] Set the two `EXPO_PUBLIC_SUPABASE_*` repository secrets
+- [ ] Paste the same URL and anon key into `delete-account.html` (currently empty placeholders)
+- [ ] Data Safety now needs email + user content declared, with the deletion URL
+- [ ] Re-test sign-up, sync and delete on a real device
 
 ### 2026-09-19 — Device testing passed
 
