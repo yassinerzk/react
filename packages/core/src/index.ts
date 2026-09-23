@@ -13,3 +13,4 @@ export * from './recent';
 export * from './quran';
 export * from './hadith';
 export * from './monetization';
+export * from './ads';
