@@ -16,7 +16,7 @@ Languages: English and Arabic interface (right-to-left aware); content is Arabic
 - Editor: headline, Arabic text, translation, source, footer line, toggles for translation, source, Hijri date and frame; 10 colour themes, 12 photo backgrounds, 9 SVG decorations, 7 Arabic fonts, 2 Latin fonts, text size and alignment, "surprise me" and reset.
 - Automatic typography: text size adapts to length so long verses still fit.
 - Share: native share sheet on phones (WhatsApp → My status); PNG download on the web; copy-as-text caption.
-- Saved posts ("My posts"), recently opened posts, and "Today's posts" chosen from the date, the Hijri season and the time of day.
+- Saved posts ("My posts"), recently opened posts, and "Today's posts" — a date-seeded daily rotation (`packages/core/src/daily.ts`): seasonal cards first so Ramadan cards show in Ramadan and Friday cards on Friday, the remaining slots filled from the whole catalogue. The set is the same for every user on a given day, changes at local midnight, never repeats a card until the catalogue is exhausted, and needs no server or stored state.
 - "Create story" from any Quran verse in the reader and any hadith in the library: the editor opens pre-filled with the text, translation and reference. Hadith text is reduced to the Prophet's words automatically.
 - App-name line at the bottom of free stories (see Monetization).
 
@@ -102,9 +102,12 @@ cd apps/mobile && npx expo start   # mobile app in Expo Go (scan the QR code)
 2. **Device testing** of share, location, compass and capture (Expo Go on a phone).
 3. **Accounts**: create the Supabase project, run `supabase/schema.sql`, add the two keys to `apps/mobile/.env`.
 4. **Monetization**: decide Pro price and model; integrate RevenueCat and AdMob in a development build; move entitlements to the server (plan in `docs/MONETIZATION.md`).
-5. **GitHub Pages**: enable in settings, then re-run the deploy workflow for a public web URL.
-6. **Content growth**: more photo packs (the Fetch backgrounds workflow imports any image URLs), more verse cards (one line each in the generator), seasonal categories via `occasions.ts`.
-7. **Nice to have**: adhan notifications, home-screen widgets for the next prayer, sharing the Quran reader position between devices (already synced when signed in), Arabic topic names for hadith chapters (the dataset only has English).
+5. **Pro features**: video backgrounds and Quran recitation on exported stories. Plan, constraints and open decisions in `docs/PRO-PLAN.md`; the recitation licence has the longest lead time.
+6. **More languages**: Indonesian, Malay, Thai and Urdu. Plan, sizing and the blocking type change in `docs/LOCALIZATION.md`; the code work needs no translator and can start any time.
+7. **GitHub Pages**: enable in settings, then re-run the deploy workflow for a public web URL.
+8. **Content growth**: more photo packs (the Fetch backgrounds workflow imports any image URLs), more verse cards (one line each in the generator), seasonal categories via `occasions.ts`.
+9. **Daily reminder notification** — built. Policy in `packages/core/src/reminder.ts` (15 tests), OS layer in `apps/mobile/src/notifications/`. Offered from the **second** session, four seconds after the home screen settles; presets plus the remembered install time; a Settings row on the Me tab; rescheduled on every launch so the wording follows the language. Verified: typecheck, lint, 385 tests, web export, and an Android Metro bundle. **Still to do on a device**: accept and see a notification arrive, decline, close the sheet, change the time, turn it off, and check the Arabic layout. Optional polish: a 96×96 white-on-transparent Android notification icon for the `expo-notifications` plugin (without one Android falls back to the app icon).
+10. **Nice to have**: adhan notifications, home-screen widgets for the next prayer, sharing the Quran reader position between devices (already synced when signed in), Arabic topic names for hadith chapters (the dataset only has English).
 
 ## 8. Request log
 
@@ -124,5 +127,7 @@ cd apps/mobile && npx expo start   # mobile app in Expo Go (scan the QR code)
 
 - `README.md` — setup, structure, how to extend every registry, deployment.
 - `docs/MONETIZATION.md` — tiers, entitlement model, RevenueCat and AdMob steps, decisions.
+- `docs/PRO-PLAN.md` — the Pro feature plan: video backgrounds, recitation, export pipeline, phasing.
+- `docs/LOCALIZATION.md` — adding Indonesian, Malay, Thai and Urdu: layers, licensing, fonts, order.
 - `supabase/schema.sql` — tables and row-level security for accounts.
 - `.github/workflows/` — CI, Pages deploy, Android build, background photo import.

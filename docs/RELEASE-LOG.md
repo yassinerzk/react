@@ -321,7 +321,9 @@ is enabled (recommended, and it is the default for new apps).
       identity. No email or user content, since accounts are off in v1.
 - [ ] Content rating questionnaire
 - [ ] Privacy policy URL — required; must be publicly reachable before submitting
-- [ ] Ads declaration: **no ads in v1** (AdMob is not integrated); update when it ships
+- [ ] Ads declaration: **no ads in v1** (AdMob is not integrated). Ads are now planned — see the
+      "Before the first ad build ships" checklist in `docs/MONETIZATION.md`, which lists every
+      artefact below that has to be corrected first, this line included
 - [ ] Confirm Play's target API level requirement is met by the Expo template
 - [ ] Build v1 **without** `EXPO_PUBLIC_SUPABASE_*` set, so sign-up stays hidden
 
@@ -362,6 +364,80 @@ keep a free recitation set. Do not paywall the Quran itself.
 builds are GPL — both need confirming, but neither risk is worth taking) or a render server (per-
 export cost on a free-heavy product, and every story would leave the device). On web,
 `canvas.captureStream()` + `MediaRecorder` needs no dependency at all.
+
+---
+
+## Decision: the daily reminder is local-only, and ships clean
+
+A daily reminder notification was added. **Local notifications only** — no push token is requested,
+no server is involved, nothing leaves the device. Consequences that matter for submission:
+
+- **Data Safety is unaffected.** Nothing is collected, so the table above stands unchanged. This is
+  the opposite of the ads situation.
+- **No APNs or FCM setup**, no `google-services.json`, no Expo push credentials.
+- **Apple 4.5.4 is satisfied**: the app is fully usable without notifications, consent is asked for
+  in the app before the system prompt, the content is the app's own daily selection rather than
+  advertising, and there is a Settings row to change the time or turn it off.
+- **Android 13+** `POST_NOTIFICATIONS` is requested at runtime; the config plugin adds the manifest
+  entry during `expo prebuild`, so the existing CI workflow needs no change.
+- **Local notifications work in Expo Go**, so this is testable on a phone without a development
+  build — unlike ads.
+
+Two deviations from the original request, both deliberate:
+
+1. The offer appears from the **second** session, not the first. The OS permission prompt is
+   one-shot, and asking four seconds into someone's first visit — before they have seen a single
+   card — is the pattern people refuse. `MIN_SESSIONS_BEFORE_OFFER` is the one constant to change.
+2. The install time is used as the default reminder time but **clamped to 07:00–21:00**. Taken
+   literally, a 03:00 installer would have been signed up for a 03:00 notification every day.
+
+Closing the sheet cannot switch notifications on — that needs an OS grant — so a dismissal keeps the
+remembered time, schedules nothing, and the offer returns at most twice more, a day apart.
+
+### Windows note
+
+Adding any dependency with `npm install` **prunes the `--no-save` Windows binaries** described under
+"Local toolchain repair", so `npm run test` then dies with a missing
+`@rollup/rollup-win32-x64-msvc`. Fix, in one command:
+
+```bash
+npm i @rollup/rollup-win32-x64-msvc@$(node -p "require('rollup/package.json').version")       @esbuild/win32-x64@$(node -p "require('esbuild/package.json').version") --no-save
+```
+
+The lockfile keeps its Linux-only entries through both steps, which was verified — CI is unaffected.
+
+---
+
+## Decision: publish first, then AdMob
+
+**Sequence: ship v1 with no ads, get published, then integrate AdMob for v1.1.** Not a preference —
+AdMob's app-readiness review requires the app to be **live and publicly available** in the store
+before it can be approved. Drafts and apps in review are not eligible, and until approval the app
+gets limited ad serving. So integrating AdMob before the first submission earns almost nothing and
+pays for it three times over:
+
+- Every disclosure obligation lands on the first submission — Data Safety declaring the advertising
+  ID as collected **and shared**, the `com.google.android.gms.permission.AD_ID` manifest permission
+  (which Play cross-checks against Data Safety), the "Contains ads" declaration, and the ads answer
+  on the content rating questionnaire.
+- The privacy policy at the URL given to Play would have to describe ad data collection that is not
+  happening yet.
+- A native SDK goes into a build whose device testing has only just been completed. If the AdMob App
+  ID is missing from the manifest, the Mobile Ads SDK **crashes the app on launch** — an automatic
+  rejection, and the most common way this integration fails.
+
+So v1 declares: no ads, no analytics, no advertising ID. The Data Safety table above is correct as
+written, and stays that way for this submission.
+
+**One thing that could not wait**, and has been done: the store description promised "No analytics
+and no advertising" in both English and Arabic. That claim was removed from
+`docs/STORE-LISTING.md` before submission — true today, but a promise the v1.1 ad build would break,
+and users who installed on it would be right to call it a bait-and-switch. `docs/PRIVACY.md` and
+`apps/web/public/privacy.html` keep their no-advertising statement, because a privacy policy must
+describe the version that actually ships; they change when the ad build does.
+
+**v1.1 order of work:** publish v1 → link the app in AdMob → pass readiness review → then integrate,
+working through the "Before the first ad build ships" checklist in `docs/MONETIZATION.md`.
 
 ---
 
@@ -463,3 +539,8 @@ collected only if the user chooses to sign up.
 
 Also: **no ads**, **no analytics**, **no advertising ID**, data encrypted in transit, and users can
 request deletion (give the URL above).
+
+> **Accurate for v1 only.** The monetization plan now adds AdMob interstitials, which collect the
+> advertising ID and app-activity signals. This table, the privacy policy in both its copies, and
+> the store description in both languages must all be redone before an ad-bearing build reaches
+> production. Checklist in `docs/MONETIZATION.md`.

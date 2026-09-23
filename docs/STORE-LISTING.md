@@ -89,11 +89,10 @@ WORKS OFFLINE
 The Quran, all the cards, the fonts and the backgrounds are inside the app. Only the hadith
 collections are downloaded once, then cached on your device.
 
-NO TRACKING
-No analytics and no advertising. Everything you make stays on your phone unless you choose to
-sign up, and signing up is entirely optional — it only syncs your saved posts and reading
-progress between your devices. You can delete your account, and everything synced with it, at
-any time from inside the app.
+YOUR CONTENT STAYS ON YOUR PHONE
+Everything you make stays on your phone unless you choose to sign up, and signing up is
+entirely optional — it only syncs your saved posts and reading progress between your devices.
+You can delete your account, and everything synced with it, at any time from inside the app.
 
 Quran text follows the standard Uthmani mushaf. Hadith are quoted with their collection and
 number. If you ever spot a typo in the Arabic, please tell us and we will fix it quickly.
@@ -148,10 +147,10 @@ number. If you ever spot a typo in the Arabic, please tell us and we will fix it
 القرآن والبطاقات والخطوط والخلفيات كلها داخل التطبيق. تُنزَّل كتب الحديث مرة واحدة فقط ثم تُحفظ
 على جهازك.
 
-بلا تتبّع
-لا تحليلات ولا إعلانات. ما تصنعه يبقى على هاتفك ما لم تختر إنشاء حساب، وإنشاء الحساب اختياري
-تمامًا ويقتصر على مزامنة منشوراتك المحفوظة وتقدّمك في القراءة بين أجهزتك. ويمكنك حذف حسابك وكل ما
-تمت مزامنته معه في أي وقت من داخل التطبيق.
+محتواك يبقى على هاتفك
+ما تصنعه يبقى على هاتفك ما لم تختر إنشاء حساب، وإنشاء الحساب اختياري تمامًا ويقتصر على مزامنة
+منشوراتك المحفوظة وتقدّمك في القراءة بين أجهزتك. ويمكنك حذف حسابك وكل ما تمت مزامنته معه في أي
+وقت من داخل التطبيق.
 
 نص القرآن وفق الرسم العثماني المعتمد، والأحاديث منسوبة إلى كتبها وأرقامها. إن لاحظت أي خطأ
 مطبعي في النص العربي فأخبرنا وسنصححه سريعًا.
@@ -173,6 +172,17 @@ mobile layout differs and reviewers do compare.
 ---
 
 ## Claims to avoid
+
+It also deliberately makes **no claim about advertising or tracking**, in either language. v1 genuinely
+carries no ads, so "no analytics and no advertising" would be true today — but ads are planned for
+v1.1 (`docs/MONETIZATION.md`), and a listing that promises no ads and then serves them is a policy
+violation as well as a bait-and-switch to the users who installed on that promise. Removing the
+claim before the first submission costs nothing; retracting it later costs trust. Do not add it back.
+
+Note this is the opposite call from `docs/PRIVACY.md`, which still says the app uses no advertising.
+That is deliberate: a privacy policy must describe what the shipped version actually does, and v1
+does not advertise. The listing makes a promise about the future; the policy states a present fact.
+The policy changes when the ad build ships, not before.
 
 The description above deliberately does **not** say the app is endorsed by any scholar, mosque or
 authority, and does not use another app's name. It also does not promise features that are not in

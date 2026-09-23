@@ -2,13 +2,50 @@
 
 ## Model
 
-| Tier      | Price                          | What it changes                                                                                        |
-| --------- | ------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| Free      | –                              | Everything works. Stories carry a small "Barakah Stories" line at the bottom.                          |
-| Ad reward | Watch one rewarded ad          | Removes the app name from stories for 24 hours (stackable).                                            |
-| Pro       | One-time or yearly (to decide) | Removes the app name permanently. Room for later perks: extra photo packs, fonts, cloud backup limits. |
+| Tier      | Price                          | What it changes                                                                                                                            |
+| --------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Free      | –                              | Everything works, completely. Stories carry a small "Barakah Stories" line, and interstitial ads appear around making and sharing a story. |
+| Ad reward | Watch one rewarded ad          | Removes the app name from stories for 24 hours (stackable). Does **not** remove interstitials.                                             |
+| Pro       | One-time or yearly (to decide) | Removes the app name permanently **and removes all ads**. That is the whole offer.                                                         |
 
-Religious content itself (Quran, hadith, duaa) stays free and complete in every tier.
+Pro is deliberately one promise — _no badge, no ads_ — rather than a bundle of features. It is easy
+to explain on a paywall, it needs no new content to be produced before it can go on sale, and it
+does not put anything religious behind a payment.
+
+Religious content itself (Quran, hadith, duaa) stays free and complete in every tier. Video
+backgrounds and recitation are **not** part of Pro; they are v1.1 feature work, planned separately
+in `docs/PRO-PLAN.md`.
+
+## Where ads appear
+
+Two interstitial placements, both around the story-making flow:
+
+| Placement       | Moment                                                      |
+| --------------- | ----------------------------------------------------------- |
+| `before-create` | Opening the editor — a screen transition the user expects.  |
+| `after-export`  | Once the share sheet has closed and the story has gone out. |
+
+**Note the second one is after the export, not before it.** An interstitial shown between the user
+tapping Share and the share sheet appearing is precisely the pattern Google Play's disruptive-ads
+policy names — a full-screen ad interrupting an action the user has already committed to — and it is
+also the placement users uninstall over. Placing it on the return trip earns the same impression at
+a fraction of the risk. Moving it to strictly before the share is a one-line change in
+`packages/core/src/ads.ts` if that is what you want, but it should be a deliberate choice.
+
+Ads **never** appear in the Quran reader, the hadith library, or the prayer screens. Nothing
+full-screen interrupts someone who is reading Quran or checking a prayer time.
+
+## Frequency
+
+Two interstitials per story with no limits would mean six full-screen ads inside the first few
+minutes of use. The caps live in `packages/core/src/ads.ts` as data, so they can be tuned without
+touching a call site:
+
+| Rule            | Default | Why                                                          |
+| --------------- | ------- | ------------------------------------------------------------ |
+| `graceStories`  | 3       | A new install gets a clean first run before any ad appears.  |
+| `minIntervalMs` | 90 s    | Two interstitials can never land back to back.               |
+| `maxPerSession` | 4       | A ceiling for the heavy user, however long the session runs. |
 
 ## Foundation already in the code
 
@@ -18,6 +55,11 @@ Religious content itself (Quran, hadith, duaa) stays free and complete in every 
   - `MonetizationAdapter` interface: `purchasePro()`, `restorePurchases()`, `showRewardedAd()`.
     The UI only talks to this interface.
   - `NOOP_ADAPTER` is used until an SDK is integrated; it reports "unavailable".
+- `packages/core/src/ads.ts`
+  - `shouldShowAd(placement, entitlements, state, now, policy)` — the single question the UI asks.
+  - `AdState` counters and the `recordAdShown` / `recordStoryStarted` / `resetSession` transitions.
+  - `showsAds(e)` — false for Pro, true for everyone else including a rewarded-ad holder.
+  - Covered by `ads.test.ts`: Pro exemption, grace window, interval, session cap, cold start.
 - `apps/mobile/src/monetization/`
   - `store.ts` persists entitlements locally and exposes `removeWatermark()` orchestration.
   - `adapter.ts` selects the adapter. In development builds a `DevAdapter` simulates a purchase
@@ -26,6 +68,9 @@ Religious content itself (Quran, hadith, duaa) stays free and complete in every 
   the Go Pro / Watch an ad choice for free users; the Me tab shows the Pro section.
 - `StoryDesign.hideWatermark` records the user's wish; it is only honoured when entitled.
 
+Still to build: an `AdState` store on the mobile side (persisted, session-reset on cold start), an
+`InterstitialAdapter` alongside the existing `MonetizationAdapter`, and the two call sites.
+
 ## Implementation steps (when ready)
 
 1. **Billing: RevenueCat** (`react-native-purchases`). Create products
@@ -33,25 +78,63 @@ Religious content itself (Quran, hadith, duaa) stays free and complete in every 
    entitlement `pro` in RevenueCat, then implement `RevenueCatAdapter`:
    `purchasePro` → `Purchases.purchasePackage`, `restorePurchases` → `Purchases.restorePurchases`,
    map `customerInfo.entitlements.active.pro` → `tier: 'pro'`.
-2. **Rewarded ads: Google AdMob** (`react-native-google-mobile-ads`). One rewarded ad unit per
-   platform; implement `showRewardedAd` with `RewardedAd.createForAdRequest`; resolve `rewarded`
-   only on the `EARNED_REWARD` event. Add the UMP consent flow (EU) and iOS App Tracking
-   Transparency prompt before loading ads.
-3. **Native build.** Both SDKs need native code, so switch from Expo Go to a development build
+2. **Ads: Google AdMob** (`react-native-google-mobile-ads`). Two ad units per platform — one
+   interstitial, one rewarded. The interstitial must be **preloaded** before the moment it is
+   shown, or `before-create` will stall the editor; load the next one immediately after each
+   dismissal. Resolve the rewarded flow only on the `EARNED_REWARD` event.
+3. **Consent, before the first ad request.** The UMP consent flow for EU/UK users (bundled with
+   `react-native-google-mobile-ads`) and App Tracking Transparency on iOS
+   (`expo-tracking-transparency`, plus `NSUserTrackingUsageDescription` in `app.json`). Requesting
+   an ad before consent is resolved is itself a policy violation.
+4. **Native build.** Both SDKs need native code, so switch from Expo Go to a development build
    (`npx expo run:ios` / `run:android` or EAS dev client). Expo Go keeps working with the
-   `NoopAdapter`.
-4. **Server truth (optional but recommended).** Add a `entitlements` table in Supabase
+   `NoopAdapter` and `shouldShowAd` simply returning false.
+5. **Server truth (optional but recommended).** Add an `entitlements` table in Supabase
    (`user_id`, `tier`, `source`, `expires_at`) fed by the RevenueCat webhook, and read it in
-   `syncAll` so Pro follows the account across devices. Keep the local copy as cache.
-5. **Abuse limits.** Cap ad rewards per day (e.g. 3) in the store, and never trust the client
+   `syncAll` so Pro follows the account across devices. Keep the local copy as cache. Schema and
+   RLS shape in `docs/PRO-PLAN.md` section 6.
+6. **Abuse limits.** Cap rewarded ads per day (e.g. 3) in the store, and never trust the client
    for Pro when the account is signed in: prefer the server record.
-6. **Analytics.** Log `watermark_prompt_shown`, `ad_started`, `ad_rewarded`, `pro_purchased`
-   to whatever analytics you choose, so the two paths can be compared.
+7. **Analytics.** Log `ad_shown`, `ad_failed`, `watermark_prompt_shown`, `ad_rewarded`,
+   `pro_purchased` so the paths can be compared. Note that adding analytics has the same
+   disclosure consequences as adding ads — see below.
+
+## Before the first ad build ships
+
+The app has already been prepared for submission on the explicit promise that it carries no ads.
+Four artefacts say so today and every one of them becomes a false claim the moment an ad loads.
+This is a release checklist, not a nice-to-have: a listing that misdescribes ads is a policy
+violation in its own right.
+
+- [ ] **`docs/STORE-LISTING.md`** — the full description has a `NO TRACKING` section reading "No
+      analytics and no advertising", in **both English and Arabic**. Rewrite both.
+- [ ] **`docs/PRIVACY.md`** — "We do not use analytics, we do not use advertising" is no longer
+      true. Add what AdMob collects, why, and how to opt out.
+- [ ] **`apps/web/public/privacy.html`** — the live policy at the URL already given to Play. It
+      duplicates the same sentence and the same claim in its `<meta name="description">`. It must
+      change in step with `PRIVACY.md`; they are kept identical by hand.
+- [ ] **Play Data Safety form** — `docs/RELEASE-LOG.md` records the submitted answers, which end
+      with "no ads, no analytics, no advertising ID". AdMob collects the advertising ID and device
+      / app-activity signals for ad delivery, so the declaration has to be redone.
+- [ ] **Play "Contains ads" declaration** — currently set to no ads.
+- [ ] **iOS**: `NSUserTrackingUsageDescription`, and the SKAdNetwork identifiers the AdMob plugin
+      adds to `app.json`.
+
+Do all six before the ad-bearing build reaches production, not after.
 
 ## Things to decide
 
-- Pro price and whether it is lifetime or subscription.
+- Pro price, and whether it is lifetime or subscription. With ads as the free-tier revenue and no
+  per-user server cost, a lifetime price is viable; a subscription earns more from the small share
+  of users who would pay either way.
+- Whether to keep the rewarded-ad path at all now that Pro is defined as "no badge, no ads". It
+  already exists and is tested, it monetizes people who will never pay, and it gives the badge
+  switch an answer other than a paywall — so the recommendation is to keep it.
+- Whether the `after-export` interstitial should instead run before the share sheet. See the note
+  above; the safer placement is the default.
+- Whether ads are the right fit for this audience at all. The app's positioning so far has been
+  explicitly ad-free and privacy-first, and that is in the listing copy in both languages. This is
+  a brand decision as much as a revenue one, and it is worth making on purpose.
 - Whether Pro should include premium photo packs (the photo registry already supports adding
-  packs; gating would be a `premium: true` flag on backgrounds).
-- Whether to show any non-rewarded ads at all. The current plan avoids banner ads inside
-  religious content.
+  packs; gating would be a `premium: true` flag on backgrounds). `docs/PRO-PLAN.md` section 3
+  carries that flag through to video backgrounds.
