@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CATEGORIES,
+  dailyPicks,
   DEFAULT_DESIGN,
   designFromPost,
   formatClock,
@@ -23,6 +24,7 @@ import { useLayoutWidth } from '../../src/hooks/useLayoutWidth';
 import { usePrayerTimes } from '../../src/features/prayer/usePrayerTimes';
 import { PostThumb } from '../../src/components/PostThumb';
 import { PostStrip } from '../../src/components/PostStrip';
+import { REMINDER_OFFER_DELAY_MS, useReminderStore } from '../../src/notifications/store';
 import { Button, Chip, SectionTitle } from '../../src/components/ui';
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -45,17 +47,31 @@ export default function HomeScreen() {
   const [category, setCategory] = useState<CategoryId | 'all'>('all');
 
   const colWidth = Math.floor((width - 32 - 12) / 2);
-  const todays = useMemo(() => {
-    const seen = new Set<string>();
-    return occasions
-      .flatMap((o) => getPostsByCategory(o.category))
-      .filter((p) => (seen.has(p.id) ? false : (seen.add(p.id), true)))
-      .slice(0, 10);
-  }, [occasions]);
+  // Seasonal cards first, then a date-seeded rotation over the whole catalogue,
+  // so the section is different each day and never empty. See packages/core/src/daily.ts.
+  const todays = useMemo(
+    () =>
+      dailyPicks({
+        all: POSTS,
+        seasonal: occasions.flatMap((o) => getPostsByCategory(o.category)),
+        date: now,
+      }),
+    [occasions, now],
+  );
   const recent = useMemo(() => recentIds.map((id) => getPost(id)).filter((p): p is Post => !!p), [recentIds]);
   const posts = useMemo(() => (category === 'all' ? [...POSTS] : getPostsByCategory(category)), [category]);
   const rows = useMemo(() => chunk(posts, 2), [posts]);
   const categories = useMemo(() => [...CATEGORIES].sort((a, b) => a.order - b.order), []);
+
+  // Offered a few seconds after the home screen has settled, and read through
+  // getState() so the launch counter bumped by the root layout is already in.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      const store = useReminderStore.getState();
+      if (store.dueToOffer()) store.openOffer('offer');
+    }, REMINDER_OFFER_DELAY_MS);
+    return () => clearTimeout(id);
+  }, []);
 
   const openPost = (post: Post) => {
     touch(post.id);
