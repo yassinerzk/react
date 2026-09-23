@@ -19,3 +19,6 @@ apps/mobile/ios
 *.jks
 *.keystore
 *.b64
+
+# Expo caches/logs (Metro started from the wrong directory lands here)
+.expo/
