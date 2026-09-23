@@ -156,6 +156,7 @@ export const en = {
   purchased: 'Welcome to Pro.',
   cancel: 'Cancel',
   tipShare: 'On a phone, pick WhatsApp → My status in the share sheet.',
+  backToTop: 'Back to top',
   reminderTitle: 'A reminder each day?',
   reminderBody: 'The cards change every day. We can send one quiet reminder so you do not miss them.',
   reminderWhen: 'What time suits you?',

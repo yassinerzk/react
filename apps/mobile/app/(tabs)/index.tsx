@@ -24,6 +24,8 @@ import { useLayoutWidth } from '../../src/hooks/useLayoutWidth';
 import { usePrayerTimes } from '../../src/features/prayer/usePrayerTimes';
 import { PostThumb } from '../../src/components/PostThumb';
 import { PostStrip } from '../../src/components/PostStrip';
+import { ScrollTopButton } from '../../src/components/ScrollTopButton';
+import { useScrollTop } from '../../src/hooks/useScrollTop';
 import { REMINDER_OFFER_DELAY_MS, useReminderStore } from '../../src/notifications/store';
 import { Button, Chip, SectionTitle } from '../../src/components/ui';
 
@@ -45,6 +47,8 @@ export default function HomeScreen() {
   const load = useEditorStore((s) => s.load);
   const { next, location } = usePrayerTimes();
   const [category, setCategory] = useState<CategoryId | 'all'>('all');
+  // The grid runs to ~150 rows, so getting back to the top by hand is a chore.
+  const { ref: listRef, visible: canScrollTop, onScroll, scrollToTop } = useScrollTop<Post[]>();
 
   const colWidth = Math.floor((width - 32 - 12) / 2);
   // Seasonal cards first, then a date-seeded rotation over the whole catalogue,
@@ -178,21 +182,27 @@ export default function HomeScreen() {
   );
 
   return (
-    <FlatList
-      data={rows}
-      keyExtractor={(r) => r.map((p) => p.id).join('|')}
-      ListHeaderComponent={header}
-      extraData={colWidth}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }}
-      initialNumToRender={4}
-      windowSize={5}
-      renderItem={({ item }) => (
-        <View style={{ flexDirection: row, gap: 12, marginBottom: 16 }}>
-          {item.map((p) => (
-            <PostThumb key={p.id} post={p} width={colWidth} hijriLabel={hijriLabel} onOpen={openPost} />
-          ))}
-        </View>
-      )}
-    />
+    <View style={{ flex: 1 }}>
+      <FlatList
+        ref={listRef}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        data={rows}
+        keyExtractor={(r) => r.map((p) => p.id).join('|')}
+        ListHeaderComponent={header}
+        extraData={colWidth}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }}
+        initialNumToRender={4}
+        windowSize={5}
+        renderItem={({ item }) => (
+          <View style={{ flexDirection: row, gap: 12, marginBottom: 16 }}>
+            {item.map((p) => (
+              <PostThumb key={p.id} post={p} width={colWidth} hijriLabel={hijriLabel} onOpen={openPost} />
+            ))}
+          </View>
+        )}
+      />
+      <ScrollTopButton visible={canScrollTop} onPress={scrollToTop} />
+    </View>
   );
 }
