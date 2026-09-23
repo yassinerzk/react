@@ -5,6 +5,7 @@ export * from './fonts';
 export * from './backgrounds';
 export * from './occasions';
 export * from './daily';
+export * from './reminder';
 export * from './design';
 export * from './hijri';
 export * from './prayer';

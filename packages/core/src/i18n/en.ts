@@ -156,6 +156,25 @@ export const en = {
   purchased: 'Welcome to Pro.',
   cancel: 'Cancel',
   tipShare: 'On a phone, pick WhatsApp → My status in the share sheet.',
+  reminderTitle: 'A reminder each day?',
+  reminderBody: 'The cards change every day. We can send one quiet reminder so you do not miss them.',
+  reminderWhen: 'What time suits you?',
+  reminderTurnOn: 'Turn on',
+  reminderNotNow: 'Not now',
+  reminderLabel: 'Daily reminder',
+  reminderEveryDayAt: 'Every day at',
+  reminderChange: 'Change time',
+  reminderTurnOff: 'Turn off',
+  reminderOnToast: 'Reminder set.',
+  reminderOffToast: 'Reminder turned off.',
+  reminderBlocked:
+    'Notifications are switched off for this app. You can turn them on in your phone settings.',
+  reminderMorning: 'Morning',
+  reminderMidday: 'Midday',
+  reminderAfternoon: 'Afternoon',
+  reminderEvening: 'Evening',
+  reminderNotifTitle: "Today's cards are ready",
+  reminderNotifBody: 'A new selection for today, picked for the date.',
 } as const;
 
 export type TranslationKey = keyof typeof en;

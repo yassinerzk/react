@@ -46,7 +46,14 @@
           "locationWhenInUsePermission": "Your location is used to calculate prayer times and the Qibla direction on this device, and to look up your city name. It is never sent to us."
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "color": "#0b2e2a",
+          "defaultChannel": "daily-reminder"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": false

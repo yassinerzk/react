@@ -13,6 +13,7 @@ import { authEnabled } from '../../src/auth/supabase';
 import { useAuthStore } from '../../src/auth/store';
 import { syncAll } from '../../src/auth/sync';
 import { ProPanel } from '../../src/monetization/ProPanel';
+import { ReminderRow } from '../../src/notifications/ReminderRow';
 
 function AccountPanel() {
   const { t, font, row, textAlign } = useT();
@@ -192,6 +193,18 @@ export default function MeScreen() {
             }}
           >
             <AccountPanel />
+          </View>
+          <SectionTitle>{t('reminderLabel')}</SectionTitle>
+          <View
+            style={{
+              backgroundColor: ui.bgElev,
+              borderRadius: ui.radius,
+              borderWidth: 1,
+              borderColor: ui.line,
+              padding: 16,
+            }}
+          >
+            <ReminderRow />
           </View>
           <SectionTitle>{t('proTitle')}</SectionTitle>
           <View
