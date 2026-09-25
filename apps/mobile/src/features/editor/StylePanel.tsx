@@ -132,7 +132,7 @@ export function StylePanel() {
         {ARABIC_FONTS.map((f) => (
           <Chip
             key={f.id}
-            label={f.name.ar}
+            label={f.name.ar ?? f.name.en}
             fontFamily={ARABIC_FACES[f.id].regular}
             active={design.arabicFont === f.id}
             onPress={() => patch({ arabicFont: f.id })}

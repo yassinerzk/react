@@ -1,4 +1,5 @@
 import { useFonts } from 'expo-font';
+import type { Locale } from '@barakah/core';
 import { Amiri_400Regular } from '@expo-google-fonts/amiri/400Regular';
 import { Amiri_700Bold } from '@expo-google-fonts/amiri/700Bold';
 import { ScheherazadeNew_400Regular } from '@expo-google-fonts/scheherazade-new/400Regular';
@@ -71,16 +72,47 @@ export function arabicFace(id: ArabicFontId, weight: number): FontName {
   return weight >= 600 ? faces.bold : faces.regular;
 }
 
-export const UI_FONT = {
+/**
+ * A UI type set. `undefined` means "let the platform choose", which is how Thai
+ * is handled: no bundled face covers Thai, and both iOS and Android already
+ * ship a good one.
+ */
+export interface UiFont {
+  regular?: string;
+  medium?: string;
+  semibold?: string;
+}
+
+export const UI_FONT: UiFont = {
   regular: 'Inter_400Regular',
   medium: 'Inter_500Medium',
   semibold: 'Inter_600SemiBold',
-} as const;
-export const UI_FONT_AR = {
+};
+export const UI_FONT_AR: UiFont = {
   regular: 'Cairo_400Regular',
   medium: 'Cairo_600SemiBold',
   semibold: 'Cairo_700Bold',
-} as const;
+};
+/**
+ * Urdu needs letters Cairo does not carry (ٹ ڈ ڑ ں ے ہ ھ). Noto Naskh Arabic is
+ * already bundled for the story cards and covers them, so Urdu borrows it.
+ * Nastaliq would be more idiomatic and is noted in docs/LOCALIZATION.md.
+ */
+export const UI_FONT_UR: UiFont = {
+  regular: 'NotoNaskhArabic_400Regular',
+  medium: 'NotoNaskhArabic_400Regular',
+  semibold: 'NotoNaskhArabic_700Bold',
+};
+/** Thai: the system face, which every device has and none of ours covers. */
+export const UI_FONT_SYSTEM: UiFont = {};
+
+/** The type set for a locale's script. */
+export function uiFontFor(locale: Locale): UiFont {
+  if (locale === 'ar') return UI_FONT_AR;
+  if (locale === 'ur') return UI_FONT_UR;
+  if (locale === 'th') return UI_FONT_SYSTEM;
+  return UI_FONT;
+}
 
 export function useAppFonts() {
   return useFonts(FONT_ASSETS);

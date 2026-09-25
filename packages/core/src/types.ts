@@ -4,10 +4,17 @@
  * compile-time-checked operation.
  */
 
-export type Locale = 'en' | 'ar';
+export type Locale = 'en' | 'ar' | 'fr' | 'id' | 'ms' | 'th' | 'ur';
 
-/** A string that exists in every supported UI locale. */
-export type Localized = Record<Locale, string>;
+/**
+ * A string in as many locales as have been written so far.
+ *
+ * Only English is required. `pick()` falls back to it, which is what lets a new
+ * locale be added without translating all ~450 registry labels in the same
+ * change — the UI dictionaries stay strict, so those cannot be half-finished,
+ * but theme and city names can arrive over time.
+ */
+export type Localized = { en: string } & Partial<Record<Locale, string>>;
 
 /** What kind of text a post carries. Drives the small label on the card. */
 export type PostKind = 'quran' | 'hadith' | 'dua' | 'dhikr' | 'greeting';

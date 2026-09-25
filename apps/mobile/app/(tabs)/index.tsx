@@ -17,7 +17,7 @@ import {
 } from '@barakah/core';
 import { useT } from '../../src/i18n';
 import { ui } from '../../src/theme';
-import { useEditorStore, useRecentStore, useSettingsStore } from '../../src/store';
+import { useEditorStore, useRecentStore } from '../../src/store';
 import { useHijriToday } from '../../src/hooks/useHijriToday';
 import { weekdayName } from '../../src/hooks/useWeekday';
 import { useLayoutWidth } from '../../src/hooks/useLayoutWidth';
@@ -26,6 +26,7 @@ import { PostThumb } from '../../src/components/PostThumb';
 import { PostStrip } from '../../src/components/PostStrip';
 import { ScrollTopButton } from '../../src/components/ScrollTopButton';
 import { BrandMark } from '../../src/brand/BrandMark';
+import { LanguageSheet } from '../../src/components/LanguageSheet';
 import { useScrollTop } from '../../src/hooks/useScrollTop';
 import { REMINDER_OFFER_DELAY_MS, useReminderStore } from '../../src/notifications/store';
 import { Button, Chip, SectionTitle } from '../../src/components/ui';
@@ -41,7 +42,7 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const width = useLayoutWidth();
-  const setLocale = useSettingsStore((s) => s.setLocale);
+  const [languageOpen, setLanguageOpen] = useState(false);
   const { now, label: hijriLabel, occasions } = useHijriToday();
   const recentIds = useRecentStore((s) => s.ids);
   const touch = useRecentStore((s) => s.touch);
@@ -114,7 +115,7 @@ export default function HomeScreen() {
             </Text>
           </View>
         </View>
-        <Chip label={t('language')} onPress={() => setLocale(locale === 'ar' ? 'en' : 'ar')} />
+        <Chip label={t('language')} onPress={() => setLanguageOpen(true)} />
       </View>
 
       {/* today strip */}
@@ -204,6 +205,7 @@ export default function HomeScreen() {
         )}
       />
       <ScrollTopButton visible={canScrollTop} onPress={scrollToTop} />
+      <LanguageSheet visible={languageOpen} onClose={() => setLanguageOpen(false)} />
     </View>
   );
 }

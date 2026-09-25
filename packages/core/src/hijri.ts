@@ -1,4 +1,5 @@
-import type { Locale } from './types';
+import type { Locale, Localized } from './types';
+import { localeMeta, pick } from './i18n';
 
 export interface HijriDate {
   day: number;
@@ -7,19 +8,67 @@ export interface HijriDate {
   year: number;
 }
 
-export const HIJRI_MONTHS: ReadonlyArray<Record<Locale, string>> = [
-  { en: 'Muharram', ar: 'محرم' },
-  { en: 'Safar', ar: 'صفر' },
-  { en: "Rabi' al-Awwal", ar: 'ربيع الأول' },
-  { en: "Rabi' al-Thani", ar: 'ربيع الآخر' },
-  { en: 'Jumada al-Ula', ar: 'جمادى الأولى' },
-  { en: 'Jumada al-Akhirah', ar: 'جمادى الآخرة' },
-  { en: 'Rajab', ar: 'رجب' },
-  { en: "Sha'ban", ar: 'شعبان' },
-  { en: 'Ramadan', ar: 'رمضان' },
-  { en: 'Shawwal', ar: 'شوال' },
-  { en: "Dhul Qi'dah", ar: 'ذو القعدة' },
-  { en: 'Dhul Hijjah', ar: 'ذو الحجة' },
+export const HIJRI_MONTHS: readonly Localized[] = [
+  { en: 'Muharram', ar: 'محرم', fr: 'Mouharram', id: 'Muharram', ms: 'Muharam', th: 'มุฮัรรอม', ur: 'محرم' },
+  { en: 'Safar', ar: 'صفر', fr: 'Safar', id: 'Safar', ms: 'Safar', th: 'เศาะฟัร', ur: 'صفر' },
+  {
+    en: "Rabi' al-Awwal",
+    ar: 'ربيع الأول',
+    fr: 'Rabi al-Awwal',
+    id: 'Rabiulawal',
+    ms: 'Rabiulawal',
+    th: 'ร่อบีอุลเอาวัล',
+    ur: 'ربیع الاول',
+  },
+  {
+    en: "Rabi' al-Thani",
+    ar: 'ربيع الآخر',
+    fr: 'Rabi al-Thani',
+    id: 'Rabiulakhir',
+    ms: 'Rabiulakhir',
+    th: 'ร่อบีอุษษานี',
+    ur: 'ربیع الثانی',
+  },
+  {
+    en: 'Jumada al-Ula',
+    ar: 'جمادى الأولى',
+    fr: 'Joumada al-Oula',
+    id: 'Jumadilawal',
+    ms: 'Jamadilawal',
+    th: 'ญุมาดัลอูลา',
+    ur: 'جمادی الاول',
+  },
+  {
+    en: 'Jumada al-Akhirah',
+    ar: 'جمادى الآخرة',
+    fr: 'Joumada al-Akhira',
+    id: 'Jumadilakhir',
+    ms: 'Jamadilakhir',
+    th: 'ญุมาดัลอาคิเราะฮฺ',
+    ur: 'جمادی الثانی',
+  },
+  { en: 'Rajab', ar: 'رجب', fr: 'Rajab', id: 'Rajab', ms: 'Rejab', th: 'ร่อญับ', ur: 'رجب' },
+  { en: "Sha'ban", ar: 'شعبان', fr: 'Chaabane', id: 'Syakban', ms: 'Syaaban', th: 'ชะอฺบาน', ur: 'شعبان' },
+  { en: 'Ramadan', ar: 'رمضان', fr: 'Ramadan', id: 'Ramadan', ms: 'Ramadan', th: 'รอมฎอน', ur: 'رمضان' },
+  { en: 'Shawwal', ar: 'شوال', fr: 'Chawwal', id: 'Syawal', ms: 'Syawal', th: 'เชาวาล', ur: 'شوال' },
+  {
+    en: "Dhul Qi'dah",
+    ar: 'ذو القعدة',
+    fr: "Dhou al-Qi'da",
+    id: 'Zulkaidah',
+    ms: 'Zulkaedah',
+    th: 'ซุลเกาะอฺดะฮฺ',
+    ur: 'ذوالقعدہ',
+  },
+  {
+    en: 'Dhul Hijjah',
+    ar: 'ذو الحجة',
+    fr: 'Dhou al-Hijja',
+    id: 'Zulhijah',
+    ms: 'Zulhijah',
+    th: 'ซุลฮิจญะฮฺ',
+    ur: 'ذوالحجہ',
+  },
 ];
 
 /**
@@ -87,14 +136,16 @@ export function toHijriTabular(date: Date): HijriDate {
 
 const ARABIC_DIGITS = '٠١٢٣٤٥٦٧٨٩';
 
+/** Numerals in the locale's own digits — Arabic and Urdu read Arabic-Indic. */
 export function toLocaleDigits(n: number, locale: Locale): string {
   const s = String(n);
-  if (locale !== 'ar') return s;
+  if (localeMeta(locale).digits !== 'arab') return s;
   return s.replace(/\d/g, (d) => ARABIC_DIGITS[Number(d)]);
 }
 
 export function formatHijri(h: HijriDate, locale: Locale): string {
-  const month = HIJRI_MONTHS[h.month - 1]?.[locale] ?? '';
-  const suffix = locale === 'ar' ? 'هـ' : 'AH';
-  return `${toLocaleDigits(h.day, locale)} ${month} ${toLocaleDigits(h.year, locale)} ${suffix}`;
+  const entry = HIJRI_MONTHS[h.month - 1];
+  const month = entry ? pick(locale, entry) : '';
+  const { hijriSuffix } = localeMeta(locale);
+  return `${toLocaleDigits(h.day, locale)} ${month} ${toLocaleDigits(h.year, locale)} ${hijriSuffix}`;
 }

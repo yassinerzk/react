@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import { hasAdReward, isPro } from '@barakah/core';
+import { hasAdReward, isPro, tagOf } from '@barakah/core';
 import { useEntitlementStore } from './store';
 import { monetizationReady } from './adapter';
 import { useToastStore } from '../store';
@@ -63,8 +63,7 @@ export function ProPanel() {
       {description}
       {hasAdReward(entitlements) && (
         <Text style={{ color: ui.accent, fontFamily: font.regular, fontSize: 12, textAlign }}>
-          {t('adRewardActive')}{' '}
-          {new Date(entitlements.adRewardUntil).toLocaleString(locale === 'ar' ? 'ar' : 'en')}
+          {t('adRewardActive')} {new Date(entitlements.adRewardUntil).toLocaleString(tagOf(locale))}
         </Text>
       )}
       <View style={{ flexDirection: row, gap: 8, flexWrap: 'wrap' }}>

@@ -1,6 +1,7 @@
 import type { Locale, Post, StoryDesign } from './types';
 import { getArabicFont, getLatinFont } from './fonts';
 import { toLocaleDigits } from './hijri';
+import { isRtl } from './i18n';
 import { simplifyUthmani, type QuranChapterMeta, type QuranVerse } from './quran';
 import { extractMatn, HADITH_BOOKS, stripNarrator, type HadithEntry } from './hadith';
 
@@ -64,7 +65,7 @@ export function designFromVerses(
     kind: 'quran',
     arabic: verses.map((v) => simplifyUthmani(v.text)).join(' ۝ '),
     translation: verses.map((v) => v.translation.trim()).join(' '),
-    source: source[locale],
+    source: isRtl(locale) ? source.ar : source.en,
     theme: 'ivory-gold',
     decoration: 'arch',
     arabicFont: 'amiri',
@@ -83,7 +84,7 @@ export function designFromHadith(entry: HadithEntry, locale: Locale): StoryDesig
     kind: 'hadith',
     arabic: extractMatn(entry.ar),
     translation: stripNarrator(entry.en),
-    source: source[locale],
+    source: isRtl(locale) ? source.ar : source.en,
     theme: 'emerald-night',
     decoration: 'none',
     arabicFont: 'naskh',

@@ -113,12 +113,13 @@ system share sheet. Nothing is posted anywhere by the app.
 
 Copy is drafted in `docs/STORE-LISTING.md` for:
 
-English · العربية · Bahasa Indonesia · Bahasa Melayu · ไทย · اردو
+English · العربية · Français · Bahasa Indonesia · Bahasa Melayu · ไทย · اردو
 
-**Read the warning at the top of that file before publishing any of them.** A listing in a language
-the app interface does not yet speak sets an expectation the app cannot meet, so each non-English
-description carries a line saying the interface is currently English and Arabic. Do not remove those
-lines until `docs/LOCALIZATION.md` has actually been worked through.
+The **app interface speaks all seven**, so each listing says so. The **Quran and hadith translations
+are still English**, and each listing says that too — keep that distinction, because someone who
+installs expecting an Indonesian translation of the Quran will say so in a review otherwise.
+
+Every non-English draft still wants a native speaker before it is published.
 
 ## 9. Release track
 

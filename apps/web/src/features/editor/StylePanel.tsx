@@ -109,7 +109,7 @@ export function StylePanel() {
               style={{ fontFamily: f.family, fontSize: '1.05rem' }}
               onClick={() => patch({ arabicFont: f.id })}
             >
-              {f.name.ar}
+              {f.name.ar ?? f.name.en}
             </Chip>
           ))}
         </div>

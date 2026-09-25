@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavStore, useSettingsStore } from '@/app/store';
-import { dirOf } from '@barakah/core';
+import { dirOf, LOCALES, type Locale } from '@barakah/core';
 import { useT } from '@/shared/hooks/useT';
 import { Toaster } from '@/shared/ui/Toaster';
 import { GalleryScreen } from '@/features/gallery/GalleryScreen';
@@ -36,9 +36,20 @@ export function App() {
             <small>{t('tagline')}</small>
           </span>
         </button>
-        <button type="button" className="lang" onClick={() => setLocale(locale === 'ar' ? 'en' : 'ar')}>
-          {t('language')}
-        </button>
+        {/* A native select: it is the accessible, familiar control on the web,
+            and each option stays labelled in its own language. */}
+        <select
+          className="lang"
+          aria-label={t('language')}
+          value={locale}
+          onChange={(e) => setLocale(e.target.value as Locale)}
+        >
+          {LOCALES.map((l) => (
+            <option key={l.id} value={l.id}>
+              {l.label}
+            </option>
+          ))}
+        </select>
       </header>
       {route.name === 'gallery' ? (
         <GalleryScreen />

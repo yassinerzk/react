@@ -17,6 +17,16 @@ Indonesian and Malay are close relatives and mostly mutually intelligible, but t
 locale: everyday app vocabulary genuinely differs (_bagikan_ vs _kongsi_ for "share"). One
 translator can often cover both, which is a cost saving, not a reason to ship one string set.
 
+> [!NOTE]
+> **Phase A and the UI-string half of phase B are done** (25 September 2026). The interface speaks
+> English, Arabic, French, Bahasa Indonesia, Bahasa Melayu, ไทย and اردو — 176 keys each, complete
+> and enforced by the type system — reached through a language picker on the home screen.
+>
+> What is written below still stands for everything that is **not** the interface: the ~450 registry
+> labels fall back to English, the story cards' `translation` field is English, the Quran reader's
+> translation is English, and the hadith library is Arabic + English. Those are the sourced,
+> licensed layers, and they are still the long pole. Sections 2, 3 and 4 are the plan for them.
+
 ## 1. Timing
 
 **This should land after v1 is published, for the same reason AdMob should.** The i18n change
@@ -243,12 +253,12 @@ This is where the four languages stop being equivalent:
 
 Ordered by reach per unit of work, not by the order they were asked for.
 
-| Phase | Work                                                                                                                                                                                                                                                          | Blocked on                           |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| A     | The code change in section 4: `Localized`, `LOCALES` metadata, the 11 call sites, the picker. No new language ships; behaviour for en/ar is unchanged.                                                                                                        | nothing                              |
-| B     | **Indonesian**, then **Malay**. Latin script, zero font work, Quran translations available, complete hadith for Indonesian. Indonesia is the largest Muslim population on earth. Malay ships with the Indonesian hadith edition unless one is licensed first. | translator                           |
-| C     | **Urdu**. RTL is already fixed by phase A; adds the Nastaliq font and the line-height factor. Complete hadith available.                                                                                                                                      | translator, font                     |
-| D     | **Thai**. New font, word-breaking work, and the curated hadith source — the most engineering of the four.                                                                                                                                                     | translator, font, source abstraction |
+| Phase | Work                                                                                                                              | Blocked on                           |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| A ✅  | Done. `Localized` is partial, locale metadata drives direction, Intl tags, digits and the era marker, and the toggle is a picker. | nothing                              |
+| B 🟡  | UI strings done for all five new locales. The sourced layers — card translations, Quran, hadith — are not.                        | translator                           |
+| C     | **Urdu**. RTL is already fixed by phase A; adds the Nastaliq font and the line-height factor. Complete hadith available.          | translator, font                     |
+| D     | **Thai**. New font, word-breaking work, and the curated hadith source — the most engineering of the four.                         | translator, font, source abstraction |
 
 Phase A is pure engineering and needs no translator, so it can happen while procurement runs — same
 shape as the recitation plan.

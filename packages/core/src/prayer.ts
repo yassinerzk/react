@@ -7,6 +7,7 @@ import {
   type CalculationParameters,
 } from 'adhan';
 import type { Locale, Localized } from './types';
+import { localeMeta, tagOf } from './i18n';
 
 export interface GeoPoint {
   lat: number;
@@ -97,10 +98,13 @@ export function qiblaBearing(point: GeoPoint): number {
 }
 
 export function formatClock(date: Date, locale: Locale, timeZone?: string): string {
-  return new Intl.DateTimeFormat(locale === 'ar' ? 'ar-EG' : 'en-GB', {
+  // Arabic keeps its own 12-hour convention and Arabic-Indic digits; everywhere
+  // else a 24-hour clock avoids an am/pm abbreviation in seven languages.
+  const arabicDigits = localeMeta(locale).digits === 'arab';
+  return new Intl.DateTimeFormat(tagOf(locale), {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: locale !== 'ar' ? false : undefined,
+    hour12: arabicDigits ? undefined : false,
     timeZone,
   }).format(date);
 }

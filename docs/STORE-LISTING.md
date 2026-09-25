@@ -12,10 +12,10 @@ read it over before it goes live — you know the audience better than a transla
 > Malay, Thai transliterates Arabic terms by convention rather than by rule, and Urdu register shifts
 > with audience. A clumsy listing is the first thing a reader sees.
 >
-> Each non-English description also carries a short section saying the **app interface is currently
-> English and Arabic**. Do not delete those lines until `docs/LOCALIZATION.md` has actually been
-> worked through — a listing in a language the app does not speak earns one-star reviews from people
-> who were told otherwise.
+> The app interface now speaks all six of these languages, so each description says so plainly. The
+> **Quran and hadith translations are still English**, and every description says that too. Keep that
+> distinction: someone who installs expecting an Indonesian translation of the Quran and finds an
+> English one will say so in a review.
 
 ---
 
@@ -177,6 +177,78 @@ Play accepts a separate listing per locale. The app name stays **`Barakah Storie
 one: a single brand is worth more than a translated one, for word of mouth and for search.
 Re-check the character counts after any edit — the counts shown were taken as written.
 
+### Français — `fr-FR`
+
+**Short description** (74 / 80)
+
+```
+Cartes islamiques, heures de prière, Coran et hadith — à partager en story
+```
+
+**Full description** (3106 / 4000)
+
+```
+Partagez une belle carte islamique dans votre story en quelques secondes.
+
+Barakah Stories vous propose des cartes prêtes à l'emploi et entièrement modifiables pour les
+moments qui comptent — le vendredi, les invocations du matin et du soir, le Ramadan, Laylat al-Qadr,
+les deux Aïd, les dix premiers jours de Dhou al-Hijja et le jour de Arafat, le nouvel an hégirien et
+Achoura, Isra et Miraj — ainsi que des versets du Coran, des hadiths, des invocations et les
+occasions du quotidien.
+
+Chaque carte est enregistrée en 1080x1920, le format exact d'une story : rien n'est rogné, rien
+n'est flou.
+
+CONÇUES POUR ÊTRE MODIFIÉES
+• Plus de 300 cartes dans 14 catégories, chaque verset et chaque hadith avec sa référence
+• Modifiez n'importe quel texte : titre, texte arabe, traduction, source et ligne de signature
+• 10 thèmes de couleurs et 12 fonds photo — fleurs, rivières, lacs, forêts, désert, ciel nocturne
+  et mosquées
+• 9 ornements, 7 polices arabes, taille et alignement du texte réglables
+• La taille du texte s'adapte d'elle-même pour que les longs versets restent élégants
+• Le bouton « Surprenez-moi » pour un nouveau rendu instantané
+
+LES CARTES DU JOUR
+L'application connaît la date hégirienne et l'heure, et propose ce qui convient — les cartes du
+vendredi le vendredi, les invocations du matin le matin, les cartes du Ramadan pendant le Ramadan.
+La sélection change chaque jour, il y a donc toujours du nouveau.
+
+HEURES DE PRIÈRE ET QIBLA
+• Heures de prière pour votre position ou pour l'une des 33 villes proposées
+• 12 méthodes de calcul, avec le Asr selon Chafiite ou Hanafite
+• Compte à rebours jusqu'à la prochaine prière
+• Une boussole Qibla qui tourne avec vous
+
+CORAN
+• Les 114 sourates dans l'application, consultables sans connexion
+• Texte arabe en rasm ottoman avec traduction anglaise
+• L'application retient le dernier verset lu et marque les sourates terminées
+• Transformez n'importe quel verset en carte d'une seule touche
+
+HADITH
+• Sahih al-Bukhari et Sahih Muslim, en arabe et en anglais
+• Lecture par thème ou recherche dans tout le texte
+• Un filtre qui n'affiche que les invocations
+• Transformez n'importe quel hadith en carte d'une seule touche
+
+LANGUE DE L'APPLICATION
+L'interface est disponible en français, anglais, arabe, indonésien, malais et thaï. Les traductions
+du Coran et des hadiths sont pour l'instant en anglais.
+
+FONCTIONNE HORS CONNEXION
+Le Coran, toutes les cartes, les polices et les fonds sont déjà dans l'application. Seuls les
+recueils de hadiths se téléchargent une fois, puis restent sur votre appareil.
+
+CE QUE VOUS CRÉEZ RESTE SUR VOTRE TÉLÉPHONE
+Tout ce que vous créez reste sur votre téléphone. La création d'un compte est entièrement
+facultative et ne sert qu'à synchroniser vos cartes enregistrées et votre progression de lecture
+entre vos appareils. Vous pouvez supprimer votre compte et toutes ses données à tout moment depuis
+l'application.
+
+Le texte du Coran suit le mushaf ottoman. Chaque hadith est cité avec son recueil et son numéro. Si
+vous repérez une coquille dans le texte arabe, dites-le-nous et nous la corrigerons rapidement.
+```
+
 ### Bahasa Indonesia — `id-ID`
 
 **Short description** (75 / 80)
@@ -230,8 +302,8 @@ HADIS
 • Ubah hadis mana pun menjadi kartu hanya dengan satu ketukan
 
 BAHASA APLIKASI
-Tampilan aplikasi saat ini tersedia dalam bahasa Inggris dan Arab, dengan terjemahan Al-Qur'an dan
-hadis dalam bahasa Inggris. Bahasa Indonesia sedang kami siapkan.
+Tampilan aplikasi tersedia dalam bahasa Indonesia, Inggris, Arab, Melayu, Prancis, dan Thai.
+Terjemahan Al-Qur'an dan hadis saat ini masih dalam bahasa Inggris.
 
 BISA DIPAKAI TANPA INTERNET
 Al-Qur'an, seluruh kartu, jenis huruf, dan latar foto sudah ada di dalam aplikasi. Hanya kitab hadis
@@ -300,8 +372,8 @@ HADIS
 • Tukar mana-mana hadis menjadi kad dengan satu sentuhan
 
 BAHASA APLIKASI
-Paparan aplikasi buat masa ini dalam bahasa Inggeris dan Arab, dengan terjemahan Al-Quran dan hadis
-dalam bahasa Inggeris. Bahasa Melayu sedang disediakan.
+Paparan aplikasi tersedia dalam bahasa Melayu, Inggeris, Arab, Indonesia, Perancis dan Thai.
+Terjemahan Al-Quran dan hadis buat masa ini masih dalam bahasa Inggeris.
 
 BOLEH DIGUNAKAN TANPA INTERNET
 Al-Quran, keseluruhan kad, jenis fon dan latar foto sudah ada di dalam aplikasi. Hanya kitab hadis
@@ -368,8 +440,8 @@ Barakah Stories มีการ์ดสำเร็จรูปที่คุ�
 • เปลี่ยนหะดีษใดก็ได้ให้เป็นการ์ดด้วยการแตะเพียงครั้งเดียว
 
 ภาษาของแอป
-หน้าจอแอปขณะนี้มีภาษาอังกฤษและภาษาอาหรับ ส่วนคำแปลอัลกุรอานและหะดีษเป็นภาษาอังกฤษ
-ภาษาไทยกำลังอยู่ระหว่างการจัดทำ
+หน้าจอแอปมีภาษาไทย อังกฤษ อาหรับ อินโดนีเซีย มลายู และฝรั่งเศส
+ส่วนคำแปลอัลกุรอานและหะดีษขณะนี้ยังเป็นภาษาอังกฤษ
 
 ใช้งานได้โดยไม่ต้องต่ออินเทอร์เน็ต
 อัลกุรอาน การ์ดทั้งหมด แบบอักษร และภาพพื้นหลังอยู่ในแอปแล้ว มีเพียงหนังสือหะดีษที่ต้องดาวน์โหลดเพียงครั้งเดียว
@@ -435,8 +507,8 @@ Barakah Stories آپ کو خاص مواقع کے لیے تیار کارڈز دی
 • کسی بھی حدیث کو ایک ٹیپ میں کارڈ بنا لیں
 
 ایپ کی زبان
-ایپ کا انٹرفیس فی الحال انگریزی اور عربی میں ہے، جبکہ قرآن و حدیث کا ترجمہ انگریزی میں ہے۔ اردو پر
-کام جاری ہے۔
+ایپ کا انٹرفیس اردو، انگریزی، عربی، انڈونیشیائی، ملے اور فرانسیسی میں دستیاب ہے۔ قرآن و حدیث کا
+ترجمہ فی الحال انگریزی میں ہے۔
 
 انٹرنیٹ کے بغیر بھی کام کرتی ہے
 قرآن، تمام کارڈز، فونٹس اور پس منظر ایپ کے اندر موجود ہیں۔ صرف حدیث کی کتابیں ایک بار ڈاؤن لوڈ کرنی
