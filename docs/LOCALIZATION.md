@@ -69,7 +69,7 @@ The 452 `{ en: …, ar: … }` pairs across `themes.ts`, `backgrounds.ts`, `cate
 type (see section 4). Once that is fixed, these 452 can be filled in over time, per language, without
 breaking a build.
 
-### Story card text — 297 of 305 localised
+### Story card text — 263 of 305 localised
 
 `postTranslation()` reads three sources in order: renderings the app wrote
 (`Post.translations`, greetings only), then `QURAN_TRANSLATIONS`, then
@@ -78,9 +78,9 @@ and Arabic resolves to it on purpose — the card already carries the Arabic.
 
 | Locale | Localised | Still English |
 | ------ | --------- | ------------- |
-| اردو   | **297**   | 8             |
-| id     | **291**   | 14            |
-| fr     | **275**   | 30            |
+| اردو   | **263**   | 42            |
+| fr     | **263**   | 42            |
+| id     | **258**   | 47            |
 | ms     | 198       | 107           |
 | th     | 198       | 107           |
 
@@ -88,8 +88,33 @@ and Arabic resolves to it on purpose — the card already carries the Arabic.
 the dataset. Their Quran and greeting cards are complete; the 107 transmitted cards are the gap, and
 HadeethEnc (section above) is the route if it is worth the work.
 
-**French reaches 275 rather than 291** because there is no French edition of Tirmidhi, which 25
-cards cite.
+### Translating the saying, not the chain
+
+A published hadith carries its chain of narrators. A card carries only the saying. An early run
+pulled the whole narration, so a one-line card got a paragraph — the median translation ran **5.1x**
+the length of the English it replaced — and two cards got the wrong hadith entirely.
+
+Both problems had one cause: matching scored how many of a card's words appeared _somewhere_ in a
+hadith, with no regard for where. A six-word duaa finds all six of its words scattered through a
+four-hundred-word narration about something else and scores a perfect match. That is how
+`h2-salawat-ten` ended up showing the narration of al-Buraq and the Isra.
+
+Three guards, in order:
+
+1. **Proximity.** The card's words must appear close together — a quotation, not a coincidence —
+   found with a sliding window over the positions where they occur.
+2. **Extraction.** The saying is lifted out of the narration: the quoted span closest in length to
+   the English the card already carries, since a narration often quotes several things and the
+   longest is rarely the right one. Where there are no quotation marks, the text after the last
+   "he said" is used.
+3. **Sanity.** Anything still outside 0.35x–2.5x of the English is dropped and keeps English.
+
+Median length is now **1.1x** the English and nothing exceeds 2.5x. `content.test.ts` enforces the
+range, so a paragraph on a story card cannot come back unnoticed.
+
+This costs coverage — 297 cards became 263 — and that is the trade being made deliberately. What is
+left is the saying itself; what could not be reduced to the saying stays in English rather than
+arriving as a wall of text.
 
 ### Two generators
 
