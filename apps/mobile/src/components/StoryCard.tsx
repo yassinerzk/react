@@ -10,7 +10,6 @@ import {
   PHOTO_PALETTE,
   SCRIMS,
   themeBaseColor,
-  WATERMARK_TEXT,
   type StoryDesign,
 } from '@barakah/core';
 import { useT } from '../i18n';
@@ -19,9 +18,15 @@ import { BACKGROUND_IMAGES } from '../backgrounds';
 import { GradientFill } from './Gradient';
 import { PatternLayer } from './Pattern';
 import { DECORATION_MAP } from './Decorations';
+import { BrandWordmark } from '../brand/BrandMark';
 
 export const STORY_WIDTH = 1080;
 export const STORY_HEIGHT = 1920;
+
+/** Wordmark size and placement, in the 1080x1920 design space. */
+const WATERMARK_WIDTH = 190;
+/** Far enough up that WhatsApp's own reply bar does not sit over it. */
+const WATERMARK_BOTTOM = 150;
 
 interface StoryCardProps {
   design: StoryDesign;
@@ -275,28 +280,15 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 300 * u,
+            bottom: WATERMARK_BOTTOM * u,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 10 * u,
-            opacity: 0.75,
           }}
         >
-          <Text style={{ color: palette.muted, fontSize: 24 * u }}>☪</Text>
-          <Text
-            style={[
-              {
-                color: palette.muted,
-                fontFamily: 'Cairo_600SemiBold',
-                fontSize: 24 * u,
-                letterSpacing: 1.5 * u,
-              },
-              shadow,
-            ]}
-          >
-            {WATERMARK_TEXT}
-          </Text>
+          {/* The real lockup rather than an emoji and a typed name: this is the
+              one mark that travels on every shared story. */}
+          <BrandWordmark width={WATERMARK_WIDTH * u} color={palette.muted} opacity={0.75} />
         </View>
       )}
 

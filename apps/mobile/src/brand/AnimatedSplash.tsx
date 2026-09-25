@@ -3,11 +3,11 @@ import { Animated, Easing, StyleSheet, useAnimatedValue, useWindowDimensions, Vi
 import { SvgXml } from 'react-native-svg';
 import { ui } from '../theme';
 import {
-  BARAKA_MARK,
-  BARAKA_WORDMARK,
   BRAND_VIEWBOX,
+  markFull,
   MARK_CONTENT_RATIO,
   MARK_END_SCALE,
+  wordmarkFull,
   WORDMARK_MARK_CENTRE,
 } from './artwork';
 
@@ -146,12 +146,12 @@ export function AnimatedSplash({ onDone }: AnimatedSplashProps) {
             }),
           }}
         >
-          <SvgXml xml={BARAKA_WORDMARK} width="100%" height="100%" />
+          <SvgXml xml={wordmarkFull(ui.text)} width="100%" height="100%" />
         </Animated.View>
 
         {/* In front: the mark that travels into the wordmark's crescent. */}
         <Animated.View style={markStyle}>
-          <SvgXml xml={BARAKA_MARK} width="100%" height="100%" />
+          <SvgXml xml={markFull(ui.accent)} width="100%" height="100%" />
         </Animated.View>
       </View>
     </Animated.View>

@@ -25,6 +25,7 @@ import { usePrayerTimes } from '../../src/features/prayer/usePrayerTimes';
 import { PostThumb } from '../../src/components/PostThumb';
 import { PostStrip } from '../../src/components/PostStrip';
 import { ScrollTopButton } from '../../src/components/ScrollTopButton';
+import { BrandMark } from '../../src/brand/BrandMark';
 import { useScrollTop } from '../../src/hooks/useScrollTop';
 import { REMINDER_OFFER_DELAY_MS, useReminderStore } from '../../src/notifications/store';
 import { Button, Chip, SectionTitle } from '../../src/components/ui';
@@ -102,7 +103,7 @@ export default function HomeScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 22, color: ui.accentInk }}>☪</Text>
+            <BrandMark size={24} color={ui.accentInk} />
           </View>
           <View>
             <Text style={{ color: ui.text, fontFamily: font.semibold, fontSize: 17, textAlign }}>
