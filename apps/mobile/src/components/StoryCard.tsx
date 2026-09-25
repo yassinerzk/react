@@ -57,6 +57,9 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
    * definition, which is the documented way round this.
    */
   const styleKey = `${uid}-${design.theme}-${design.background}`;
+  // The ids above defeat the cache; keying the <Svg> elements on the same value
+  // remounts them, so a stale definition cannot survive a style change even if
+  // the caching behaves differently across versions of react-native-svg.
   const { t } = useT();
   const u = width / STORY_WIDTH;
   const height = width * (STORY_HEIGHT / STORY_WIDTH);
@@ -97,6 +100,7 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
             cachePolicy="memory-disk"
           />
           <Svg
+            key={`scrim-${styleKey}`}
             style={StyleSheet.absoluteFill}
             viewBox={`0 0 ${STORY_WIDTH} ${STORY_HEIGHT}`}
             preserveAspectRatio="none"
@@ -111,6 +115,7 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
         </>
       ) : (
         <Svg
+          key={`bg-${styleKey}`}
           style={StyleSheet.absoluteFill}
           viewBox={`0 0 ${STORY_WIDTH} ${STORY_HEIGHT}`}
           preserveAspectRatio="none"
@@ -131,7 +136,11 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
       )}
 
       {/* decoration + frame */}
-      <Svg style={StyleSheet.absoluteFill} viewBox={`0 0 ${STORY_WIDTH} ${STORY_HEIGHT}`}>
+      <Svg
+        key={`decor-${styleKey}-${design.decoration}`}
+        style={StyleSheet.absoluteFill}
+        viewBox={`0 0 ${STORY_WIDTH} ${STORY_HEIGHT}`}
+      >
         <Decoration color={palette.decor} uid={styleKey} />
         {design.showFrame && (
           <G>
