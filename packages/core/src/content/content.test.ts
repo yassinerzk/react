@@ -4,6 +4,7 @@ import { ARABIC_FONT_MAP } from '../fonts';
 import { BACKGROUND_MAP, BACKGROUNDS } from '../backgrounds';
 import { postTranslation } from '../design';
 import { QURAN_TRANSLATIONS, QURAN_TRANSLATION_CREDITS } from './quranTranslations.generated';
+import { HADITH_TRANSLATIONS } from './hadithTranslations.generated';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -107,6 +108,26 @@ describe('content registry', () => {
     }
     expect(gaps, 'run scripts/gen-quran-translations.mjs').toEqual([]);
     expect(verses.length).toBeGreaterThan(100);
+  });
+
+  /**
+   * A published hadith carries its chain of narrators; a card carries only the
+   * saying. If a fetched translation is far longer than the English the card
+   * already has, the chain came with it — which is a wall of text on a story
+   * card and was the bug this guard exists to stop coming back.
+   */
+  it('no sourced translation runs away from the English it replaces', () => {
+    const byId = new Map(POSTS.map((p) => [p.id, p]));
+    const bloated: string[] = [];
+    for (const [id, locales] of Object.entries(HADITH_TRANSLATIONS)) {
+      const english = byId.get(id)?.translation;
+      if (!english) continue;
+      for (const [loc, text] of Object.entries(locales)) {
+        const ratio = text.length / english.length;
+        if (ratio > 2.6 || ratio < 0.3) bloated.push(`${id}:${loc} ${ratio.toFixed(1)}x`);
+      }
+    }
+    expect(bloated, 're-run scripts/gen-hadith-translations.mjs').toEqual([]);
   });
 
   it('names the translator for every sourced locale', () => {

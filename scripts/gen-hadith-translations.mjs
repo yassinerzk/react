@@ -5,12 +5,15 @@
 //
 // Output: packages/core/src/content/hadithTranslations.generated.ts
 //
-// Cards are matched to a hadith by their **Arabic text**, not by the number they
-// cite. Hadith numbering is not universal: it differs between printed editions
-// and between datasets, so a number alone can point at a different hadith
-// entirely and would attach the wrong translation to a card. Matching on the
-// text finds the right hadith wherever it sits, and a card that matches nothing
-// well enough keeps its English rather than getting something close but wrong.
+// Three things make this harder than the Quran, and all three are guarded:
+//
+//   1. Numbering is not universal, so cards are matched by their Arabic text.
+//   2. A short card can match scattered words in a long narration by chance, so
+//      the matching words must also sit close together — a real quotation, not
+//      a coincidence spread over four hundred words.
+//   3. A published hadith carries its chain of narrators, which the cards do
+//      not. The Prophet's words are lifted out of the translation, and anything
+//      that still looks nothing like the English keeps its English instead.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,25 +23,24 @@ const postsDir = path.join(root, 'packages/core/src/content/posts');
 const out = path.join(root, 'packages/core/src/content/hadithTranslations.generated.ts');
 const CDN = 'https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions';
 
-/** Collections the cards draw on, in rough order of how often they are cited. */
 const BOOKS = ['muslim', 'bukhari', 'tirmidhi', 'abudawud', 'ibnmajah', 'nasai'];
 
-/**
- * Locales with published editions. Malay and Thai have none for any collection
- * in this dataset, so their hadith cards keep English — see docs/LOCALIZATION.md.
- */
 const EDITIONS = {
   fr: { prefix: 'fra', credit: 'hadith-api, éditions françaises' },
   id: { prefix: 'ind', credit: 'hadith-api, edisi Indonesia' },
   ur: { prefix: 'urd', credit: 'hadith-api، اردو ایڈیشن' },
 };
 
-/** Accept a match only when this much of the card's wording is present. */
-const MIN_SCORE = 0.8;
+/** Share of the card's words that must appear in the matched hadith. */
+const MIN_COVERAGE = 0.8;
+/** …and within a span no more than this many times the card's own length. */
+const MAX_SPREAD = 3;
+/** A kept translation must be this close in length to the English matn. */
+const MIN_RATIO = 0.35;
+const MAX_RATIO = 2.5;
 
 const TASHKEEL = /[ؐ-ًؚ-ٰٟۖ-ۭـ]/g;
 
-/** Words only, vowels and orthographic variants flattened. */
 function words(s) {
   return s
     .replace(TASHKEEL, '')
@@ -52,21 +54,17 @@ function words(s) {
 
 async function edition(name) {
   const res = await fetch(`${CDN}/${name}.min.json`);
-  if (!res.ok) return null;
-  return res.json();
+  return res.ok ? res.json() : null;
 }
 
-/** Cards the Quran generator already covers, whatever their kind. */
 function quranCovered() {
   const file = path.join(root, 'packages/core/src/content/quranTranslations.generated.ts');
   if (!fs.existsSync(file)) return new Set();
   const text = fs.readFileSync(file, 'utf8');
   const body = text.slice(text.indexOf('QURAN_TRANSLATIONS: Record'));
-  // Quotes depend on whether Prettier has run over the generated file yet.
   return new Set([...body.matchAll(/^ {2}["']([^"']+)["']: \{/gm)].map((m) => m[1]));
 }
 
-/** Every card whose text is transmitted rather than written by us. */
 function transmittedCards() {
   const skip = quranCovered();
   const found = [];
@@ -77,19 +75,103 @@ function transmittedCards() {
       const kind = /kind: '(\w+)'/.exec(body)?.[1];
       if (!kind || kind === 'quran' || kind === 'greeting') continue;
       if (skip.has(id)) continue;
-      if (!/translation:/.test(body)) continue;
+      const english = /translation:\s*\n?\s*'((?:[^'\\]|\\.)*)'/.exec(body);
       const arabic = /arabic:\s*\n?\s*'((?:[^'\\]|\\.)*)'/.exec(body);
-      if (!arabic) continue;
-      found.push({ id, kind, words: words(arabic[1]) });
+      if (!english || !arabic) continue;
+      found.push({ id, kind, english: english[1], words: words(arabic[1]) });
     }
   }
   return found;
 }
 
+/**
+ * Does the card's wording appear as a run inside this hadith?
+ *
+ * Coverage alone is not enough: a six-word duaa will find all six words
+ * somewhere in a four-hundred-word narration about something else entirely.
+ * Requiring them inside a short span is what separates a quotation from a
+ * coincidence.
+ */
+function quotationScore(cardWords, hadithWords) {
+  const wanted = new Set(cardWords);
+  const hits = [];
+  for (let i = 0; i < hadithWords.length; i++) {
+    if (wanted.has(hadithWords[i])) hits.push([i, hadithWords[i]]);
+  }
+  if (!hits.length) return 0;
+  const need = Math.ceil(wanted.size * MIN_COVERAGE);
+  const maxSpan = Math.max(cardWords.length * MAX_SPREAD, 12);
+  const counts = new Map();
+  let distinct = 0;
+  let best = 0;
+  let left = 0;
+  for (let right = 0; right < hits.length; right++) {
+    const w = hits[right][1];
+    counts.set(w, (counts.get(w) ?? 0) + 1);
+    if (counts.get(w) === 1) distinct++;
+    while (distinct >= need) {
+      const span = hits[right][0] - hits[left][0] + 1;
+      if (span <= maxSpan) best = Math.max(best, distinct / wanted.size);
+      const lw = hits[left][1];
+      counts.set(lw, counts.get(lw) - 1);
+      if (counts.get(lw) === 0) distinct--;
+      left++;
+    }
+  }
+  return best;
+}
+
+/** The Prophet's words, lifted out of a narration that carries its chain. */
+const QUOTE_PAIRS = [
+  ['«', '»'],
+  ['”', '“'],
+  ['“', '”'],
+  ['"', '"'],
+];
+
+/**
+ * "He said:" in each language, used only when a narration carries no quotation
+ * marks to cut on. Everything before the last one is the chain of narrators.
+ */
+const SAID = [/فرمایا\s*[:؛]?\s*["”«]?/g, /bersabda\s*[:,]\s*["“]?/gi, /a dit\s*:\s*[«"“]?/gi];
+
+function afterNarration(text, targetLength) {
+  let best = text;
+  for (const marker of SAID) {
+    marker.lastIndex = 0;
+    let m;
+    while ((m = marker.exec(text)) !== null) {
+      const tail = text.slice(m.index + m[0].length).trim();
+      // Only if what follows is substantial enough to be the saying itself.
+      if (tail.length >= targetLength * 0.4 && tail.length < best.length) best = tail;
+    }
+  }
+  return best;
+}
+
+function matn(text, targetLength) {
+  const spans = [];
+  for (const [open, close] of QUOTE_PAIRS) {
+    let i = text.indexOf(open);
+    while (i !== -1) {
+      const j = text.indexOf(close, i + 1);
+      if (j === -1) break;
+      const span = text.slice(i + 1, j).trim();
+      if (span.length > 15) spans.push(span);
+      i = text.indexOf(open, j + 1);
+    }
+  }
+  if (!spans.length) return afterNarration(text.trim(), targetLength);
+  // A narration can quote several things — the Prophet's words, a companion's
+  // question, a second hadith. Take the one closest in length to the English
+  // this card already carries, rather than simply the longest.
+  spans.sort((a, b) => Math.abs(a.length - targetLength) - Math.abs(b.length - targetLength));
+  return spans[0];
+}
+
 const cards = transmittedCards();
 console.log(`transmitted cards: ${cards.length}`);
 
-// Index the Arabic corpus once: word -> the hadith containing it.
 const corpus = [];
 const index = new Map();
 for (const book of BOOKS) {
@@ -101,14 +183,14 @@ for (const book of BOOKS) {
   }
   let n = 0;
   for (const h of json.hadiths) {
-    const set = new Set(words(h.text));
-    if (set.size < 4) continue;
+    const list = words(h.text);
+    if (list.length < 4) continue;
     const ref = corpus.length;
-    corpus.push({ book, number: h.hadithnumber, set });
-    for (const w of set) {
-      let list = index.get(w);
-      if (!list) index.set(w, (list = []));
-      list.push(ref);
+    corpus.push({ book, number: h.hadithnumber, list });
+    for (const w of new Set(list)) {
+      let posting = index.get(w);
+      if (!posting) index.set(w, (posting = []));
+      posting.push(ref);
     }
     n++;
   }
@@ -116,9 +198,7 @@ for (const book of BOOKS) {
 }
 console.log(`corpus: ${corpus.length} hadith, ${index.size} distinct words`);
 
-/** Best-scoring hadith for a card, whatever the score. */
 function bestMatch(card) {
-  // Start from the card's rarest words so the candidate set stays small.
   const rare = [...new Set(card.words)]
     .map((w) => [w, index.get(w)?.length ?? 0])
     .filter(([, n]) => n > 0)
@@ -129,9 +209,7 @@ function bestMatch(card) {
   let best = null;
   for (const ref of seen) {
     const entry = corpus[ref];
-    let hit = 0;
-    for (const w of card.words) if (entry.set.has(w)) hit++;
-    const score = hit / card.words.length;
+    const score = quotationScore(card.words, entry.list);
     if (!best || score > best.score) best = { book: entry.book, number: entry.number, score };
   }
   return best;
@@ -141,40 +219,51 @@ const matched = [];
 const weak = [];
 for (const card of cards) {
   const hit = bestMatch(card);
-  if (hit && hit.score >= MIN_SCORE) matched.push({ ...card, ...hit });
+  if (hit && hit.score >= MIN_COVERAGE) matched.push({ ...card, ...hit });
   else weak.push({ id: card.id, score: hit ? hit.score : 0 });
 }
-console.log(`\nmatched to a hadith: ${matched.length}/${cards.length}`);
-for (const w of weak) console.log(`  no confident match: ${w.id} (best ${(w.score * 100).toFixed(0)}%)`);
+console.log(`\nquoted in a hadith: ${matched.length}/${cards.length}`);
 
-// Pull the translations, only for collections something actually matched in.
 const needed = [...new Set(matched.map((m) => m.book))];
 const translations = {};
+const dropped = [];
 for (const [locale, meta] of Object.entries(EDITIONS)) {
-  let filled = 0;
+  let kept = 0;
+  let cut = 0;
   for (const book of needed) {
     const json = await edition(`${meta.prefix}-${book}`);
     if (!json) continue;
     const byNumber = new Map(json.hadiths.map((h) => [h.hadithnumber, h.text]));
     for (const card of matched.filter((m) => m.book === book)) {
-      const text = byNumber.get(card.number)?.trim();
-      if (!text) continue;
+      const raw = byNumber.get(card.number);
+      if (!raw?.trim()) continue;
+      const text = matn(raw, card.english.length);
+      const ratio = text.length / Math.max(card.english.length, 1);
+      if (ratio < MIN_RATIO || ratio > MAX_RATIO) {
+        cut++;
+        dropped.push(`${card.id} [${locale}] ${ratio.toFixed(1)}x`);
+        continue;
+      }
       (translations[card.id] ??= {})[locale] = text;
-      filled++;
+      kept++;
     }
   }
-  console.log(`  ${locale} … ${filled}/${matched.length}`);
+  console.log(`  ${locale} … kept ${kept}, dropped ${cut} for length`);
 }
+
+console.log(`\nno confident quotation (${weak.length}):`);
+for (const w of weak) console.log(`  ${w.id} (best ${(w.score * 100).toFixed(0)}%)`);
 
 const body = `/**
  * Translations for the transmitted story cards — hadith, duaa and dhikr — taken
  * from published editions.
  * Generated by scripts/gen-hadith-translations.mjs — do not edit by hand.
  *
- * Cards are matched to a hadith by their Arabic text rather than by the number
- * they cite, because hadith numbering differs between editions and a number
- * alone can point somewhere else entirely. A card that matches nothing well
- * enough keeps its English.
+ * Each card is matched to a hadith by its Arabic appearing as a run inside it,
+ * not by the number it cites and not by scattered words. The Prophet's words are
+ * then lifted out of the published narration, which carries its chain of
+ * narrators, and anything still wildly longer or shorter than the English keeps
+ * its English instead.
  *
  * Malay and Thai are absent: no edition of any of these collections exists for
  * them in this dataset.
