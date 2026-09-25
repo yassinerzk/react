@@ -1,3 +1,4 @@
+import type { Locale } from './types';
 import QURAN_INDEX_JSON from '../../assets/quran/index.json';
 
 export interface QuranVerse {
@@ -86,4 +87,35 @@ export function simplifyUthmani(text: string): string {
 
 export function formatAyahRef(surah: number, ayah: number): string {
   return `${surah}:${ayah}`;
+}
+
+/**
+ * Published Quran translations, one per locale, matching the editions the story
+ * cards use so a verse reads the same in the reader and on a card.
+ *
+ * English is absent because it is bundled with the Arabic text; Arabic is absent
+ * because the reader already shows it.
+ */
+export const QURAN_EDITIONS: Partial<Record<Locale, { id: string; credit: string }>> = {
+  fr: { id: 'fra-muhammadhamidul', credit: 'Muhammad Hamidullah' },
+  id: { id: 'ind-indonesianislam', credit: 'Kementerian Agama Republik Indonesia' },
+  ms: { id: 'msa-abdullahmuhamma', credit: 'Abdullah Muhammad Basmeih' },
+  th: { id: 'tha-kingfahadquranc', credit: 'King Fahd Complex' },
+  ur: { id: 'urd-fatehmuhammadja', credit: 'Fateh Muhammad Jalandhry' },
+};
+
+/**
+ * One chapter of one edition. Tens of kilobytes rather than the ~1.3 MB a whole
+ * edition weighs, so the reader fetches a surah when it is opened instead of
+ * making anyone download five translations up front or shipping them in the app.
+ */
+export function quranTranslationUrl(locale: Locale, chapter: number): string | null {
+  const edition = QURAN_EDITIONS[locale];
+  if (!edition) return null;
+  return `https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/${edition.id}/${chapter}.min.json`;
+}
+
+/** Shape of the per-chapter file the URL above returns. */
+export interface RawQuranTranslation {
+  chapter: { chapter: number; verse: number; text: string }[];
 }

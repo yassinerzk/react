@@ -8,6 +8,7 @@ import { useT } from '../../src/i18n';
 import { ui } from '../../src/theme';
 import { useEditorStore, useQuranStore } from '../../src/store';
 import { loadChapter } from '../../src/quran/chapters';
+import { useChapterTranslation } from '../../src/quran/useChapterTranslation';
 import { Button, Chip } from '../../src/components/ui';
 
 const BISMILLAH = 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ';
@@ -15,10 +16,12 @@ const BISMILLAH = 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَ
 export default function SurahScreen() {
   const { id, ayah } = useLocalSearchParams<{ id: string; ayah?: string }>();
   const surah = Number(id);
-  const { t, locale, font, row } = useT();
+  const { t, locale, font, row, textAlign } = useT();
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const chapter = useMemo(() => loadChapter(surah), [surah]);
+  // Fetched per surah; until it arrives the bundled English stays on screen.
+  const { verses: translated, credit } = useChapterTranslation(surah, locale);
   const meta = getChapterMeta(surah);
   const finished = useQuranStore((s) => s.finished);
   const showTranslation = useQuranStore((s) => s.showTranslation);
@@ -89,6 +92,12 @@ export default function SurahScreen() {
             {t('verses')}
           </Text>
         </View>
+        {/* Attribution has to travel with the text it belongs to. */}
+        {credit && showTranslation && (
+          <Text style={{ color: ui.textMuted, fontFamily: font.regular, fontSize: 11, textAlign }}>
+            {t('translation')}: {credit}
+          </Text>
+        )}
         <View style={{ flexDirection: row, gap: 8, flexWrap: 'wrap' }}>
           <Chip
             label={t('showTranslation')}
@@ -164,7 +173,7 @@ export default function SurahScreen() {
                   lineHeight: 24 * Math.sqrt(fontScale),
                 }}
               >
-                {toLocaleDigits(item.id, locale)}. {item.translation}
+                {toLocaleDigits(item.id, locale)}. {translated?.get(item.id) ?? item.translation}
               </Text>
             )}
             <Pressable

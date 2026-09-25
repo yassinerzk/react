@@ -116,16 +116,30 @@ which are not in the dataset; the rest are paraphrases rather than quotations. O
 English line to translate from. Raising coverage further means adding collections, or rewording those
 cards to quote their source exactly.
 
-### Quran reader — 6,236 ayat, and a bundle-size problem
+### Quran reader — done, fetched a surah at a time
 
-`packages/assets/quran/` is 2.9 MB for Arabic plus one English translation, bundled for offline use.
-Four more translations is roughly **+6 MB inside the APK**, on top of a build that is already large
-(`docs/RELEASE-LOG.md` size analysis).
+All 6,236 ayat read in the reader's language, from the same editions the story
+cards use, so a verse reads identically in both places.
 
-Recommendation: bundle Arabic plus **one** translation — the device language at build time is not
-knowable, so bundle English — and fetch other languages on demand, cached with `expo-file-system`,
-exactly as the hadith collections already work. One translation is ~1.5 MB, which is a fast download
-and a trivial cache.
+**Not bundled, and not a big download either.** A whole edition is about 1.3 MB, so shipping five
+would add over 6 MB to the app for translations most readers never open — the bundle-size problem
+this section used to describe. The API serves a **single chapter** instead: the longest surah is
+78 KB in French and 217 KB in Thai, and the shortest a fraction of that. The reader fetches the surah
+being read and caches it on disk, the same download-once arrangement the hadith library uses.
+
+Until it arrives, or when the device is offline and the surah is not cached, the bundled English
+stays on screen. Nothing blocks and nothing goes blank.
+
+| Locale | Edition                              |
+| ------ | ------------------------------------ |
+| fr     | Muhammad Hamidullah                  |
+| id     | Kementerian Agama Republik Indonesia |
+| ms     | Abdullah Muhammad Basmeih            |
+| th     | King Fahd Complex                    |
+| ur     | Fateh Muhammad Jalandhry             |
+
+The translator is credited in the reader beneath the surah title whenever a sourced translation is
+showing, which is where attribution belongs — with the text it applies to.
 
 ### Hadith — every language can have one, but not all from the same source
 
