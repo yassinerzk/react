@@ -69,49 +69,52 @@ The 452 `{ en: …, ar: … }` pairs across `themes.ts`, `backgrounds.ts`, `cate
 type (see section 4). Once that is fixed, these 452 can be filled in over time, per language, without
 breaking a build.
 
-### Story card text — 198 of 305, and the rest is sourcing
+### Story card text — 297 of 305 localised
 
-`Post.translations` carries renderings the app wrote; `QURAN_TRANSLATIONS` and `HADITH_TRANSLATIONS`
-carry ones taken from published editions. `postTranslation()` reads them in that order and falls back
-to English. Arabic resolves to English on purpose: the card already carries the Arabic, so the line
-beneath it would only repeat the text.
+`postTranslation()` reads three sources in order: renderings the app wrote
+(`Post.translations`, greetings only), then `QURAN_TRANSLATIONS`, then
+`HADITH_TRANSLATIONS`, both taken from published editions. English is the fallback,
+and Arabic resolves to it on purpose — the card already carries the Arabic.
 
-| Kind     | Cards | Localised | Source                                                        |
-| -------- | ----- | --------- | ------------------------------------------------------------- |
-| quran    | 129   | **129**   | published editions, one per locale, via the generator         |
-| hadith   | 65    | **26**    | published editions for fr/id/ur; the rest failed verification |
-| greeting | 44    | **43**    | written here — they are well-wishes, not transmitted text     |
-| dua      | 40    | 0         | transmitted; not yet sourced                                  |
-| dhikr    | 27    | 0         | transmitted; not yet sourced                                  |
+| Locale | Localised | Still English |
+| ------ | --------- | ------------- |
+| اردو   | **297**   | 8             |
+| id     | **291**   | 14            |
+| fr     | **275**   | 30            |
+| ms     | 198       | 107           |
+| th     | 198       | 107           |
 
-Per language: **French, Indonesian and Urdu reach 198 cards**; **Malay and Thai reach 172**, because
-no Malay or Thai edition of Bukhari or Muslim exists in the dataset (section above).
+**Malay and Thai stop at 198** because no Malay or Thai edition of any hadith collection exists in
+the dataset. Their Quran and greeting cards are complete; the 107 transmitted cards are the gap, and
+HadeethEnc (section above) is the route if it is worth the work.
 
-### Two generators, and why they are careful
+**French reaches 275 rather than 291** because there is no French edition of Tirmidhi, which 25
+cards cite.
 
-`scripts/gen-quran-translations.mjs` and `scripts/gen-hadith-translations.mjs` fetch the editions and
-rebuild the generated files. Re-run either to change edition or add a locale.
+### Two generators
 
-**The Quran is easy and the hadith is not.** A verse is identified by surah and ayah, which is
-universal, so all 129 cards map exactly. Hadith numbering is not universal — it differs between
-printed editions and between datasets — so a number alone could attach the wrong hadith's translation
-to a card, which is worse than leaving English. The generator therefore verifies every candidate
-against the card's own Arabic before accepting it, by word overlap rather than exact substring: the
-dataset carries the whole narration including the chain, the card carries only the Prophet's words,
-and the two differ in small orthographic ways (فيهن against فيها) that break an exact match while
-meaning the same thing.
+`scripts/gen-quran-translations.mjs` — 155 cards, every locale. Selected by whether the card cites a
+Surah rather than by its kind, since many duaa cards are Quranic supplications. Surah and ayah are
+universal, so every one maps exactly.
 
-23 of the 49 cards citing Bukhari or Muslim scored below the threshold and were dropped. Most scored
-**0%** — the number genuinely points somewhere else in this dataset. Recovering them means matching on
-text rather than number, or correcting the citations on the cards.
+`scripts/gen-hadith-translations.mjs` — 99 of 106 transmitted cards, across Muslim, Bukhari,
+Tirmidhi, Abu Dawud, Ibn Majah and Nasa'i.
 
-### The remaining 107
+**Why the hadith one searches rather than looks up.** Hadith numbering is not universal: it differs
+between printed editions and between datasets. Matching on the number a card cites attached the
+wrong hadith often enough that an early version verified only 16 of 49 — and the numbers were not
+even wrong, the check was. The generator now indexes the Arabic of ~34,000 hadith and finds each
+card by its own wording, scoring word overlap rather than exact substring: the dataset carries the
+whole narration including the chain, a card carries only the Prophet's words, and the two differ in
+small orthographic ways (فيهن against فيها) that break an exact match while meaning the same thing.
+Below 80% overlap a card keeps its English, because something close but wrong is worse.
 
-- **39 hadith** — 23 rejected by verification, 16 citing Tirmidhi, Abu Dawud or Al-Hakim, which the
-  generator does not yet read. Both are tractable.
-- **67 duaa and dhikr** — transmitted text with no reference to key off. These need matching by hand
-  against a licensed collection, or leaving in English.
-- **1 greeting** with no English line to translate from.
+### The last 8
+
+Seven transmitted cards score below the threshold — `friday-kahf` cites Al-Hakim and Al-Bayhaqi,
+which are not in the dataset; the rest are paraphrases rather than quotations. One greeting has no
+English line to translate from. Raising coverage further means adding collections, or rewording those
+cards to quote their source exactly.
 
 ### Quran reader — 6,236 ayat, and a bundle-size problem
 

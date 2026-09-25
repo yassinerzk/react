@@ -49,7 +49,11 @@ function quranPosts() {
     const text = fs.readFileSync(path.join(postsDir, file), 'utf8');
     for (const m of text.matchAll(/\{\s*id: '([^']+)',([\s\S]*?)\n {2}\},/g)) {
       const [, id, body] = m;
-      if (!/kind: 'quran'/.test(body)) continue;
+      // Selected by what the card cites, not by its kind: plenty of duaa cards
+      // are Quranic supplications and carry a Surah reference, and those take
+      // their rendering from the Quran edition like any other verse.
+      const i = body.indexOf('source:');
+      if (i === -1 || !/Surah/.test(body.slice(i, i + 200))) continue;
       const ref = referenceOf(body);
       if (ref) found.push({ id, ...ref });
       else console.warn(`  no reference found for ${id} (${file})`);
