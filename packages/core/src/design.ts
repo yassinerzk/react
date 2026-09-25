@@ -4,6 +4,8 @@ import { toLocaleDigits } from './hijri';
 import { isRtl } from './i18n';
 import { simplifyUthmani, type QuranChapterMeta, type QuranVerse } from './quran';
 import { extractMatn, HADITH_BOOKS, stripNarrator, type HadithEntry } from './hadith';
+import { QURAN_TRANSLATIONS } from './content/quranTranslations.generated';
+import { HADITH_TRANSLATIONS } from './content/hadithTranslations.generated';
 
 export const DEFAULT_DESIGN: StoryDesign = {
   kind: 'greeting',
@@ -29,12 +31,22 @@ export const DEFAULT_DESIGN: StoryDesign = {
 /**
  * The post's explanatory line in the reader's language.
  *
- * Arabic intentionally has no entry of its own: the card already carries the
- * Arabic, so the line beneath it stays English rather than repeating the text.
+ * Two sources, in order. `post.translations` holds renderings the app wrote,
+ * which is only ever greetings. `QURAN_TRANSLATIONS` holds established
+ * editions, pulled in by scripts/gen-quran-translations.mjs, because a verse
+ * may not be rendered by us. English is the last resort.
+ *
+ * Arabic intentionally resolves to English: the card already carries the
+ * Arabic, so the line beneath it would only repeat the text.
  */
 export function postTranslation(post: Post, locale: Locale): string {
   if (!post.translation) return '';
-  return post.translations?.[locale] ?? post.translation;
+  return (
+    post.translations?.[locale] ??
+    QURAN_TRANSLATIONS[post.id]?.[locale] ??
+    HADITH_TRANSLATIONS[post.id]?.[locale] ??
+    post.translation
+  );
 }
 
 /** Builds an editable design from a catalogue post. */

@@ -3,6 +3,7 @@ import { THEME_MAP } from '../themes';
 import { ARABIC_FONT_MAP } from '../fonts';
 import { BACKGROUND_MAP, BACKGROUNDS } from '../backgrounds';
 import { postTranslation } from '../design';
+import { QURAN_TRANSLATIONS, QURAN_TRANSLATION_CREDITS } from './quranTranslations.generated';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -95,12 +96,33 @@ describe('content registry', () => {
     }
   });
 
+  it('every Quran card has a sourced translation in every locale', () => {
+    const verses = POSTS.filter((p) => p.kind === 'quran');
+    const written = ['fr', 'id', 'ms', 'th', 'ur'] as const;
+    const gaps: string[] = [];
+    for (const post of verses) {
+      for (const loc of written) {
+        if (!QURAN_TRANSLATIONS[post.id]?.[loc]) gaps.push(`${post.id}:${loc}`);
+      }
+    }
+    expect(gaps, 'run scripts/gen-quran-translations.mjs').toEqual([]);
+    expect(verses.length).toBeGreaterThan(100);
+  });
+
+  it('names the translator for every sourced locale', () => {
+    for (const loc of ['fr', 'id', 'ms', 'th', 'ur'] as const) {
+      expect(QURAN_TRANSLATION_CREDITS[loc], `${loc} needs an attribution`).toBeTruthy();
+    }
+  });
+
   it('resolves a card to the reader language, and leaves Arabic on English', () => {
     const greeting = POSTS.find((p) => p.translations)!;
     expect(postTranslation(greeting, 'id')).toBe(greeting.translations!.id);
     // Arabic deliberately has no entry: the card already carries the Arabic.
     expect(postTranslation(greeting, 'ar')).toBe(greeting.translation);
+    // A verse now resolves to its sourced edition, never to something we wrote.
     const verse = POSTS.find((p) => p.kind === 'quran' && p.translation)!;
-    expect(postTranslation(verse, 'th')).toBe(verse.translation);
+    expect(postTranslation(verse, 'th')).toBe(QURAN_TRANSLATIONS[verse.id].th);
+    expect(postTranslation(verse, 'ar')).toBe(verse.translation);
   });
 });
