@@ -88,7 +88,7 @@ export default function EditorScreen() {
         </View>
         <View style={{ alignSelf: 'center', width: cardWidth, gap: 6 }}>
           <Button
-            label={busy ? t('preparing') : t('shareWhatsApp')}
+            label={busy ? t('preparing') : t('useThisStory')}
             variant="primary"
             size="lg"
             onPress={share}

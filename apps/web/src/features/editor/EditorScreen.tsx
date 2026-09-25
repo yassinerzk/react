@@ -55,7 +55,7 @@ export function EditorScreen({ savedId }: EditorScreenProps) {
           <StoryPreview design={design} hijriLabel={hijriLabel} cardRef={cardRef} className="editor__card" />
           <div className="editor__share">
             <Button variant="primary" size="lg" block onClick={share} disabled={busy}>
-              {busy ? t('preparing') : nativeShare ? t('shareWhatsApp') : t('download')}
+              {busy ? t('preparing') : nativeShare ? t('useThisStory') : t('download')}
             </Button>
             <p className="editor__tip">{t('tipShare')}</p>
           </div>
