@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -9,11 +9,14 @@ import { ui } from '../src/theme';
 import { useAuthStore } from '../src/auth/store';
 import { useReminderStore } from '../src/notifications/store';
 import { ReminderSheet } from '../src/notifications/ReminderSheet';
+import { AnimatedSplash } from '../src/brand/AnimatedSplash';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
 export default function RootLayout() {
   const [fontsLoaded] = useAppFonts();
+  const [splashDone, setSplashDone] = useState(false);
+  const finishSplash = useCallback(() => setSplashDone(true), []);
   const initAuth = useAuthStore((s) => s.init);
   const startSession = useReminderStore((s) => s.startSession);
   useEffect(() => {
@@ -40,6 +43,8 @@ export default function RootLayout() {
       </Stack>
       <ReminderSheet />
       <Toaster />
+      {/* Drawn over the app, which mounts underneath while it plays. */}
+      {!splashDone && <AnimatedSplash onDone={finishSplash} />}
     </View>
   );
 }
