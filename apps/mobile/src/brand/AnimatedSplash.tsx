@@ -32,6 +32,14 @@ const NATIVE_SPLASH_FRACTION = 0.5;
 const SPIN_MS = 1400;
 const HOLD_MS = 350;
 const FADE_MS = 280;
+/**
+ * Hard ceiling on the overlay's life. `Animated` only reports `finished: true`
+ * when a run completes cleanly, and a run interrupted by the app being
+ * backgrounded mid-launch would leave the callback unfired — which would look
+ * to the user like the app had hung on a blank green screen. Whatever happens
+ * to the animation, the splash goes away.
+ */
+const FAILSAFE_MS = SPIN_MS + HOLD_MS + FADE_MS + 1500;
 /** The mark reaches its resting place at this point through the spin. */
 const SETTLE_AT = 0.55;
 
@@ -86,10 +94,20 @@ export function AnimatedSplash({ onDone }: AnimatedSplashProps) {
         useNativeDriver: true,
       }),
     ]);
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      onDone();
+    };
     run.start(({ finished }) => {
-      if (finished) onDone();
+      if (finished) finish();
     });
-    return () => run.stop();
+    const failsafe = setTimeout(finish, FAILSAFE_MS);
+    return () => {
+      clearTimeout(failsafe);
+      run.stop();
+    };
   }, [spin, travel, fade, onDone]);
 
   const markStyle = {
