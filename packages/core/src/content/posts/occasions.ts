@@ -21,6 +21,13 @@ export const occasionsPosts: Post[] = [
     arabic: 'بارَكَ اللهُ لَكَ في المَوهوب، وَشَكَرتَ الواهِب، وَبَلَغَ أَشُدَّهُ، وَرُزِقتَ بِرَّه',
     translation:
       'May Allah bless you in the one He has given you, may you thank the Giver, may the child reach maturity, and may you be granted their dutifulness.',
+    translations: {
+      fr: "Qu'Allah vous bénisse dans celui qu'Il vous a donné, que vous remerciiez le Donateur, que l'enfant atteigne sa maturité et que vous soyez gratifiés de sa piété filiale.",
+      id: 'Semoga Allah memberkahi Anda pada anak yang dianugerahkan-Nya, semoga Anda mensyukuri Sang Pemberi, semoga sang anak tumbuh dewasa, dan semoga Anda dianugerahi baktinya.',
+      ms: 'Semoga Allah memberkati anda pada anak yang dikurniakan-Nya, semoga anda mensyukuri Yang Mengurniakan, semoga anak itu membesar, dan semoga anda dikurniakan baktinya.',
+      th: 'ขออัลลอฮฺทรงประทานความจำเริญแก่ท่านในบุตรที่พระองค์ประทานให้ ขอให้ท่านขอบคุณผู้ประทาน ขอให้เด็กเติบโตเป็นผู้ใหญ่ และขอให้ท่านได้รับความกตัญญูจากเขา',
+      ur: 'اللہ آپ کو عطا کیے ہوئے بچے میں برکت دے، آپ عطا کرنے والے کا شکر ادا کریں، بچہ جوانی کو پہنچے، اور آپ کو اس کی فرماں برداری نصیب ہو۔',
+    },
     theme: 'teal-lagoon',
     decoration: 'stars',
     font: 'cairo',

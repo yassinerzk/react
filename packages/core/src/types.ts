@@ -92,6 +92,16 @@ export interface Post {
   arabic: string;
   /** English rendering: a translation, or the greeting in English. */
   translation?: string;
+  /**
+   * The same rendering in other locales. English stays in `translation`, and
+   * any locale missing here falls back to it — which is deliberate for Arabic,
+   * where the card's own Arabic is the text and a translation line would only
+   * repeat it.
+   *
+   * For anything transmitted — Quran, hadith, duaa, dhikr — these must come
+   * from an established, attributable translation. See docs/LOCALIZATION.md.
+   */
+  translations?: Partial<Record<Locale, string>>;
   /** Reference shown in small print, e.g. "Surah Al-Jumu'ah 62:9". */
   source?: Localized;
   /** Optional short headline above the body, e.g. "جمعة مباركة". */

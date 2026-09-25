@@ -64,6 +64,13 @@ export const dhulHijjahPosts: Post[] = [
     headline: { en: 'Hajj Mabrur', ar: 'حج مبرور' },
     arabic: 'حَجٌّ مَبرور، وَسَعيٌ مَشكور، وَذَنبٌ مَغفور',
     translation: 'An accepted Hajj, a rewarded effort, and forgiven sins.',
+    translations: {
+      fr: 'Un Hajj agréé, un effort récompensé et des péchés pardonnés.',
+      id: 'Haji yang mabrur, usaha yang diterima, dan dosa yang diampuni.',
+      ms: 'Haji yang mabrur, usaha yang diterima, dan dosa yang diampuni.',
+      th: 'ฮัจญ์ที่ถูกตอบรับ ความเพียรที่ได้รับผลบุญ และบาปที่ถูกอภัย',
+      ur: 'حج مبرور، سعی مشکور اور گناہ معاف۔',
+    },
     theme: 'charcoal-minimal',
     decoration: 'kaaba',
     font: 'aref-ruqaa',

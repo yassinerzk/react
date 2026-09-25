@@ -61,6 +61,13 @@ export const morningPosts: Post[] = [
     arabic: 'صَباحُكُم طاعَةٌ وَرِضا، وَيَومُكُم خَيرٌ وَبَرَكَة',
     translation:
       'May your morning be filled with devotion and contentment, and your day with goodness and blessing.',
+    translations: {
+      fr: 'Que votre matin soit empli de dévotion et de contentement, et votre journée de bien et de bénédiction.',
+      id: 'Semoga pagi Anda penuh ibadah dan keridaan, dan hari Anda penuh kebaikan dan keberkahan.',
+      ms: 'Semoga pagi anda penuh ibadah dan keredaan, dan hari anda penuh kebaikan dan keberkatan.',
+      th: 'ขอให้เช้าของท่านเปี่ยมด้วยการภักดีและความพอใจ และวันของท่านเปี่ยมด้วยความดีและความจำเริญ',
+      ur: 'آپ کی صبح عبادت اور رضا سے بھری ہو، اور آپ کا دن خیر و برکت سے۔',
+    },
     theme: 'desert-dawn',
     decoration: 'none',
     background: 'wildflowers',

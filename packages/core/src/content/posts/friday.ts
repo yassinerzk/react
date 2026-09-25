@@ -8,6 +8,13 @@ export const fridayPosts: Post[] = [
     headline: { en: "Jumu'ah Mubarak", ar: 'جمعة مباركة' },
     arabic: 'جَعَلَ اللهُ جُمعَتَكُم مُبارَكَة، وَغَفَرَ لَكُم وَلِأَحبابِكُم',
     translation: 'May Allah bless your Friday and forgive you and your loved ones.',
+    translations: {
+      fr: "Qu'Allah bénisse votre vendredi et vous pardonne, à vous et à ceux que vous aimez.",
+      id: 'Semoga Allah memberkahi hari Jumat Anda dan mengampuni Anda serta orang-orang yang Anda cintai.',
+      ms: 'Semoga Allah memberkati hari Jumaat anda dan mengampuni anda serta orang yang anda kasihi.',
+      th: 'ขออัลลอฮฺทรงประทานความจำเริญแก่วันศุกร์ของท่าน และทรงอภัยแก่ท่านและคนที่ท่านรัก',
+      ur: 'اللہ آپ کے جمعہ میں برکت دے اور آپ کو اور آپ کے پیاروں کو بخش دے۔',
+    },
     theme: 'emerald-night',
     decoration: 'none',
     background: 'mosque-sunset',

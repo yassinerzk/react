@@ -26,6 +26,17 @@ export const DEFAULT_DESIGN: StoryDesign = {
   align: 'center',
 };
 
+/**
+ * The post's explanatory line in the reader's language.
+ *
+ * Arabic intentionally has no entry of its own: the card already carries the
+ * Arabic, so the line beneath it stays English rather than repeating the text.
+ */
+export function postTranslation(post: Post, locale: Locale): string {
+  if (!post.translation) return '';
+  return post.translations?.[locale] ?? post.translation;
+}
+
 /** Builds an editable design from a catalogue post. */
 export function designFromPost(post: Post, locale: Locale): StoryDesign {
   return {
@@ -34,7 +45,7 @@ export function designFromPost(post: Post, locale: Locale): StoryDesign {
     kind: post.kind,
     headline: post.headline?.ar ?? '',
     arabic: post.arabic,
-    translation: post.translation ?? '',
+    translation: postTranslation(post, locale),
     source: post.source?.[locale] ?? post.source?.en ?? '',
     showTranslation: !!post.translation,
     showSource: !!post.source,

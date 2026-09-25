@@ -8,6 +8,13 @@ export const muharramPosts: Post[] = [
     headline: { en: 'Happy New Hijri Year', ar: 'كل عام وأنتم بخير' },
     arabic: 'عامٌ هِجرِيٌّ جَديد، نَسأَلُ اللهَ أَن يَجعَلَهُ عامَ خَيرٍ وَبَرَكَةٍ وَأَمن',
     translation: 'A new Hijri year. We ask Allah to make it a year of goodness, blessing and safety.',
+    translations: {
+      fr: "Une nouvelle année hégirienne. Nous demandons à Allah d'en faire une année de bien, de bénédiction et de sécurité.",
+      id: 'Tahun baru Hijriah. Kami memohon kepada Allah agar menjadikannya tahun kebaikan, keberkahan, dan keselamatan.',
+      ms: 'Tahun baharu Hijrah. Kami memohon kepada Allah agar menjadikannya tahun kebaikan, keberkatan dan keselamatan.',
+      th: 'ปีใหม่ฮิจเราะฮฺ เราวิงวอนต่ออัลลอฮฺให้เป็นปีแห่งความดี ความจำเริญ และความปลอดภัย',
+      ur: 'نیا ہجری سال۔ ہم اللہ سے دعا کرتے ہیں کہ اسے خیر، برکت اور امن کا سال بنائے۔',
+    },
     theme: 'midnight-blue',
     decoration: 'crescent',
     font: 'aref-ruqaa',

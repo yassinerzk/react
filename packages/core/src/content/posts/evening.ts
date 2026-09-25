@@ -46,6 +46,13 @@ export const eveningPosts: Post[] = [
     headline: { en: 'Good evening', ar: 'مساء الخير' },
     arabic: 'مَساءُ النُّورِ وَالسَّكينَة، أَسعَدَ اللهُ مَساءَكُم بِكُلِّ خَير',
     translation: 'An evening of light and tranquility. May Allah make your evening happy with every good.',
+    translations: {
+      fr: "Une soirée de lumière et de sérénité. Qu'Allah rende votre soir heureux de tout bien.",
+      id: 'Petang yang penuh cahaya dan ketenangan. Semoga Allah membahagiakan petang Anda dengan segala kebaikan.',
+      ms: 'Petang yang penuh cahaya dan ketenangan. Semoga Allah membahagiakan petang anda dengan segala kebaikan.',
+      th: 'ค่ำคืนแห่งแสงสว่างและความสงบ ขออัลลอฮฺทรงให้ยามเย็นของท่านเปี่ยมด้วยความดีงาม',
+      ur: 'نور اور سکون والی شام۔ اللہ آپ کی شام کو ہر بھلائی سے خوشگوار بنائے۔',
+    },
     theme: 'midnight-blue',
     decoration: 'none',
     background: 'lavender-field',

@@ -9,6 +9,13 @@ export const ramadanPosts: Post[] = [
     arabic: 'أَعادَهُ اللهُ عَلَيكُم بِالخَيرِ وَاليُمنِ وَالبَرَكات، وَتَقَبَّلَ صِيامَكُم وَقِيامَكُم',
     translation:
       'May Allah return it upon you with goodness and blessings, and accept your fasting and prayers.',
+    translations: {
+      fr: "Qu'Allah vous le ramène avec bien et bénédiction, et accepte votre jeûne et vos prières.",
+      id: 'Semoga Allah mengembalikannya kepada Anda dengan kebaikan dan keberkahan, serta menerima puasa dan salat Anda.',
+      ms: 'Semoga Allah mengembalikannya kepada anda dengan kebaikan dan keberkatan, serta menerima puasa dan solat anda.',
+      th: 'ขออัลลอฮฺทรงนำมันกลับมาสู่ท่านพร้อมความดีและความจำเริญ และทรงตอบรับการถือศีลอดและการละหมาดของท่าน',
+      ur: 'اللہ اسے آپ پر خیر و برکت کے ساتھ لوٹائے، اور آپ کے روزے اور نمازیں قبول فرمائے۔',
+    },
     theme: 'emerald-night',
     decoration: 'lanterns',
     font: 'aref-ruqaa',
@@ -20,6 +27,13 @@ export const ramadanPosts: Post[] = [
     headline: { en: 'Ramadan Mubarak', ar: 'رمضان مبارك' },
     arabic: 'اللَّهُمَّ بَلِّغْنا رَمَضانَ لا فاقِدينَ وَلا مَفقودين',
     translation: 'O Allah, let us reach Ramadan, neither missing anyone nor being missed.',
+    translations: {
+      fr: 'Ô Allah, fais que nous atteignions Ramadan, sans manquer personne et sans manquer à personne.',
+      id: 'Ya Allah, sampaikanlah kami pada Ramadan, tanpa kehilangan siapa pun dan tanpa ada yang kehilangan kami.',
+      ms: 'Ya Allah, sampaikanlah kami kepada Ramadan, tanpa kehilangan sesiapa pun dan tanpa ada yang kehilangan kami.',
+      th: 'โอ้อัลลอฮฺ ขอให้เราได้พบรอมฎอน โดยไม่ขาดผู้ใดและไม่มีผู้ใดขาดเรา',
+      ur: 'اے اللہ، ہمیں رمضان تک پہنچا، نہ ہم کسی کو کھوئیں اور نہ کوئی ہمیں۔',
+    },
     theme: 'midnight-blue',
     decoration: 'none',
     background: 'mosque-courtyard',

@@ -8,6 +8,13 @@ export const eidAlAdhaPosts: Post[] = [
     headline: { en: 'Eid al-Adha Mubarak', ar: 'عيد أضحى مبارك' },
     arabic: 'كُلُّ عامٍ وَأَنتُم بِخَير، تَقَبَّلَ اللهُ طاعاتِكُم وَأَضاحِيَكُم',
     translation: 'May you be well every year. May Allah accept your worship and your sacrifice.',
+    translations: {
+      fr: "Que chaque année vous trouve en bonne santé. Qu'Allah accepte vos adorations et votre sacrifice.",
+      id: 'Semoga Anda selalu dalam kebaikan setiap tahun. Semoga Allah menerima ibadah dan kurban Anda.',
+      ms: 'Semoga anda sentiasa dalam kebaikan setiap tahun. Semoga Allah menerima ibadah dan korban anda.',
+      th: 'ขอให้ท่านมีสุขทุกปี ขออัลลอฮฺทรงตอบรับการอิบาดะฮฺและการเชือดพลีของท่าน',
+      ur: 'ہر سال آپ خیریت سے رہیں۔ اللہ آپ کی عبادات اور قربانی قبول فرمائے۔',
+    },
     theme: 'burgundy-gold',
     decoration: 'lights',
     font: 'aref-ruqaa',
