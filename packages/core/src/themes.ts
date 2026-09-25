@@ -179,3 +179,25 @@ export const THEME_MAP: Readonly<Record<ThemeId, Theme>> = Object.fromEntries(
 export function getTheme(id: ThemeId): Theme {
   return THEME_MAP[id];
 }
+
+/**
+ * Splits a colour into an opaque colour plus its alpha.
+ *
+ * SVG carries transparency in `stop-opacity`, not in the colour, and
+ * react-native-svg does not read the alpha out of an `rgba()` string. The
+ * scrims that keep text legible over a photo are written as
+ * `rgba(8,10,14,0.30)`, so handing that straight to a `<Stop>` painted them
+ * fully opaque — a near-black sheet over the photograph.
+ */
+export function splitColorAlpha(color: string): { color: string; opacity: number } {
+  const rgba = /^rgba\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)$/i.exec(color);
+  if (rgba) {
+    return { color: `rgb(${rgba[1]}, ${rgba[2]}, ${rgba[3]})`, opacity: Number(rgba[4]) };
+  }
+  // #rrggbbaa
+  const hex8 = /^#([0-9a-f]{6})([0-9a-f]{2})$/i.exec(color);
+  if (hex8) {
+    return { color: `#${hex8[1]}`, opacity: parseInt(hex8[2], 16) / 255 };
+  }
+  return { color, opacity: 1 };
+}
