@@ -76,6 +76,14 @@ about the request.
 
 The Quran text and translation are bundled inside the app and require no connection at all.
 
+## Daily reminder
+
+You can ask the app to remind you once a day that a new selection of cards is ready, and choose what
+time it arrives. If you do, the reminder is scheduled **by your phone, on your phone**. There is no
+server involved, we are not told that you turned it on, and no notification is ever sent to you by
+us. Turning it off, or changing the time, is in Me → Daily reminder, and you can also switch the
+app's notifications off in your phone settings.
+
 ## Sharing your stories
 
 When you share a story, the app creates an image on your device and hands it to your phone's normal

@@ -10,19 +10,33 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 
 ## Status at a glance
 
-| Area                  | State                                                                                                  |
-| --------------------- | ------------------------------------------------------------------------------------------------------ |
-| Repo layout           | ✅ Collapsed to one clone, up to date with `origin` at `d5a11fc`                                       |
-| Local `npm run check` | ✅ Passing — typecheck, lint, format, 350 tests                                                        |
-| Android build (CI)    | ✅ Run 35419403039 succeeded — APK + AAB produced (debug-signed, version 0.1.0)                        |
-| Release signing       | ✅ Keystore secrets set; run 35421731036 produced a signed 1.0.0 AAB                                   |
-| Device testing        | ✅ Share to WhatsApp, location + prayer times, Qibla compass and export all verified on a phone        |
-| Play Console          | ✅ Organization account, one app already live — production access granted, closed testing not required |
-| Store listing copy    | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through                              |
-| Accounts + deletion   | ✅ Verified end to end on device and in the database; web page live                                    |
-| Store graphics        | ❌ Icon, feature graphic and screenshots still to produce                                              |
-| Privacy policy        | ✅ Live at yassinerzk.github.io/react/privacy.html                                                     |
-| App version           | ✅ `1.0.0` / `versionCode 1`                                                                           |
+| Area                  | State                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| Local `npm run check` | ✅ Passing — typecheck, lint, format, 385 tests                                                   |
+| Release signing       | ✅ Keystore secrets set and proven                                                                |
+| Android build (CI)    | ✅ Run 36106195948 building the current branch, signed, `versionCode 2`                           |
+| Target API level      | ✅ React Native 0.86 targets API 36, which meets Play's 31 Aug 2026 requirement                   |
+| Play Console          | ✅ Organization account — production access granted, closed testing not required                  |
+| Privacy policy        | ✅ Live, and covers the daily reminder                                                            |
+| Accounts + deletion   | ✅ Verified end to end on device and in the database; web page live                               |
+| Store graphics        | 🟡 Icon and feature graphic generated in `docs/store/`; **screenshots still needed from a phone** |
+| Store listing copy    | 🟡 Drafted EN + AR — **the Arabic needs your read-through**                                       |
+| Device testing        | ❌ **Everything since 19 Sept is untested on hardware**, including a native module                |
+| Play Console forms    | ❌ Data Safety, content rating and the privacy-policy URL not yet entered                         |
+| App version           | ✅ `1.0.0` / `versionCode 2`                                                                      |
+
+--------------------- | ------------------------------------------------------------------------------------------------------ |
+| Repo layout | ✅ Collapsed to one clone, up to date with `origin` at `d5a11fc` |
+| Local `npm run check` | ✅ Passing — typecheck, lint, format, 350 tests |
+| Android build (CI) | ✅ Run 35419403039 succeeded — APK + AAB produced (debug-signed, version 0.1.0) |
+| Release signing | ✅ Keystore secrets set; run 35421731036 produced a signed 1.0.0 AAB |
+| Device testing | ✅ Share to WhatsApp, location + prayer times, Qibla compass and export all verified on a phone |
+| Play Console | ✅ Organization account, one app already live — production access granted, closed testing not required |
+| Store listing copy | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through |
+| Accounts + deletion | ✅ Verified end to end on device and in the database; web page live |
+| Store graphics | ❌ Icon, feature graphic and screenshots still to produce |
+| Privacy policy | ✅ Live at yassinerzk.github.io/react/privacy.html |
+| App version | ✅ `1.0.0` / `versionCode 1` |
 
 ---
 
@@ -367,6 +381,38 @@ export cost on a free-heavy product, and every story would leave the device). On
 
 ---
 
+### 2026-09-25 — Second release candidate
+
+Everything below was added after the signed 19 September AAB, so that build is superseded.
+
+**Shipped since:** the date-seeded daily rotation for "Today's posts" (which also fixed a section
+that was empty twelve hours a day), a back-to-top button on the story grid, the daily reminder
+notification, the new brand mark and wordmark across every icon, an animated opening, and the
+wordmark as the watermark on exported stories.
+
+**Release prep done today:**
+
+- `versionCode` 1 → 2, so the upload is accepted whether or not the September AAB reached the console.
+- Store icon (512×512) and feature graphic (1024×500) generated into `docs/store/` from the brand
+  artwork. Text is kept well clear of the feature graphic's edges, which Play crops.
+- Privacy policy gained a "Daily reminder" section, in both `docs/PRIVACY.md` and the live
+  `apps/web/public/privacy.html`. The reminder is scheduled on-device and collects nothing, so the
+  **Data Safety answers below are unchanged** — still no ads, no analytics, no advertising ID.
+- Target API level checked rather than assumed: React Native 0.86's version catalog sets
+  `targetSdk = 36`, meeting the requirement that took effect on 31 August 2026.
+- `gh` **is** installed now (2.101.0, authenticated), contrary to the note under "Blocked on you"
+  below, so builds can be triggered from here.
+
+**The one thing that must not be skipped.** Nine commits, including `expo-notifications` — a native
+module that has never executed on hardware — plus an animated splash that has never rendered and a
+watermark that has never been captured into a real PNG. Upload to **Internal testing first** and
+install from Play before promoting to production. Internal testing is live within minutes and a
+promotion is one click; a bad launch in production costs a fresh build and a review cycle.
+
+On a phone, check: the splash plays and dismisses; the reminder offer appears on the **second**
+launch, and a notification actually arrives; a shared story has the wordmark sitting correctly in
+the exported image; the home grid's back-to-top button; and the Arabic layout of the reminder sheet.
+
 ## Decision: the daily reminder is local-only, and ships clean
 
 A daily reminder notification was added. **Local notifications only** — no push token is requested,
@@ -505,8 +551,8 @@ carries no compliance surface. Worth considering before committing to accounts a
 
 ## Blocked on you
 
-1. **Trigger the Android build** — `gh` is not installed locally, so the workflow has to be started
-   from the repository's Actions tab (or install the GitHub CLI and it can be done from here).
+1. ~~**Trigger the Android build**~~ — `gh` is installed and authenticated; builds are triggered from
+   here now (`gh workflow run android-build.yml --ref <branch>`).
    Everything else waits on a working build.
 2. **Enable GitHub Pages** (Settings → Pages → source "GitHub Actions") and run the deploy
    workflow, so the privacy policy has a public URL to paste into the Play listing.
