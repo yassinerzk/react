@@ -2,12 +2,17 @@ import { Alert, Switch, Text, View } from 'react-native';
 import { canRemoveWatermark } from '@barakah/core';
 import { useEditorStore, useToastStore } from '../../store';
 import { useEntitlementStore } from '../../monetization/store';
+import { monetizationReady } from '../../monetization/adapter';
 import { useT } from '../../i18n';
 import { ui } from '../../theme';
 
 /**
  * "App name on story" switch. Free users who turn it off are offered the two
  * ways to earn the removal; entitled users simply toggle it.
+ *
+ * Until billing and ads are wired up the row still appears — it is worth
+ * knowing the option is coming — but the switch is disabled and marked so.
+ * Leaving it live would offer a choice whose only outcome is an apology.
  */
 export function WatermarkRow() {
   const { t, font, row } = useT();
@@ -55,10 +60,25 @@ export function WatermarkRow() {
         paddingVertical: 6,
       }}
     >
-      <Text style={{ color: ui.text, fontFamily: font.regular, fontSize: 14 }}>{t('appNameOnStory')}</Text>
+      <View style={{ flexDirection: row, alignItems: 'center', gap: 8, flexShrink: 1 }}>
+        <Text style={{ color: ui.text, fontFamily: font.regular, fontSize: 14 }}>{t('appNameOnStory')}</Text>
+        {!monetizationReady && (
+          <View
+            style={{
+              borderWidth: 1,
+              borderColor: ui.accent,
+              borderRadius: 999,
+              paddingHorizontal: 8,
+              paddingVertical: 2,
+            }}
+          >
+            <Text style={{ color: ui.accent, fontFamily: font.medium, fontSize: 11 }}>{t('comingSoon')}</Text>
+          </View>
+        )}
+      </View>
       <Switch
         value={!(hide && entitled)}
-        disabled={busy}
+        disabled={busy || !monetizationReady}
         onValueChange={(on) => {
           if (on) patch({ hideWatermark: false });
           else if (entitled) patch({ hideWatermark: true });

@@ -160,6 +160,7 @@ export const ar: Record<TranslationKey, string> = {
   cancel: 'إلغاء',
   tipShare: 'على الهاتف اختر واتساب ← حالتي من قائمة المشاركة.',
   backToTop: 'العودة إلى الأعلى',
+  comingSoon: 'قريبًا',
   reminderTitle: 'تذكير يومي؟',
   reminderBody: 'تتغيّر البطاقات كل يوم. يمكننا إرسال تذكير واحد هادئ حتى لا تفوتك.',
   reminderWhen: 'ما الوقت المناسب لك؟',

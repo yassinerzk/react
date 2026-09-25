@@ -1,10 +1,30 @@
 import { Text, View } from 'react-native';
 import { hasAdReward, isPro } from '@barakah/core';
 import { useEntitlementStore } from './store';
+import { monetizationReady } from './adapter';
 import { useToastStore } from '../store';
 import { useT } from '../i18n';
 import { ui } from '../theme';
 import { Button } from '../components/ui';
+
+/** Small outlined pill marking something that exists but is not live yet. */
+function ComingSoon() {
+  const { t, font } = useT();
+  return (
+    <View
+      style={{
+        borderWidth: 1,
+        borderColor: ui.accent,
+        borderRadius: 999,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        alignSelf: 'center',
+      }}
+    >
+      <Text style={{ color: ui.accent, fontFamily: font.medium, fontSize: 12 }}>{t('comingSoon')}</Text>
+    </View>
+  );
+}
 
 export function ProPanel() {
   const { t, font, row, textAlign, locale } = useT();
@@ -17,11 +37,30 @@ export function ProPanel() {
   if (isPro(entitlements)) {
     return <Text style={{ color: ui.accent, fontFamily: font.medium, textAlign }}>✓ {t('youArePro')}</Text>;
   }
+
+  const description = (
+    <Text style={{ color: ui.textMuted, fontFamily: font.regular, fontSize: 13, textAlign }}>
+      {t('proDesc')}
+    </Text>
+  );
+
+  // No billing SDK in this build, so every button here could only end in an
+  // apology. Show what is coming and leave the controls inert.
+  if (!monetizationReady) {
+    return (
+      <View style={{ gap: 10 }}>
+        {description}
+        <View style={{ flexDirection: row, gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <Button label={`★ ${t('goPro')}`} variant="primary" size="sm" disabled onPress={() => {}} />
+          <ComingSoon />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={{ gap: 10 }}>
-      <Text style={{ color: ui.textMuted, fontFamily: font.regular, fontSize: 13, textAlign }}>
-        {t('proDesc')}
-      </Text>
+      {description}
       {hasAdReward(entitlements) && (
         <Text style={{ color: ui.accent, fontFamily: font.regular, fontSize: 12, textAlign }}>
           {t('adRewardActive')}{' '}

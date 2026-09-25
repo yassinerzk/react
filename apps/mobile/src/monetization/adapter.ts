@@ -24,3 +24,13 @@ export const DEV_ADAPTER: MonetizationAdapter = {
 
 /** The adapter this build uses. Swap here when the SDKs are wired in. */
 export const adapter: MonetizationAdapter = __DEV__ ? DEV_ADAPTER : NOOP_ADAPTER;
+
+/**
+ * Whether buying or earning anything is actually possible in this build.
+ *
+ * False while the placeholder adapter is in place, which is what ships today:
+ * no billing or ads SDK is wired up yet. The UI keeps showing what is coming
+ * but must not invite a tap that can only end in "not available".
+ * Becomes true on its own the moment a real adapter is selected above.
+ */
+export const monetizationReady = adapter.id !== NOOP_ADAPTER.id;
