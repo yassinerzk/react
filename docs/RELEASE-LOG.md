@@ -14,14 +14,14 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 | --------------------- | ------------------------------------------------------------------------------------------------- |
 | Local `npm run check` | ✅ Passing — typecheck, lint, format, 385 tests                                                   |
 | Release signing       | ✅ Keystore secrets set and proven                                                                |
-| Android build (CI)    | ✅ Run 36106195948 building the current branch, signed, `versionCode 2`                           |
+| Android build (CI)    | ✅ Run 36110485873 — signed AAB + APK from `176edfd`, contents verified                           |
 | Target API level      | ✅ React Native 0.86 targets API 36, which meets Play's 31 Aug 2026 requirement                   |
 | Play Console          | ✅ Organization account — production access granted, closed testing not required                  |
 | Privacy policy        | ✅ Live, and covers the daily reminder                                                            |
 | Accounts + deletion   | ✅ Verified end to end on device and in the database; web page live                               |
 | Store graphics        | 🟡 Icon and feature graphic generated in `docs/store/`; **screenshots still needed from a phone** |
 | Store listing copy    | 🟡 Drafted EN + AR — **the Arabic needs your read-through**                                       |
-| Device testing        | ❌ **Everything since 19 Sept is untested on hardware**, including a native module                |
+| Device testing        | ✅ Build `176edfd` confirmed working on a real phone by the owner                                 |
 | Play Console forms    | ❌ Data Safety, content rating and the privacy-policy URL not yet entered                         |
 | App version           | ✅ `1.0.0` / `versionCode 2`                                                                      |
 
@@ -380,6 +380,28 @@ export cost on a free-heavy product, and every story would leave the device). On
 `canvas.captureStream()` + `MediaRecorder` needs no dependency at all.
 
 ---
+
+### 2026-09-25 — Release candidate verified on a device
+
+Run **36110485873** built the signed AAB and APK from `176edfd`. The binary was checked rather than
+assumed: the JS bundle inside the APK carries the new "Use this story" label and the "Coming soon"
+pill and no longer contains "Share to WhatsApp" or the old WhatsApp-only download instruction; the
+manifest declares `POST_NOTIFICATIONS` and both location permissions and **no `AD_ID`**, which is
+what the Data Safety answers claim; and the signing block is `BARAKAH-.RSA`, the release key rather
+than the debug one.
+
+**The owner then installed the APK and confirmed the app works.** That retires the risk this log has
+been carrying since the daily rotation, the reminder, the brand change and the animated splash
+landed — a native module and a new launch path that had never run on hardware.
+
+Worth a second look if they were not exercised during that pass, since each can only fail on a real
+device: a reminder notification actually arriving at the chosen time (the offer appears on the
+**second** launch, not the first), the exported PNG with the wordmark near the bottom, and the
+Arabic RTL layout of the reminder sheet.
+
+Remaining before the listing can go live is process, not engineering: screenshots from the real app,
+the Data Safety form, the content rating questionnaire, the privacy-policy URL, and the listing text
+with the Arabic read through.
 
 ### 2026-09-25 — Second release candidate
 
