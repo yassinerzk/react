@@ -47,6 +47,16 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
   ref,
 ) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  /**
+   * react-native-svg caches a <Defs> entry by its id: an id that stays the same
+   * while its contents change keeps rendering the old definition. That is why
+   * picking a new theme or photo left the card looking unchanged — the gradient
+   * and pattern were still the ones registered under `bg-<uid>`.
+   *
+   * Tying every id to the values that define it makes a visual change a new
+   * definition, which is the documented way round this.
+   */
+  const styleKey = `${uid}-${design.theme}-${design.background}`;
   const { t } = useT();
   const u = width / STORY_WIDTH;
   const height = width * (STORY_HEIGHT / STORY_WIDTH);
@@ -92,7 +102,7 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
             preserveAspectRatio="none"
           >
             <GradientFill
-              id={`scrim-${uid}`}
+              id={`scrim-${styleKey}`}
               gradient={SCRIMS[background.scrim]}
               width={STORY_WIDTH}
               height={STORY_HEIGHT}
@@ -106,7 +116,7 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
           preserveAspectRatio="none"
         >
           <GradientFill
-            id={`bg-${uid}`}
+            id={`bg-${styleKey}`}
             gradient={theme.gradient}
             width={STORY_WIDTH}
             height={STORY_HEIGHT}
@@ -115,14 +125,14 @@ export const StoryCard = forwardRef<View, StoryCardProps>(function StoryCard(
             id={theme.pattern}
             color={theme.patternColor}
             opacity={theme.patternOpacity}
-            uid={uid}
+            uid={styleKey}
           />
         </Svg>
       )}
 
       {/* decoration + frame */}
       <Svg style={StyleSheet.absoluteFill} viewBox={`0 0 ${STORY_WIDTH} ${STORY_HEIGHT}`}>
-        <Decoration color={palette.decor} uid={uid} />
+        <Decoration color={palette.decor} uid={styleKey} />
         {design.showFrame && (
           <G>
             <Rect

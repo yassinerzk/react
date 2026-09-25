@@ -9,10 +9,10 @@ One page for the submission itself. The listing text in every language lives in
 | Field        | Value                                                                            |
 | ------------ | -------------------------------------------------------------------------------- |
 | Upload       | `barakah-stories.aab` (72 MB) from `~/Downloads/barakah-release/…`               |
-| Built by     | GitHub Actions run 36110485873, commit `176edfd`                                 |
+| Built by     | GitHub Actions run 36132769647, commit `eaa1e52`                                 |
 | Package name | `com.barakah.stories`                                                            |
 | Version name | `1.0.0`                                                                          |
-| Version code | `2`                                                                              |
+| Version code | `3`                                                                              |
 | Signing      | Release keystore (verified — signing block is `BARAKAH-.RSA`, not the debug key) |
 | Target API   | 36, meeting the requirement in force since 31 August 2026                        |
 
@@ -109,7 +109,20 @@ system share sheet. Nothing is posted anywhere by the app.
 - **Government app:** No.
 - **Financial features:** None.
 
-## 8. Listing languages
+## 8. Interface languages
+
+The app's interface runs in **English, Arabic, French, Bahasa Indonesia, Bahasa Melayu, Thai and
+Urdu**, chosen from a picker on the home screen.
+
+Story cards and the Quran reader show their translation in the chosen language too, from published
+editions — Hamidullah, Kementerian Agama, Abdullah Muhammad Basmeih, King Fahd Complex, Fateh
+Muhammad Jalandhry for the Quran, and the hadith-api editions for hadith. **Those translators are
+credited in the app**, and that attribution is a condition of use: do not remove it.
+
+Coverage is not total and the listings say so. Malay and Thai reach 198 of 305 cards, because no
+Malay or Thai edition of any hadith collection was available; French and Urdu reach 263, Indonesian 258. Everything uncovered falls back to English rather than going blank.
+
+## 9. Listing languages
 
 Copy is drafted in `docs/STORE-LISTING.md` for:
 
@@ -121,13 +134,13 @@ installs expecting an Indonesian translation of the Quran will say so in a revie
 
 Every non-English draft still wants a native speaker before it is published.
 
-## 9. Release track
+## 10. Release track
 
 Use **Internal testing** first, then promote. It goes live in minutes, you install from Play exactly
 as a user would, and promotion to production is one click. Going straight to production means any
 launch-blocking bug reaches real users and a rollback costs a fresh build plus a review cycle.
 
-## 10. Before you hit publish
+## 11. Before you hit publish
 
 - [ ] Screenshots captured from the installed app
 - [ ] Arabic read through by a native speaker (see `docs/STORE-LISTING.md`)
