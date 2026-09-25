@@ -9,10 +9,10 @@ One page for the submission itself. The listing text in every language lives in
 | Field        | Value                                                                            |
 | ------------ | -------------------------------------------------------------------------------- |
 | Upload       | `barakah-stories.aab` (72 MB) from `~/Downloads/barakah-release/…`               |
-| Built by     | GitHub Actions run 36132769647, commit `eaa1e52`                                 |
+| Built by     | GitHub Actions run 36157724666, commit `30354cd`                                 |
 | Package name | `com.barakah.stories`                                                            |
 | Version name | `1.0.0`                                                                          |
-| Version code | `3`                                                                              |
+| Version code | `6`                                                                              |
 | Signing      | Release keystore (verified — signing block is `BARAKAH-.RSA`, not the debug key) |
 | Target API   | 36, meeting the requirement in force since 31 August 2026                        |
 

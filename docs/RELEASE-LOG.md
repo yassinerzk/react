@@ -14,16 +14,16 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 | --------------------- | ------------------------------------------------------------------------------------------------- |
 | Local `npm run check` | ✅ Passing — typecheck, lint, format, 385 tests                                                   |
 | Release signing       | ✅ Keystore secrets set and proven                                                                |
-| Android build (CI)    | ✅ Run 36110485873 — signed AAB + APK from `176edfd`, contents verified                           |
+| Android build (CI)    | ✅ Run 36157724666 — signed AAB + APK from `30354cd`, `versionCode 6`                             |
 | Target API level      | ✅ React Native 0.86 targets API 36, which meets Play's 31 Aug 2026 requirement                   |
 | Play Console          | ✅ Organization account — production access granted, closed testing not required                  |
 | Privacy policy        | ✅ Live, and covers the daily reminder                                                            |
 | Accounts + deletion   | ✅ Verified end to end on device and in the database; web page live                               |
 | Store graphics        | 🟡 Icon and feature graphic generated in `docs/store/`; **screenshots still needed from a phone** |
 | Store listing copy    | 🟡 Drafted EN + AR — **the Arabic needs your read-through**                                       |
-| Device testing        | ✅ Build `176edfd` confirmed working on a real phone by the owner                                 |
+| Device testing        | ✅ Photo backgrounds and theme switching confirmed fixed on device                                |
 | Play Console forms    | ❌ Data Safety, content rating and the privacy-policy URL not yet entered                         |
-| App version           | ✅ `1.0.0` / `versionCode 2`                                                                      |
+| App version           | ✅ `1.0.0` / `versionCode 6`                                                                      |
 
 --------------------- | ------------------------------------------------------------------------------------------------------ |
 | Repo layout | ✅ Collapsed to one clone, up to date with `origin` at `d5a11fc` |
@@ -434,6 +434,44 @@ promotion is one click; a bad launch in production costs a fresh build and a rev
 On a phone, check: the splash plays and dismisses; the reminder offer appears on the **second**
 launch, and a notification actually arrives; a shared story has the wordmark sitting correctly in
 the exported image; the home grid's back-to-top button; and the Arabic layout of the reminder sheet.
+
+### 2026-09-25 — Photo backgrounds had never worked on Android
+
+Reported from the device: choosing a photo background produced a black card, and
+the theme picker appeared dead.
+
+**Cause.** The scrim — the gentle darkening that keeps text readable over a
+photograph — is written as `rgba(8,10,14,0.30)`. SVG carries transparency in
+`stop-opacity`, not in the colour, and react-native-svg does not read the alpha
+out of an `rgba()` string. `GradientFill` passed the colour straight to a
+`<Stop>` with a hard-coded `stopOpacity={1}`, so the `0.30` was discarded and a
+30% wash became an opaque sheet over the photo.
+
+The theme half followed from it: when a photo is set the card does not draw the
+theme gradient at all, so tapping through themes correctly changed nothing
+visible.
+
+`splitColorAlpha()` in `packages/core/src/themes.ts` now moves the alpha where
+SVG expects it. Theme gradients were never affected — they are hex throughout,
+with no alpha to lose, which is exactly why only photo backgrounds showed this.
+
+**How it was found, after two wrong attempts.** Both earlier diagnoses reasoned
+about the _update_ path — whether a changed gradient re-renders — and this bug
+is in the initial render. What found it was reading the data rather than the
+code: themes use hex only, the scrims use `rgba` exclusively. That asymmetry was
+the whole bug. Look at the data before theorising about the mechanism.
+
+Two changes from those attempts were kept, since both fix real latent problems:
+every SVG definition id now follows its contents, and the card's SVG layers
+remount on a style change. react-native-svg caches a definition by id, so an id
+that outlives its contents renders the old gradient.
+
+Tests cover the parser and the invariant behind it: every scrim stop is
+translucent, every theme stop is opaque.
+
+Confirmed working on device.
+
+---
 
 ## Decision: the daily reminder is local-only, and ships clean
 
