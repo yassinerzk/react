@@ -31,7 +31,7 @@ Première version.
 
 Signalez-nous toute erreur dans le texte arabe.
 </fr-FR>
-<id-ID>
+<id>
 Rilis pertama.
 
 • Lebih dari 300 kartu islami yang bisa diedit, diekspor 1080x1920 untuk status WhatsApp
@@ -41,7 +41,7 @@ Rilis pertama.
 • Tampilan dalam bahasa Indonesia, Inggris, Arab, Melayu, Prancis, Thai, dan Urdu
 
 Beri tahu kami jika ada salah tulis pada teks Arab.
-</id-ID>
+</id>
 <ms-MY>
 Keluaran pertama.
 
@@ -53,7 +53,7 @@ Keluaran pertama.
 
 Beritahu kami jika ada kesilapan pada teks Arab.
 </ms-MY>
-<th-TH>
+<th>
 เวอร์ชันแรก
 
 • การ์ดอิสลามแก้ไขได้กว่า 300 แบบ บันทึกขนาด 1080x1920 สำหรับสเตตัส WhatsApp
@@ -63,7 +63,7 @@ Beritahu kami jika ada kesilapan pada teks Arab.
 • หน้าจอมีภาษาไทย อังกฤษ อาหรับ อินโดนีเซีย มลายู ฝรั่งเศส และอูรดู
 
 หากพบคำผิดในข้อความภาษาอาหรับ โปรดแจ้งเรา
-</th-TH>
+</th>
 <ur>
 پہلا ریلیز۔
 

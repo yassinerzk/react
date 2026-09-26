@@ -246,6 +246,18 @@ either collection was available. Keep both statements in.
 
 Every non-English draft still wants a native speaker before it is published.
 
+**Importing them.** Store presence → Store listings → *Import translations with AI* takes
+`docs/store/play-listing-translations.txt`: the six translations, each with app name, short and
+full description, generated from `docs/STORE-LISTING.md` and checked against the 30 / 80 / 4000
+limits. English is not in it — it is the default listing and is entered directly. After the import,
+open each language and read it back: the AI extraction decides where each field starts and ends, and
+a split in the wrong place is easy to miss in a language you do not read.
+
+**Locale codes.** Play lists Indonesian as `id` and Thai as `th`, not `id-ID` / `th-TH`; the release
+notes use Play's codes. Malay exists twice, as `ms` and `ms-MY` — check which one the import created
+and make the `<ms-MY>` tag in `docs/release-notes-1.0.0.txt` match it, or Play will not attach those
+notes to the Malay listing.
+
 ## 10. Release track
 
 Use **Internal testing** first, then promote. It goes live in minutes, you install from Play exactly
@@ -272,7 +284,7 @@ pastes into the notes box in one go and Play splits it by tag:
 <ar>…</ar>
 ```
 
-Locale tags match the listings: `en-US`, `ar`, `fr-FR`, `id-ID`, `ms-MY`, `th-TH`, `ur`. Longest
+Locale tags match the listings: `en-US`, `ar`, `fr-FR`, `id`, `ms-MY`, `th`, `ur`. Longest
 draft is 462 characters, so there is room to edit. If you publish a listing locale without notes for
 it, Play shows that locale the default-language notes.
 
