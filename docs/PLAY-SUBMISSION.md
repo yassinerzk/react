@@ -177,7 +177,19 @@ answer in section 7, and Play checks those forms against each other.
 ## 7. Target audience and content
 
 - **Target age group:** 18 and over. The app is not directed at children.
+- **"Restrict users that Google has determined to be minors":** leave **unticked**, both the
+  download option and the in-app-purchase one. It is easy to tick by mistake, and it is not the same
+  as declaring an adult target age — it hard-blocks under-18s from finding or installing the app.
+  Muslim teenagers sharing Islamic content on WhatsApp status are close to the centre of this app's
+  audience, and nothing in it is age-inappropriate. Ticking it also blocks the future Pro purchase
+  for them. Play offers it for dating, gambling, alcohol and tobacco apps, not this one.
 - **Appeals to children:** No.
+- **Why not also tick 13-15 and 16-17**, given teens will use it: any under-18 band brings Play's
+  Families obligations for that band, and the one that bites is advertising — personalized ads
+  cannot be served to known minors, so the planned AdMob work would need age gating and
+  non-personalized ad requests before it could ship. Declaring 18 and over does not stop teens
+  installing the app, so there is nothing to buy with that work today. Anything under 13 is a larger
+  step again: Designed for Families, COPPA, and a stricter content and ads regime.
 - **News app:** No.
 - **COVID-19 contact tracing:** No.
 - **Data safety — children:** not applicable.
