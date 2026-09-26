@@ -142,6 +142,17 @@ Also declare:
   implements that retention policy, and declaring it would be a claim with no mechanism behind it
 - **No advertising ID.** Verified in the binary: the manifest contains no `AD_ID` permission
 - **No analytics, no ads, no tracking SDK** in this build
+- **Advertising ID declaration** (App content → Advertising ID): **No.** Checked in the versionCode 7
+  binary, not just our code, since Play warns that SDKs can merge the permission in: the *merged*
+  manifest has no `AD_ID`, and no DEX contains `AdvertisingIdClient` or any `gms/ads` class.
+- **Firebase in the DEX is not analytics.** A scan finds `com/google/firebase/analytics`, which looks
+  alarming. It is only `AnalyticsConnector`, an empty interop hook that `firebase-messaging` carries in
+  case the Analytics SDK is also present; `FirebaseAnalytics` and `AppMeasurement` are absent. And
+  `firebase-messaging` itself arrives with `expo-notifications` for remote push, but cannot start:
+  there is no `google-services.json` and no `googleServicesFile` in `app.json`, so Firebase never
+  initializes and no push token is ever created. The daily reminder is a local notification. If
+  remote push is ever added, that changes — Firebase would then start, and Data safety needs an
+  entry for the device/push identifier.
 - **Additional badges (Independent security review, UPI Payments):** skip both — neither applies
 
 The daily reminder notification is scheduled on the device and collects nothing, so it adds no
