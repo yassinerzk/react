@@ -143,19 +143,36 @@ messaging, feed, profiles or user-to-user contact. Choosing it would open a bran
 moderation and publicly shared user content, and push the age rating up for a capability the app
 does not have.
 
-Expected answers to the questionnaire that follows:
+Answers to the questionnaire that follows, as Play words the questions:
 
-| Question                                             | Answer |
-| ---------------------------------------------------- | ------ |
-| Violence, sexual content, profanity, drugs, gambling | No     |
-| Contains ads                                         | No     |
-| Shares user location with other users                | No     |
-| Allows users to interact or exchange content         | No     |
-| Allows purchase of digital goods                     | No     |
-| Contains user-generated content shared publicly      | No     |
+| Question                                                    | Answer  |
+| ----------------------------------------------------------- | ------- |
+| Ratings-relevant content in the app package                 | No      |
+| Natively lets users interact or exchange content            | No      |
+| **Content not part of the initial download, reachable in-app** | **Yes** |
+| Promotes or sells age-restricted products                   | No      |
+| Shares precise location with other users                    | No      |
+| Allows purchase of digital goods                            | No      |
+| Cash rewards, gift cards, play-to-earn, crypto, NFTs        | No      |
+| Is a web browser or search engine                           | No      |
+| Is primarily a news or educational product                  | No      |
 
-The app has no social layer: stories are exported to the user's own device and shared through the
-system share sheet. Nothing is posted anywhere by the app.
+Three of these are judgement calls rather than obvious:
+
+**Online content is Yes.** The app fetches the Bukhari and Muslim collections (~14 MB and ~12 MB)
+from a CDN on first use, and pulls non-English Quran translations a surah at a time. That is content
+outside the initial download, so No would be a misdeclaration. The follow-ups ask whether it is
+user-generated or moderated; it is neither, being fixed published editions from pinned sources, so
+it should not move the rating.
+
+**User content sharing is No.** The operative word in Play's wording is *natively*. Passing a
+finished image to the system share sheet is not an in-app exchange channel — there is no messaging,
+no server between users, no profiles. The optional account syncs a user's own saved posts between
+their own devices, which is not "other users" either.
+
+**Primarily news or educational is No.** The Quran and hadith readers are reference material, but
+the app's purpose is making and sharing cards. Yes here would also contradict the News app = No
+answer in section 7, and Play checks those forms against each other.
 
 ## 7. Target audience and content
 
