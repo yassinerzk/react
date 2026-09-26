@@ -1,0 +1,77 @@
+<en-US>
+First release.
+
+• Over 300 editable Islamic story cards, exported at 1080x1920 for WhatsApp status
+• Prayer times, a countdown to the next prayer, and a Qibla compass
+• All 114 surahs in Arabic offline, with translation in seven languages
+• Sahih al-Bukhari and Sahih Muslim in Arabic and English, searchable
+• Interface in English, Arabic, French, Indonesian, Malay, Thai and Urdu
+
+If you find a mistake in the Arabic, please tell us and we will fix it quickly.
+</en-US>
+<ar>
+الإصدار الأول.
+
+• أكثر من 300 بطاقة إسلامية قابلة للتعديل، تُصدَّر بمقاس 1080×1920 لحالة واتساب
+• مواقيت الصلاة وعدّاد للصلاة القادمة وبوصلة القبلة
+• السور الـ114 بالعربية دون إنترنت، مع ترجمة بسبع لغات
+• صحيح البخاري وصحيح مسلم بالعربية والإنجليزية مع البحث
+• واجهة بالعربية والإنجليزية والفرنسية والإندونيسية والملايوية والتايلاندية والأردية
+
+إن لاحظت خطأً في النص العربي فأخبرنا وسنصححه سريعًا.
+</ar>
+<fr-FR>
+Première version.
+
+• Plus de 300 cartes islamiques modifiables, exportées en 1080x1920 pour les stories WhatsApp
+• Heures de prière, compte à rebours et boussole qibla
+• Les 114 sourates en arabe hors connexion, avec traduction en sept langues
+• Sahih al-Bukhari et Sahih Muslim en arabe et en anglais, avec recherche
+• Interface en français, anglais, arabe, indonésien, malais, thaï et ourdou
+
+Signalez-nous toute erreur dans le texte arabe.
+</fr-FR>
+<id-ID>
+Rilis pertama.
+
+• Lebih dari 300 kartu islami yang bisa diedit, diekspor 1080x1920 untuk status WhatsApp
+• Jadwal salat, hitung mundur salat berikutnya, dan kompas kiblat
+• 114 surah dalam bahasa Arab tanpa internet, dengan terjemahan tujuh bahasa
+• Sahih al-Bukhari dan Sahih Muslim dalam bahasa Arab dan Inggris, bisa dicari
+• Tampilan dalam bahasa Indonesia, Inggris, Arab, Melayu, Prancis, Thai, dan Urdu
+
+Beri tahu kami jika ada salah tulis pada teks Arab.
+</id-ID>
+<ms-MY>
+Keluaran pertama.
+
+• Lebih 300 kad islami yang boleh disunting, dieksport 1080x1920 untuk status WhatsApp
+• Waktu solat, kiraan detik solat seterusnya, dan kompas kiblat
+• 114 surah dalam bahasa Arab tanpa internet, dengan terjemahan tujuh bahasa
+• Sahih al-Bukhari dan Sahih Muslim dalam bahasa Arab dan Inggeris, boleh dicari
+• Paparan dalam bahasa Melayu, Inggeris, Arab, Indonesia, Perancis, Thai dan Urdu
+
+Beritahu kami jika ada kesilapan pada teks Arab.
+</ms-MY>
+<th-TH>
+เวอร์ชันแรก
+
+• การ์ดอิสลามแก้ไขได้กว่า 300 แบบ บันทึกขนาด 1080x1920 สำหรับสเตตัส WhatsApp
+• เวลาละหมาด นับถอยหลังละหมาดถัดไป และเข็มทิศกิบลัต
+• ครบ 114 ซูเราะฮฺ ภาษาอาหรับใช้ได้ออฟไลน์ พร้อมคำแปลเจ็ดภาษา
+• เศาะฮีหฺ อัลบุคอรี และเศาะฮีหฺ มุสลิม ภาษาอาหรับและอังกฤษ ค้นหาได้
+• หน้าจอมีภาษาไทย อังกฤษ อาหรับ อินโดนีเซีย มลายู ฝรั่งเศส และอูรดู
+
+หากพบคำผิดในข้อความภาษาอาหรับ โปรดแจ้งเรา
+</th-TH>
+<ur>
+پہلا ریلیز۔
+
+• 300 سے زیادہ قابلِ تدوین اسلامی کارڈز، واٹس ایپ اسٹیٹس کے لیے 1080x1920 میں محفوظ
+• نماز کے اوقات، اگلی نماز کی گنتی، اور قبلہ کمپاس
+• تمام 114 سورتیں عربی میں انٹرنیٹ کے بغیر، سات زبانوں میں ترجمہ
+• صحیح البخاری اور صحیح مسلم عربی اور انگریزی میں، تلاش کی سہولت
+• انٹرفیس اردو، انگریزی، عربی، انڈونیشیائی، ملایو، فرانسیسی اور تھائی میں
+
+عربی متن میں کوئی غلطی نظر آئے تو ہمیں بتائیے۔
+</ur>

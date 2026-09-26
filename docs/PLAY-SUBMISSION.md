@@ -190,7 +190,59 @@ Use **Internal testing** first, then promote. It goes live in minutes, you insta
 as a user would, and promotion to production is one click. Going straight to production means any
 launch-blocking bug reaches real users and a rollback costs a fresh build plus a review cycle.
 
-## 11. Before you hit publish
+## 11. Creating the release
+
+| Field        | Value                                                                 |
+| ------------ | --------------------------------------------------------------------- |
+| Release name | `1.0.0 (6) — first release`                                           |
+| Release notes | `docs/release-notes-1.0.0.txt` — all seven locales, ready to paste    |
+
+The release name is **internal only**. Nobody browsing the store sees it; it appears in the Play
+Console release list and in Play's own emails to you. Play pre-fills it with `6 (1.0.0)`, which is
+fine but tells you nothing in six months' time. Limit is 50 characters.
+
+The release notes **are** user-facing, on the store page under "What's new", limited to **500
+characters per language**. The drafted file uses Play's multi-language format, so the whole thing
+pastes into the notes box in one go and Play splits it by tag:
+
+```
+<en-US>…</en-US>
+<ar>…</ar>
+```
+
+Locale tags match the listings: `en-US`, `ar`, `fr-FR`, `id-ID`, `ms-MY`, `th-TH`, `ur`. Longest
+draft is 462 characters, so there is room to edit. If you publish a listing locale without notes for
+it, Play shows that locale the default-language notes.
+
+### Bundle analysis warnings
+
+The Play Console flags three things on this bundle, all advisory — none blocks publishing:
+
+| Warning               | Shown as | Cause                                                  |
+| --------------------- | -------- | ------------------------------------------------------ |
+| DEX code optimization | Low      | R8 is off, so nothing is shrunk or optimised           |
+| Obfuscation           | 1%       | Same — the 1% is what dependencies shipped pre-obfuscated |
+| R8 configuration      | —        | No R8 config exists to report                          |
+
+The cause is one thing: `expo prebuild` generates the Android project fresh on every CI run with
+Expo's defaults, and those set `enableProguardInReleaseBuilds=false`. There is no committed
+`android/` directory to change, so the fix belongs in `app.json` via `expo-build-properties`, which
+is not currently a dependency.
+
+**Do not do this on submission day.** Enabling R8 produces a different binary from the one tested,
+and React Native plus Expo modules lean on reflection heavily enough that a missing keep rule
+produces a crash that appears only in release builds — exactly the failure that reaches users
+instead of you. Ship this build; schedule R8 as its own change with a device test pass.
+
+It is worth doing eventually. DEX is 46.7 MB uncompressed, and unlike the 77 MB of native libraries
+— which Play splits per ABI so each device downloads roughly a quarter — **every user downloads all
+of the DEX**. So it is a larger share of the real download than 20% of the bundle suggests, and the
+markets this app targets are the ones where that matters most.
+
+Play's own suggestion to "upgrade to AGP 9.0" is not actionable here: Expo SDK 57 pins the Gradle
+plugin version, and moving it independently breaks prebuild.
+
+## 12. Before you hit publish
 
 - [ ] Screenshots captured from the installed app
 - [ ] Arabic read through by a native speaker (see `docs/STORE-LISTING.md`)
