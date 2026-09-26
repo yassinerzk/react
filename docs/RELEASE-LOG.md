@@ -714,3 +714,18 @@ redirects the old one for now, but that is not a reason to leave it stale).
 **If the repo is ever renamed again**, re-check the Pages `build_type` before assuming a redeploy
 will fix it — the URL and the build source are two separate settings, and only one of them updates
 automatically.
+
+## versionCode 7 — run 36245496752, `d1ffff7`
+
+Play refused to take versionCode 6 a second time. Any version code the Console has received is
+spent, even from a release that was never rolled out, so the only way forward is a higher number.
+This build changes nothing but that number: `apps/mobile/app.json` 6 → 7, version name still
+`1.0.0`, since this is still the first public release.
+
+Verified the same way as 6: `versionCode='7'`, targetSdk 36, `AD_ID` absent, all seven UI
+languages, the bundled Quran text, all five translator credits and the scrim fix present. The
+upload certificate's SHA-256 is `56b26d99…9011c0`, identical to the build already uploaded, which
+is what lets Play accept it as the same app.
+
+The upload folder is `barakah-release-code7`, named by version code: the earlier `barakah-release-v7`
+folder holds versionCode **6** despite its name, so don't upload from that one.

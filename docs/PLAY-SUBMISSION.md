@@ -8,11 +8,11 @@ One page for the submission itself. The listing text in every language lives in
 
 | Field        | Value                                                                    |
 | ------------ | ------------------------------------------------------------------------ |
-| Upload       | `~/Downloads/barakah-release-v7/barakah-stories.aab` (74.9 MB)           |
-| Built by     | GitHub Actions run 36233685694, commit `5e3084c`                         |
+| Upload       | `~/Downloads/barakah-release-code7/barakah-stories.aab` (74.9 MB)        |
+| Built by     | GitHub Actions run 36245496752, commit `d1ffff7`                         |
 | Package name | `com.barakah.stories`                                                    |
 | Version name | `1.0.0`                                                                  |
-| Version code | `6`                                                                      |
+| Version code | `7` — 6 was uploaded to the Console before this release, so it is burned |
 | Min / target | minSdk 24, targetSdk 36 — meets the API 36 requirement of 31 August 2026 |
 | Signing      | Release keystore, verified — see below                                   |
 
@@ -268,11 +268,11 @@ launch-blocking bug reaches real users and a rollback costs a fresh build plus a
 
 | Field        | Value                                                                 |
 | ------------ | --------------------------------------------------------------------- |
-| Release name | `1.0.0 (6) — first release`                                           |
+| Release name | `1.0.0 (7) — first release`                                           |
 | Release notes | `docs/release-notes-1.0.0.txt` — all seven locales, ready to paste    |
 
 The release name is **internal only**. Nobody browsing the store sees it; it appears in the Play
-Console release list and in Play's own emails to you. Play pre-fills it with `6 (1.0.0)`, which is
+Console release list and in Play's own emails to you. Play pre-fills it with `7 (1.0.0)`, which is
 fine but tells you nothing in six months' time. Limit is 50 characters.
 
 The release notes **are** user-facing, on the store page under "What's new", limited to **500
