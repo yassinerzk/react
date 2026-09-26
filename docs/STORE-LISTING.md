@@ -12,10 +12,11 @@ read it over before it goes live — you know the audience better than a transla
 > Malay, Thai transliterates Arabic terms by convention rather than by rule, and Urdu register shifts
 > with audience. A clumsy listing is the first thing a reader sees.
 >
-> The app interface now speaks all six of these languages, so each description says so plainly. The
-> **Quran and hadith translations are still English**, and every description says that too. Keep that
-> distinction: someone who installs expecting an Indonesian translation of the Quran and finds an
-> English one will say so in a review.
+> The app interface speaks all seven of these languages, so each description says so plainly. Two
+> limits belong in every description, because getting them wrong is what earns a one-star review:
+> the **Quran reader** carries a published translation in each language, but downloads it a surah at
+> a time rather than shipping it in the app; the **hadith library** is still **Arabic and English
+> only**, because no Malay or Thai edition of either collection was available.
 
 ---
 
@@ -83,7 +84,8 @@ PRAYER TIMES AND QIBLA
 
 QURAN
 • All 114 surahs, bundled in the app and fully offline
-• Uthmani Arabic with English translation
+• Uthmani Arabic with a published translation in English, French, Indonesian, Malay, Thai or
+  Urdu
 • The reader remembers your last ayah and marks the surahs you finish
 • Turn any ayah into a story card with one tap
 
@@ -93,12 +95,15 @@ HADITH
 • A filter that shows supplications only
 • Turn any hadith into a story card with one tap
 
-IN ARABIC OR ENGLISH
-The whole interface works in both, with proper right-to-left layout.
+SEVEN LANGUAGES
+The whole interface works in English, Arabic, French, Bahasa Indonesia, Bahasa Melayu, Thai and
+Urdu, with proper right-to-left layout for Arabic and Urdu. Story cards show their translation in
+the language you pick. The hadith library is Arabic and English.
 
 WORKS OFFLINE
-The Quran, all the cards, the fonts and the backgrounds are inside the app. Only the hadith
-collections are downloaded once, then cached on your device.
+The Arabic Quran, its English translation, all the cards, the fonts and the backgrounds are inside
+the app. The hadith collections and the other Quran translations are downloaded once, then kept on
+your device.
 
 YOUR CONTENT STAYS ON YOUR PHONE
 Everything you make stays on your phone unless you choose to sign up, and signing up is
@@ -141,7 +146,8 @@ number. If you ever spot a typo in the Arabic, please tell us and we will fix it
 
 القرآن الكريم
 • السور ال114 كاملة داخل التطبيق وتعمل دون إنترنت
-• رسم عثماني مع ترجمة إنجليزية
+• رسم عثماني مع ترجمة منشورة بالإنجليزية أو الفرنسية أو الإندونيسية أو الملايوية أو التايلاندية
+  أو الأردية
 • يحفظ القارئ آخر آية وقفت عندها ويسجّل السور التي أتممتها
 • حوّل أي آية إلى بطاقة بلمسة واحدة
 
@@ -151,12 +157,14 @@ number. If you ever spot a typo in the Arabic, please tell us and we will fix it
 • مرشّح يعرض الأدعية فقط
 • حوّل أي حديث إلى بطاقة بلمسة واحدة
 
-بالعربية أو الإنجليزية
-تعمل الواجهة بالكامل باللغتين، مع دعم سليم للاتجاه من اليمين إلى اليسار.
+بسبع لغات
+تعمل الواجهة بالكامل بالعربية والإنجليزية والفرنسية والإندونيسية والملايوية والتايلاندية والأردية،
+مع دعم سليم للاتجاه من اليمين إلى اليسار في العربية والأردية. وتظهر ترجمة البطاقات باللغة التي
+تختارها. أما كتب الحديث فبالعربية والإنجليزية.
 
 يعمل دون إنترنت
-القرآن والبطاقات والخطوط والخلفيات كلها داخل التطبيق. تُنزَّل كتب الحديث مرة واحدة فقط ثم تُحفظ
-على جهازك.
+القرآن بالرسم العثماني وترجمته الإنجليزية والبطاقات والخطوط والخلفيات كلها داخل التطبيق. أما كتب
+الحديث وبقية ترجمات القرآن فتُنزَّل مرة واحدة ثم تُحفظ على جهازك.
 
 محتواك يبقى على هاتفك
 ما تصنعه يبقى على هاتفك ما لم تختر إنشاء حساب، وإنشاء الحساب اختياري تمامًا ويقتصر على مزامنة
@@ -185,7 +193,7 @@ Re-check the character counts after any edit — the counts shown were taken as 
 Cartes islamiques, heures de prière, Coran et hadith — à partager en story
 ```
 
-**Full description** (3106 / 4000)
+**Full description** (3323 / 4000)
 
 ```
 Partagez une belle carte islamique dans votre story en quelques secondes.
@@ -221,7 +229,8 @@ HEURES DE PRIÈRE ET QIBLA
 
 CORAN
 • Les 114 sourates dans l'application, consultables sans connexion
-• Texte arabe en rasm ottoman avec traduction anglaise
+• Texte arabe en rasm ottoman avec une traduction publiée en français, anglais, indonésien,
+  malais, thaï ou ourdou
 • L'application retient le dernier verset lu et marque les sourates terminées
 • Transformez n'importe quel verset en carte d'une seule touche
 
@@ -232,12 +241,14 @@ HADITH
 • Transformez n'importe quel hadith en carte d'une seule touche
 
 LANGUE DE L'APPLICATION
-L'interface est disponible en français, anglais, arabe, indonésien, malais et thaï. Les traductions
-du Coran et des hadiths sont pour l'instant en anglais.
+L'interface est disponible en français, anglais, arabe, indonésien, malais, thaï et ourdou, et les
+cartes affichent leur traduction dans la langue choisie. Le Coran se lit avec la traduction
+française de Muhammad Hamidullah. Les recueils de hadiths restent en arabe et en anglais.
 
 FONCTIONNE HORS CONNEXION
-Le Coran, toutes les cartes, les polices et les fonds sont déjà dans l'application. Seuls les
-recueils de hadiths se téléchargent une fois, puis restent sur votre appareil.
+Le Coran en arabe, toutes les cartes, les polices et les fonds sont déjà dans l'application. Les
+recueils de hadiths et la traduction française se téléchargent une fois, puis restent sur votre
+appareil.
 
 CE QUE VOUS CRÉEZ RESTE SUR VOTRE TÉLÉPHONE
 Tout ce que vous créez reste sur votre téléphone. La création d'un compte est entièrement
@@ -257,7 +268,7 @@ vous repérez une coquille dans le texte arabe, dites-le-nous et nous la corrige
 Kartu Islami siap pakai, waktu salat, Al-Qur'an & hadis — bagikan ke status
 ```
 
-**Full description** (2975 / 4000)
+**Full description** (3174 / 4000)
 
 ```
 Bagikan kartu Islami yang indah ke status Anda dalam hitungan detik.
@@ -291,7 +302,8 @@ WAKTU SALAT DAN ARAH KIBLAT
 
 AL-QUR'AN
 • 114 surah lengkap, tersimpan di dalam aplikasi dan bisa dibuka tanpa internet
-• Teks Arab rasm Usmani dengan terjemahan bahasa Inggris
+• Teks Arab rasm Usmani dengan terjemahan terbitan dalam bahasa Indonesia, Inggris, Prancis,
+  Melayu, Thai, atau Urdu
 • Aplikasi mengingat ayat terakhir yang Anda baca dan menandai surah yang sudah selesai
 • Ubah ayat mana pun menjadi kartu hanya dengan satu ketukan
 
@@ -302,12 +314,13 @@ HADIS
 • Ubah hadis mana pun menjadi kartu hanya dengan satu ketukan
 
 BAHASA APLIKASI
-Tampilan aplikasi tersedia dalam bahasa Indonesia, Inggris, Arab, Melayu, Prancis, dan Thai.
-Terjemahan Al-Qur'an dan hadis saat ini masih dalam bahasa Inggris.
+Tampilan aplikasi tersedia dalam bahasa Indonesia, Inggris, Arab, Melayu, Prancis, Thai, dan Urdu,
+dan kartu menampilkan terjemahan dalam bahasa yang Anda pilih. Al-Qur'an dibaca dengan terjemahan
+Kementerian Agama Republik Indonesia. Kitab hadis masih dalam bahasa Arab dan Inggris.
 
 BISA DIPAKAI TANPA INTERNET
-Al-Qur'an, seluruh kartu, jenis huruf, dan latar foto sudah ada di dalam aplikasi. Hanya kitab hadis
-yang perlu diunduh sekali, lalu tersimpan di perangkat Anda.
+Teks Arab Al-Qur'an, seluruh kartu, jenis huruf, dan latar foto sudah ada di dalam aplikasi. Kitab
+hadis dan terjemahan Al-Qur'an diunduh sekali, lalu tersimpan di perangkat Anda.
 
 APA YANG ANDA BUAT TETAP DI PONSEL ANDA
 Semua yang Anda buat tersimpan di ponsel Anda sendiri. Membuat akun sepenuhnya opsional dan hanya
@@ -327,7 +340,7 @@ perbaiki.
 Kad Islam siap sedia, waktu solat, Al-Quran & hadis — kongsi ke status anda
 ```
 
-**Full description** (2997 / 4000)
+**Full description** (3189 / 4000)
 
 ```
 Kongsi kad Islam yang indah ke status anda dalam beberapa saat.
@@ -361,7 +374,8 @@ WAKTU SOLAT DAN ARAH KIBLAT
 
 AL-QURAN
 • Kesemua 114 surah tersimpan di dalam aplikasi dan boleh dibaca tanpa internet
-• Teks Arab rasm Uthmani dengan terjemahan bahasa Inggeris
+• Teks Arab rasm Uthmani dengan terjemahan terbitan dalam bahasa Melayu, Inggeris, Perancis,
+  Indonesia, Thai atau Urdu
 • Aplikasi mengingati ayat terakhir yang anda baca dan menanda surah yang telah tamat
 • Tukar mana-mana ayat menjadi kad dengan satu sentuhan
 
@@ -372,12 +386,13 @@ HADIS
 • Tukar mana-mana hadis menjadi kad dengan satu sentuhan
 
 BAHASA APLIKASI
-Paparan aplikasi tersedia dalam bahasa Melayu, Inggeris, Arab, Indonesia, Perancis dan Thai.
-Terjemahan Al-Quran dan hadis buat masa ini masih dalam bahasa Inggeris.
+Paparan aplikasi tersedia dalam bahasa Melayu, Inggeris, Arab, Indonesia, Perancis, Thai dan Urdu,
+dan kad memaparkan terjemahan dalam bahasa yang anda pilih. Al-Quran dibaca dengan terjemahan
+Abdullah Muhammad Basmeih. Kitab hadis masih dalam bahasa Arab dan Inggeris.
 
 BOLEH DIGUNAKAN TANPA INTERNET
-Al-Quran, keseluruhan kad, jenis fon dan latar foto sudah ada di dalam aplikasi. Hanya kitab hadis
-yang perlu dimuat turun sekali, kemudian disimpan pada peranti anda.
+Teks Arab Al-Quran, keseluruhan kad, jenis fon dan latar foto sudah ada di dalam aplikasi. Kitab
+hadis dan terjemahan Al-Quran dimuat turun sekali, kemudian disimpan pada peranti anda.
 
 APA YANG ANDA HASILKAN KEKAL PADA TELEFON ANDA
 Segala yang anda hasilkan tersimpan pada telefon anda sendiri. Mendaftar akaun adalah pilihan
@@ -397,7 +412,7 @@ membetulkannya segera.
 การ์ดอิสลามพร้อมใช้ เวลาละหมาด อัลกุรอาน และหะดีษ — แชร์ลงสเตตัส
 ```
 
-**Full description** (2508 / 4000)
+**Full description** (2667 / 4000)
 
 ```
 แชร์การ์ดอิสลามที่สวยงามลงสเตตัสของคุณได้ในไม่กี่วินาที
@@ -429,7 +444,7 @@ Barakah Stories มีการ์ดสำเร็จรูปที่คุ�
 
 อัลกุรอาน
 • ครบทั้ง 114 ซูเราะฮฺ เก็บอยู่ในแอปและเปิดอ่านได้โดยไม่ต้องต่ออินเทอร์เน็ต
-• อักษรอาหรับแบบอุษมานีย์ พร้อมคำแปลภาษาอังกฤษ
+• อักษรอาหรับแบบอุษมานีย์ พร้อมคำแปลฉบับตีพิมพ์ในภาษาไทย อังกฤษ ฝรั่งเศส อินโดนีเซีย มลายู หรืออูรดู
 • แอปจดจำอายะฮฺล่าสุดที่คุณอ่าน และบันทึกซูเราะฮฺที่อ่านจบแล้ว
 • เปลี่ยนอายะฮฺใดก็ได้ให้เป็นการ์ดด้วยการแตะเพียงครั้งเดียว
 
@@ -440,12 +455,12 @@ Barakah Stories มีการ์ดสำเร็จรูปที่คุ�
 • เปลี่ยนหะดีษใดก็ได้ให้เป็นการ์ดด้วยการแตะเพียงครั้งเดียว
 
 ภาษาของแอป
-หน้าจอแอปมีภาษาไทย อังกฤษ อาหรับ อินโดนีเซีย มลายู และฝรั่งเศส
-ส่วนคำแปลอัลกุรอานและหะดีษขณะนี้ยังเป็นภาษาอังกฤษ
+หน้าจอแอปมีภาษาไทย อังกฤษ อาหรับ อินโดนีเซีย มลายู ฝรั่งเศส และอูรดู และการ์ดจะแสดงคำแปลในภาษาที่คุณเลือก
+อัลกุรอานอ่านพร้อมคำแปลภาษาไทยของศูนย์กษัตริย์ฟะฮัด ส่วนหนังสือหะดีษยังเป็นภาษาอาหรับและอังกฤษ
 
 ใช้งานได้โดยไม่ต้องต่ออินเทอร์เน็ต
-อัลกุรอาน การ์ดทั้งหมด แบบอักษร และภาพพื้นหลังอยู่ในแอปแล้ว มีเพียงหนังสือหะดีษที่ต้องดาวน์โหลดเพียงครั้งเดียว
-แล้วเก็บไว้ในเครื่องของคุณ
+อัลกุรอานภาษาอาหรับ การ์ดทั้งหมด แบบอักษร และภาพพื้นหลังอยู่ในแอปแล้ว ส่วนหนังสือหะดีษและคำแปลอัลกุรอาน
+ดาวน์โหลดเพียงครั้งเดียว แล้วเก็บไว้ในเครื่องของคุณ
 
 สิ่งที่คุณสร้างอยู่ในเครื่องของคุณ
 ทุกสิ่งที่คุณสร้างจะถูกเก็บไว้ในเครื่องของคุณเอง การสมัครบัญชีเป็นทางเลือกทั้งหมด
@@ -464,7 +479,7 @@ Barakah Stories มีการ์ดสำเร็จรูปที่คุ�
 تیار اسلامی کارڈز، نماز کے اوقات، قرآن و حدیث — اسٹیٹس پر شیئر کریں
 ```
 
-**Full description** (2597 / 4000)
+**Full description** (2809 / 4000)
 
 ```
 چند لمحوں میں ایک خوبصورت اسلامی کارڈ اپنے اسٹیٹس پر شیئر کریں۔
@@ -496,7 +511,7 @@ Barakah Stories آپ کو خاص مواقع کے لیے تیار کارڈز دی
 
 قرآن کریم
 • تمام 114 سورتیں ایپ کے اندر محفوظ، انٹرنیٹ کے بغیر بھی پڑھیں
-• عثمانی رسم الخط مع انگریزی ترجمہ
+• عثمانی رسم الخط کے ساتھ اردو، انگریزی، فرانسیسی، انڈونیشیائی، ملایو یا تھائی شائع شدہ ترجمہ
 • ایپ آپ کی آخری پڑھی ہوئی آیت یاد رکھتی ہے اور مکمل سورتیں نشان زد کرتی ہے
 • کسی بھی آیت کو ایک ٹیپ میں کارڈ بنا لیں
 
@@ -507,12 +522,13 @@ Barakah Stories آپ کو خاص مواقع کے لیے تیار کارڈز دی
 • کسی بھی حدیث کو ایک ٹیپ میں کارڈ بنا لیں
 
 ایپ کی زبان
-ایپ کا انٹرفیس اردو، انگریزی، عربی، انڈونیشیائی، ملے اور فرانسیسی میں دستیاب ہے۔ قرآن و حدیث کا
-ترجمہ فی الحال انگریزی میں ہے۔
+ایپ کا انٹرفیس اردو، انگریزی، عربی، انڈونیشیائی، ملایو، فرانسیسی اور تھائی میں دستیاب ہے، اور کارڈز
+آپ کی منتخب کردہ زبان میں ترجمہ دکھاتے ہیں۔ قرآن فتح محمد جالندھری کے اردو ترجمے کے ساتھ پڑھا جاتا
+ہے۔ حدیث کی کتابیں اب بھی عربی اور انگریزی میں ہیں۔
 
 انٹرنیٹ کے بغیر بھی کام کرتی ہے
-قرآن، تمام کارڈز، فونٹس اور پس منظر ایپ کے اندر موجود ہیں۔ صرف حدیث کی کتابیں ایک بار ڈاؤن لوڈ کرنی
-ہوتی ہیں، پھر وہ آپ کے آلے میں محفوظ رہتی ہیں۔
+عربی قرآن، تمام کارڈز، فونٹس اور پس منظر ایپ کے اندر موجود ہیں۔ حدیث کی کتابیں اور قرآن کا ترجمہ ایک
+بار ڈاؤن لوڈ ہوتے ہیں، پھر وہ آپ کے آلے میں محفوظ رہتے ہیں۔
 
 آپ کا بنایا ہوا آپ کے فون میں رہتا ہے
 آپ جو کچھ بناتے ہیں وہ آپ ہی کے فون میں رہتا ہے۔ اکاؤنٹ بنانا مکمل طور پر اختیاری ہے اور صرف اس لیے
@@ -551,6 +567,7 @@ The policy changes when the ad build ships, not before.
 
 The description above deliberately does **not** say the app is endorsed by any scholar, mosque or
 authority, and does not use another app's name. It also does not promise features that are not in
-v1 — there is no audio, no notifications and no widgets yet, so none are mentioned. Keep it that
-way: Play treats a description that oversells as a policy violation, and users leave one-star
-reviews for missing features they were promised.
+v1 — there is no recitation audio and no home-screen widget yet, so neither is mentioned. The one
+feature deliberately left out although it does ship is the optional daily reminder: under-selling is
+never a policy problem, over-selling is. Keep it that way: Play treats a description that oversells
+as a policy violation, and users leave one-star reviews for missing features they were promised.

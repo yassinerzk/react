@@ -6,15 +6,32 @@ One page for the submission itself. The listing text in every language lives in
 
 ## 1. The build
 
-| Field        | Value                                                                            |
-| ------------ | -------------------------------------------------------------------------------- |
-| Upload       | `barakah-stories.aab` (72 MB) from `~/Downloads/barakah-release/…`               |
-| Built by     | GitHub Actions run 36157724666, commit `30354cd`                                 |
-| Package name | `com.barakah.stories`                                                            |
-| Version name | `1.0.0`                                                                          |
-| Version code | `6`                                                                              |
-| Signing      | Release keystore (verified — signing block is `BARAKAH-.RSA`, not the debug key) |
-| Target API   | 36, meeting the requirement in force since 31 August 2026                        |
+| Field        | Value                                                                    |
+| ------------ | ------------------------------------------------------------------------ |
+| Upload       | `~/Downloads/barakah-release-v7/barakah-stories.aab` (74.9 MB)           |
+| Built by     | GitHub Actions run 36233685694, commit `5e3084c`                         |
+| Package name | `com.barakah.stories`                                                    |
+| Version name | `1.0.0`                                                                  |
+| Version code | `6`                                                                      |
+| Min / target | minSdk 24, targetSdk 36 — meets the API 36 requirement of 31 August 2026 |
+| Signing      | Release keystore, verified — see below                                   |
+
+Upload the **`.aab`**. The `.apk` in the same folder is for installing on a device by hand; Play
+rejects an APK for a new app.
+
+Both artifacts were verified against this build, not a previous one:
+
+- The **AAB** carries `META-INF/BARAKAH-.RSA` — signed with the release keystore.
+- The **APK** has no `META-INF/*.RSA` at all, because it is signed with **APK Signature Scheme v2
+  only**. That is not a missing signature: `apksigner verify` reports `Verified using v2 scheme:
+  true`, signer `CN=yassine razzouki, O=Klay Creative Lab LLC`, RSA 2048. The Android debug key is
+  `CN=Android Debug, O=Android, C=US`, so this is definitively not it. Do not look for a `.RSA`
+  entry in an APK as a signing check — modern builds do not write one.
+- The seven UI dictionaries, the bundled Quran text and all five translator credits are present in
+  the Hermes bundle. Non-ASCII strings there are stored **UTF-16**, so searching the bundle as UTF-8
+  reports them missing when they are fine.
+- `splitColorAlpha` and the four `rgba(8,10,14,…)` scrim literals are present, so the photo-scrim
+  fix is in this binary.
 
 Keep Play App Signing enabled. Losing the upload keystore without it means losing the ability to
 update the app at all.
@@ -31,6 +48,37 @@ update the app at all.
 | Privacy policy URL   | https://yassinerzk.github.io/react/privacy.html                             |
 | Account deletion URL | https://yassinerzk.github.io/react/delete-account.html                      |
 | Developer            | Klay Creative Lab LLC — must match the verified organisation on the account |
+| Free or paid         | **Free** — see below                                                        |
+
+### Free or paid
+
+Choose **Free**. Play warns that this cannot be changed after publishing, and that warning is about
+one direction only: a free app can never be converted to a **paid** app, meaning one with an upfront
+price on the store page. It does not lock monetisation.
+
+Free is the right answer here on both counts:
+
+- There is no billing SDK in this build, and every Pro surface is visibly marked "Coming soon". A
+  paid app that charges for what ships today would be rejected.
+- **A free app can still sell in-app purchases**, which is exactly the planned Pro model in
+  `docs/MONETIZATION.md` — remove-the-badge as an IAP, plus ads. Picking Free now costs nothing
+  later; the only door it closes is the upfront-price one, which was never the plan.
+
+Setting a price would also cut off the markets this app was localised for: paid apps are unavailable
+to buyers in several of them, and card payment rates are low where they are available.
+
+### Permissions — no declaration form needed
+
+The manifest declares 30 permissions, almost all pulled in transitively (the launcher-badge set
+comes from `expo-notifications`, `SYSTEM_ALERT_WINDOW` from React Native, `c2dm.RECEIVE` from the
+notifications module even though only local notifications are used). Checked against the list Play
+gates behind a form, and **none are present**: no `MANAGE_EXTERNAL_STORAGE`, no
+`QUERY_ALL_PACKAGES`, no `ACCESS_BACKGROUND_LOCATION`, no exact-alarm, no SMS or Call Log, no
+AccessibilityService. Location is foreground-only. So there is no sensitive-permission declaration
+to fill in.
+
+`com.google.android.gms.permission.AD_ID` is confirmed **absent**, which is what lets the Data safety
+form below say no advertising ID.
 
 ## 3. Graphics
 
@@ -128,9 +176,11 @@ Copy is drafted in `docs/STORE-LISTING.md` for:
 
 English · العربية · Français · Bahasa Indonesia · Bahasa Melayu · ไทย · اردو
 
-The **app interface speaks all seven**, so each listing says so. The **Quran and hadith translations
-are still English**, and each listing says that too — keep that distinction, because someone who
-installs expecting an Indonesian translation of the Quran will say so in a review otherwise.
+The **app interface speaks all seven**, and each listing says so. Each listing also states the two
+real limits, because promising past them is what earns one-star reviews: the **Quran reader** shows a
+published translation in the chosen language but fetches it a surah at a time rather than shipping it
+in the app, and the **hadith library is Arabic and English only** — no Malay or Thai edition of
+either collection was available. Keep both statements in.
 
 Every non-English draft still wants a native speaker before it is published.
 

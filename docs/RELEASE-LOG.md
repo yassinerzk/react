@@ -650,3 +650,41 @@ request deletion (give the URL above).
 > advertising ID and app-activity signals. This table, the privacy policy in both its copies, and
 > the store description in both languages must all be redone before an ad-bearing build reaches
 > production. Checklist in `docs/MONETIZATION.md`.
+
+## versionCode 6 — the submission pass (run 36233685694, `5e3084c`)
+
+Built and verified the artifact that goes to Play, and corrected the listing copy, which had drifted
+behind the code.
+
+**The listings were describing a two-language app.** Every one of the seven descriptions still said
+the Quran and hadith translations were English only, and the six non-English ones each listed six
+interface languages instead of seven. That copy was written before the Quran reader gained the five
+published editions. Pasting it would have understated the app in exactly the markets it was
+localised for. Corrected in all seven, along with two claims that had quietly become false: the
+offline paragraph (non-English Quran translations download per surah, so "the Quran is inside the
+app" needed narrowing to the Arabic text and its English translation) and a note in "Claims to
+avoid" asserting the app has no notifications, which stopped being true when the daily reminder
+shipped.
+
+The hadith library really is still Arabic and English — no Malay or Thai edition of either
+collection exists in the dataset — so that limit stayed in every description rather than being
+smoothed over.
+
+**Two verification checks were wrong, not the build.** Worth writing down because both would fool
+the next person:
+
+- *Looking for `META-INF/*.RSA` in the APK.* There isn't one, and that is correct: the APK is signed
+  with APK Signature Scheme v2, whose block sits outside the zip central directory. `apksigner
+  verify --print-certs` is the check — it reports signer `O=Klay Creative Lab LLC`, which is not the
+  debug key. The AAB, which is what Play receives, does carry `META-INF/BARAKAH-.RSA`.
+- *Hand-typing non-Latin probe strings.* Three "missing" locales were my transcription errors — the
+  Thai string uses ำ (U+0E33), not ํ + า, and the English one uses a straight apostrophe. Reading the
+  probes out of `packages/core/src/i18n/*.ts` instead of typing them made all seven pass. Same
+  lesson as the scrim bug: read the data.
+
+Quran chapter JSON is `require()`d, so Metro inlines it into the bundle rather than emitting asset
+files — searching the APK's file list for "quran" finds nothing. The text is there; it is in the
+bundle.
+
+Pricing is **Free**. Play's "cannot be changed" warning only blocks free → paid; a free app can
+still sell in-app purchases, which is the entire planned Pro model.
