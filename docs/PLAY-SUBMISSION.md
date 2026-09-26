@@ -45,8 +45,8 @@ update the app at all.
 | Tags                 | Religion, Lifestyle                                                         |
 | Default language     | English (United States)                                                     |
 | Contact email        | info@klaycreate.com                                                         |
-| Privacy policy URL   | https://yassinerzk.github.io/react/privacy.html                             |
-| Account deletion URL | https://yassinerzk.github.io/react/delete-account.html                      |
+| Privacy policy URL   | https://yassinerzk.github.io/barakah-stories/privacy.html                             |
+| Account deletion URL | https://yassinerzk.github.io/barakah-stories/delete-account.html                      |
 | Developer            | Klay Creative Lab LLC — must match the verified organisation on the account |
 | Free or paid         | **Free** — see below                                                        |
 

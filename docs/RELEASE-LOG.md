@@ -35,7 +35,7 @@ explicitly deferred to v1.1 (see [Deferred](#deferred-to-v11)).
 | Store listing copy | ✅ Drafted in `docs/STORE-LISTING.md` (EN + AR) — needs your read-through |
 | Accounts + deletion | ✅ Verified end to end on device and in the database; web page live |
 | Store graphics | ❌ Icon, feature graphic and screenshots still to produce |
-| Privacy policy | ✅ Live at yassinerzk.github.io/react/privacy.html |
+| Privacy policy | ✅ Live at yassinerzk.github.io/barakah-stories/privacy.html |
 | App version | ✅ `1.0.0` / `versionCode 1` |
 
 ---
@@ -626,8 +626,8 @@ carries no compliance surface. Worth considering before committing to accounts a
 
 ## Submission details (ready to paste)
 
-**Privacy policy URL:** https://yassinerzk.github.io/react/privacy.html
-**Account deletion URL:** https://yassinerzk.github.io/react/delete-account.html
+**Privacy policy URL:** https://yassinerzk.github.io/barakah-stories/privacy.html
+**Account deletion URL:** https://yassinerzk.github.io/barakah-stories/delete-account.html
 
 Both verified live (HTTP 200) on 2026-09-19 after the first successful Pages deploy.
 
@@ -688,3 +688,29 @@ bundle.
 
 Pricing is **Free**. Play's "cannot be changed" warning only blocks free → paid; a free app can
 still sell in-app purchases, which is the entire planned Pro model.
+
+## GitHub repo renamed `react` → `barakah-stories` — Pages URLs broke and were fixed
+
+Renaming the repo moved the GitHub Pages site from `yassinerzk.github.io/react/` to
+`yassinerzk.github.io/barakah-stories/`, which took down the Privacy Policy and Account Deletion
+URLs — both required fields already sitting in the Play Console submission at the time.
+
+Fixing the URL alone was not enough. `gh api repos/.../pages` showed `"build_type": "legacy"` with a
+branch source, meaning Pages was configured as classic "deploy from a branch" rather than through
+the `deploy-pages.yml` Actions workflow, despite that workflow's own runs reporting success. Legacy
+mode Jekyll-renders the branch root, so the site was serving GitHub's default README-based page, not
+the built `apps/web/dist` output — the `configure-pages@v5` step with `enablement: true` turns Pages
+on but does not itself switch an existing branch-based site over to Actions-based builds. Fixed with
+one API call:
+
+```
+gh api -X PUT repos/yassinerzk/barakah-stories/pages -f build_type=workflow
+```
+
+then re-ran the workflow. Both pages now return 200 with the correct titles. Updated the URLs in
+`docs/PLAY-SUBMISSION.md` and here, and pointed the local git remote at the new repo name (GitHub
+redirects the old one for now, but that is not a reason to leave it stale).
+
+**If the repo is ever renamed again**, re-check the Pages `build_type` before assuming a redeploy
+will fix it — the URL and the build source are two separate settings, and only one of them updates
+automatically.
