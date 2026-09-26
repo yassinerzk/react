@@ -133,7 +133,17 @@ checklist is in `docs/MONETIZATION.md`.
 
 ## 6. Content rating questionnaire
 
-Category: **Reference, News, or Educational**. Expected answers:
+Step 1 asks for an email and a **category**, offering exactly three: Game, Social or Communication,
+and All Other App Types. Answer **All Other App Types**, with `info@klaycreate.com` as the contact —
+IARC and the rating authorities may see it, so use the business address. Tick the IARC terms box.
+
+Do not pick **Social or Communication** because the app shares to WhatsApp. That share goes through
+the system share sheet, which hands a finished image to another app; Barakah Stories itself has no
+messaging, feed, profiles or user-to-user contact. Choosing it would open a branch of questions on
+moderation and publicly shared user content, and push the age rating up for a capability the app
+does not have.
+
+Expected answers to the questionnaire that follows:
 
 | Question                                             | Answer |
 | ---------------------------------------------------- | ------ |
