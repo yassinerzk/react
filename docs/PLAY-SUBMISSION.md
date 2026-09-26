@@ -116,10 +116,18 @@ without an account.
 
 Also declare:
 
-- **Data is encrypted in transit:** yes
+- **Data is encrypted in transit:** yes — Supabase serves over HTTPS/TLS throughout
+- **Account creation method:** **Username and password** only. Checked against the code
+  (`apps/mobile/src/auth/store.ts`): `supabase.auth.signUp({ email, password })` and
+  `signInWithPassword`, nothing else. No OAuth, no OTP, no biometric or other second factor, so leave
+  every other option unticked
 - **Users can request deletion:** yes — give the account deletion URL above
+- **Delete some data without deleting the account:** **No.** There is no per-item server-side delete
+  in the code beyond account deletion. Do not tick "automatically deleted within 90 days" — nothing
+  implements that retention policy, and declaring it would be a claim with no mechanism behind it
 - **No advertising ID.** Verified in the binary: the manifest contains no `AD_ID` permission
 - **No analytics, no ads, no tracking SDK** in this build
+- **Additional badges (Independent security review, UPI Payments):** skip both — neither applies
 
 The daily reminder notification is scheduled on the device and collects nothing, so it adds no
 entry here.
