@@ -103,16 +103,31 @@ compare against the binary.
 
 Answer the form to match this exactly. It is the version the shipped build actually behaves like.
 
-| Data type                      | Collected | Shared | Purpose            | Linked to identity | User can delete |
-| ------------------------------ | --------- | ------ | ------------------ | ------------------ | --------------- |
-| Approximate + precise location | No\*      | No     | App functionality  | No                 | n/a             |
-| Email address                  | Yes       | No     | Account management | Yes                | Yes             |
-| User content (saved posts)     | Yes       | No     | App functionality  | Yes                | Yes             |
+| Data type                      | Collected | Shared | Ephemeral | Required or optional | Purpose            | Linked to identity | User can delete |
+| ------------------------------ | --------- | ------ | --------- | --------------------- | ------------------ | ------------------- | --------------- |
+| Approximate location           | Yes\*     | No     | Yes       | Optional               | App functionality  | No                   | n/a             |
+| Precise location               | Yes\*     | No     | Yes       | Optional               | App functionality  | No                   | n/a             |
+| Email address                  | Yes       | No     | No        | Required to sign up    | Account management | Yes                  | Yes             |
+| User content (saved posts, Quran progress) | Yes | No | No     | Required to sign up    | App functionality  | Yes                  | Yes             |
 
-\* Location is read on the device for prayer times and the Qibla and never reaches our servers. Only
-the place-name lookup goes to the platform geocoder, which is the operating system, not us. Email
-and saved posts are collected **only if** the user chooses to sign up; the app is fully usable
-without an account.
+\* Corrected from an earlier draft of this doc, which said location is not collected because it never
+reaches our servers. That is true, but it is not Play's test. `Location.reverseGeocodeAsync` in
+`apps/mobile/app/(tabs)/prayer.tsx` sends the coordinates through the device's own geocoding service
+to resolve a city name — off the device, even though the destination is the OS vendor rather than us
+or an ad partner. Play's Data safety form (Data usage and handling step) says explicitly: disclose
+"any user data sent off the user's device by libraries or SDKs used in your app, regardless of
+whether this information is transmitted to you (the developer) or a third party." That test is met,
+so **Collected: Yes**, with **Shared: No** — the OS geocoder is servicing the app's own request, not
+receiving data for its own independent use. Confirmed optional: `apps/mobile/src/store.ts`'s
+`usePrayerStore` accepts a preset-city location with no coordinates fetched, and the app's own
+listing already advertises 33 preset cities as an alternative to granting location.
+
+Email and saved content are collected **only if** the user chooses to sign up; the app is fully
+usable without an account. Saved content covers both `saved_designs` (a user's card edits, stored as
+JSON — text, theme, background choices) and `quran_progress` (last surah/ayah, finished list), per
+`supabase/schema.sql`; classify both under **App activity → Other user-generated content**, not
+Photos and videos — no image files are ever stored server-side, only the JSON that describes a
+card's settings.
 
 Also declare:
 
